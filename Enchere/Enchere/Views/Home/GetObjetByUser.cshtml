@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Enchere.Models.Encheree>
+
+@{
+    ViewBag.Title = "GetObjetByUser";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>tous les objets par utilisateur actuels</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.objet.objetNom)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.enchereNiveau)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Message)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.enchereDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.objet.objetNom)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.enchereNiveau)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Message)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.enchereDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "DetailEnchere", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

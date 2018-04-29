@@ -1,0 +1,51 @@
+﻿@model Enchere.Models.Encheree
+
+@{
+    ViewBag.Title = "DetailEnchere";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>DetailEnchere</h2>
+
+<div>
+    <h4>Encheree</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.objet.objetNom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.objet.objetNom)
+        </dd>
+
+         <dt>
+            @Html.DisplayNameFor(model => model.enchereNiveau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.enchereNiveau)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Message)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Message)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.enchereDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.enchereDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

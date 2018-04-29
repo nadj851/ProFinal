@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mon application ASP.NET</title>    
+   
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+</head>s
+<body>
+
+    <!--navbar-->
+
+    <!--navbar-->
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="~/Home" class="navbar-brand">
+                    <img src="~/images/logo.png" class="logo" />
+                </a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="~/Home">
+                            <i class="glyphicon glyphicon-home"></i>
+                            home
+                        </a>
+                    </li>
+                   
+                    <li>
+                        <a href="~/Home/About">
+                            <i class="glyphicon glyphicon-info-sign"></i>
+                           A propos de nous
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="~/Home/Contact">
+                            <i class="glyphicon glyphicon-envelope"></i>
+                            contacter nous
+                        </a>
+                    </li>
+
+                    <li>
+                     @using (Html.BeginForm("Recherche","Home",FormMethod.Post))
+                     {
+
+                        <input type="text" name="searchName" id="searchName"
+                               placeholder="Rechercher ici.." />
+                    
+
+                     }
+                            
+                            
+                    </li>
+                </ul>
+               
+     @Html.Partial("_Login");
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="container divrender">
+        <div class="row" style="min-height:550px;">
+
+            @RenderBody()
+
+        </div>
+
+     
+
+    </div>
+  
+    <!--footer-->
+  <footer class="myfooter">
+
+      <div class="container">
+
+          <div class="row">
+
+           <div class="col-md-4">
+             <h3>
+                 <i class="glyphicon glyphicon-question-sign"></i>
+                A propos de nous!
+             </h3>
+               <p>
+                   En 2016, Petite-Entreprise.net a reçu la visite de 7 millions de créateurs et entrepreneurs venus de France et d'ailleurs.Chaque jour, ces entrepreneurs trouvent des milliers d'informations utiles dans leur quotidien de chef. 
+
+               </p>
+
+           </div>
+              <div class="col-md-4">
+                  <h3>
+                      <i class="glyphicon glyphicon-globe"></i>
+                      liens importants 
+                  </h3>
+                 
+                  <ul>
+                      <li><a href="#"> item1  </a> </li>      
+                      <li><a href="#"> item2  </a> </li>
+                      <li><a href="#"> item3  </a> </li>
+                      <li><a href="#"> item4  </a> </li> 
+                                            
+                  </ul>
+              </div>
+
+              <div class="col-md-4">
+                  <h3>
+                      <i class="glyphicon glyphicon-envelope"></i>
+                     Rejoint Nous
+                  </h3>
+
+                  <ul>
+                      <li><a href="#"> facebook </a> </li>
+                      <li><a href="#"> tweeter  </a> </li>
+                      <li><a href="#"> Youtube  </a> </li>
+                      <li><a href="#"> laisser un message  </a> </li>
+
+                  </ul>
+              </div>
+          </div>
+         
+
+      </div>
+     
+      <div class="subfooter"><span>Tous les droits reserve pour Munarela -2018</span></div>
+  </footer>
+     
+   @RenderSection("scripts",required:false)
+</body>
+</html>

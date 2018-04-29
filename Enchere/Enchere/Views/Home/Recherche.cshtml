@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Enchere.Models.Objet>
+
+@{
+    ViewBag.Title = "Recherche";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+    <div class="panel panel-default" style="padding:15px">
+        <h1 class="panel-heading">Resultat de la recherche  </h1>
+
+
+        <div class="row">
+            @foreach (var subitem in Model)
+            {
+                <div class="col-md-3 img-thumbnail" style="margin-left:20px;margin-bottom:30px;height:380px;">
+                    <img src="~/Uploads/@subitem.objetImage" style="width:200px;height:200px;" />
+                    <h3>@Html.DisplayFor(modelItem => subitem.objetNom)</h3>
+                    <h5>@Html.DisplayFor(modelItem => subitem.objetDescription)</h5>
+                    @Html.ActionLink("Details", "Details", new { objetId = subitem.Id }, new { @class = "btn btn-primary" }) |
+                </div>
+
+
+
+            }
+        </div>
+    </div>
+
+
+
