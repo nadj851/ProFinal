@@ -186,6 +186,7 @@
     <Compile Include="Controllers\ObjetsController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\testController.cs" />
+    <Compile Include="Controllers\testsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -233,6 +234,14 @@
     <Compile Include="Migrations\201804292034564_testinggood.Designer.cs">
       <DependentUpon>201804292034564_testinggood.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804300520445_initial1.cs" />
+    <Compile Include="Migrations\201804300520445_initial1.Designer.cs">
+      <DependentUpon>201804300520445_initial1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805011335327_ajouttabletest.cs" />
+    <Compile Include="Migrations\201805011335327_ajouttabletest.Designer.cs">
+      <DependentUpon>201805011335327_ajouttabletest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Categorie.cs" />
@@ -243,6 +252,7 @@
     <Compile Include="Models\Objet.cs" />
     <Compile Include="Models\ObjetViewModel.cs" />
     <Compile Include="Models\RoleViewModel.cs" />
+    <Compile Include="Models\test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -313,6 +323,11 @@
     <Content Include="Views\Home\GetObjetByVendeur.cshtml" />
     <Content Include="Views\Home\Recherche.cshtml" />
     <Content Include="Views\Account\EditProfile.cshtml" />
+    <Content Include="Views\tests\Create.cshtml" />
+    <Content Include="Views\tests\Delete.cshtml" />
+    <Content Include="Views\tests\Details.cshtml" />
+    <Content Include="Views\tests\Edit.cshtml" />
+    <Content Include="Views\tests\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -357,6 +372,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804292034564_testinggood.resx">
       <DependentUpon>201804292034564_testinggood.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804300520445_initial1.resx">
+      <DependentUpon>201804300520445_initial1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805011335327_ajouttabletest.resx">
+      <DependentUpon>201805011335327_ajouttabletest.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
