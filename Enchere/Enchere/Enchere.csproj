@@ -237,6 +237,10 @@
     <Compile Include="Migrations\201805011335327_ajouttabletest.Designer.cs">
       <DependentUpon>201805011335327_ajouttabletest.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805012045490_alo.cs" />
+    <Compile Include="Migrations\201805012045490_alo.Designer.cs">
+      <DependentUpon>201805012045490_alo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Categorie.cs" />
@@ -369,6 +373,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805011335327_ajouttabletest.resx">
       <DependentUpon>201805011335327_ajouttabletest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805012045490_alo.resx">
+      <DependentUpon>201805012045490_alo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
