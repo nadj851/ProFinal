@@ -8,7 +8,7 @@ using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
-using WebApplication1.Controllers;
+using WebApplication1.Controllers; 
 
 namespace EnchereTest
 {
