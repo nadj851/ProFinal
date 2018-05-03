@@ -26,7 +26,6 @@
                     <h5>@Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(modelItem => subitem.objetDescription).ToString()))</h5>
                     @Html.ActionLink("Details", "Details", new { objetId = subitem.Id }, new { @class = "btn btn-primary" }) |
                 </div>
-
             }
         </div>
     </div>
