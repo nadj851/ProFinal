@@ -31,26 +31,22 @@
                                              <span class="glyphicon glyphicon-user img-size"></span>
 
                                          </p>
-
                                      </div>
 
 
                                      <div class="col-lg-8">
                                          <p class="text-right">
                                              <strong> Bienvenue : @CurrentUser.UserName  </strong>      </p>
-                                   @if (CurrentUser.UserType == "Vendeur")
+                                   @if (CurrentUser.UserType == "Membre")
                                    {
                                     <a href="~/Home/GetObjetByVendeur" class="btn btn-success btn-block"> Objets que tu a met en vente </a>
                                     <a href="~/Objets/Create" class="btn btn-success btn-block"> Ajouter un nouveau objet ici </a>
-
-                                   }
-                                   else if (CurrentUser.UserType == "Acheteur")
-                                   {
                                     <a href="~/Home/GetObjetByUser" class="btn btn-success btn-block"> Objets que tu a  acheter ou encherer </a>
 
+
                                    }
 
-                                   else if (CurrentUser.UserType == "Admins")
+                                   else if (CurrentUser.UserType == "Admin")
                                    {
 
                                     <a href="~/Objets/Index" class="btn btn-success btn-block"> Gestion Objets </a>

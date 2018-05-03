@@ -148,7 +148,7 @@ namespace WebApplication1.Controllers
         }
 
         [Authorize]
-        //[Authorize(Roles = "Vendeur,Admins")]
+        //[Authorize(Roles = "Vendeur,Admin")]
         public ActionResult GetObjetByVendeur()
         {
             var UserId = User.Identity.GetUserId();

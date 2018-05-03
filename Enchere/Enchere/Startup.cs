@@ -24,16 +24,16 @@ namespace WebApplication1
            var roleManager=new RoleManager<IdentityRole> (new RoleStore<IdentityRole>(db));
             var userManager =new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
             IdentityRole role = new IdentityRole();
-            if (!roleManager.RoleExists("Admins"))
+            if (!roleManager.RoleExists("Admin"))
             {
-                role.Name = "Admins";
+                role.Name = "Admin";
                 roleManager.Create(role);
                 ApplicationUser user = new ApplicationUser();
                 user.UserName = "admin";
                 user.Email = "admin@admin.com";
                 user.Civilite = "Monsieur";
                 user.Prenom = "admin";
-                user.UserType = "Admins";
+                user.UserType = "Admin";
                 user.Langue = "Anglais";
                 user.Tel = "5147582310";
                 user.Adresse = "canada";
@@ -41,7 +41,7 @@ namespace WebApplication1
 
                 if (check.Succeeded)
                 {
-                    userManager.AddToRole(user.Id,"Admins");
+                    userManager.AddToRole(user.Id,"Admin");
                 }
 
             }

@@ -148,7 +148,7 @@ namespace WebApplication1.Controllers
             //  ViewBag.UserType = new SelectList(db.Roles,"Name","Name");
             // ViewBag.UserType = new SelectList(db.Roles.Where(a=>!a.Name.Contains("Administrateur")).ToList());
             // ViewBag.UserType = new SelectList(db.Roles.Where(a => !a.Name.Contains("Administrateur")).ToList());
-            ViewBag.UserType = db.Roles.Where(a => !a.Name.Contains("Admins")).ToList();
+            ViewBag.UserType = db.Roles.Where(a => !a.Name.Contains("Admin")).ToList();
             return View();
         }
 
@@ -165,7 +165,7 @@ namespace WebApplication1.Controllers
                 /// ViewBag.Civilite = new SelectList(new[] { "Monsieur", "Madame", "Mixte" });
 
                 ///ViewBag.Langue = new SelectList(new[] { "Francais", "Anglais" });
-                ViewBag.UserType = db.Roles.Where(a => !a.Name.Contains("Admins")).ToList();
+                ViewBag.UserType = db.Roles.Where(a => !a.Name.Contains("Admin")).ToList();
 
                 var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, Civilite = model.Civilite, Prenom = model.Prenom, UserType=model.UserType, Langue = model.Langue , Tel = model.Tel, Adresse=model.Adresse };
                 var result = await UserManager.CreateAsync(user, model.Password);
@@ -208,7 +208,7 @@ namespace WebApplication1.Controllers
             profile.Adresse = user.Adresse;
             
 
-           // ViewBag.UserType = db.Roles.Where(a => !a.Name.Contains("Admins")).ToList();
+           // ViewBag.UserType = db.Roles.Where(a => !a.Name.Contains("Admin")).ToList();
             return View(profile);
         }
 
@@ -239,7 +239,7 @@ namespace WebApplication1.Controllers
                 ViewBag.Message = "Actualisation de compte avec success ";
             }
 
-            //  VriewBag.UserType = db.Roles.Where(a => !a.Name.Contains("Admins")).ToList();
+            //  VriewBag.UserType = db.Roles.Where(a => !a.Name.Contains("Admin")).ToList();
             return View(profile);
         }
 

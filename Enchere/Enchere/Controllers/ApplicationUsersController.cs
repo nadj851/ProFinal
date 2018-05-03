@@ -10,6 +10,7 @@ using WebApplication1.Models;
 
 namespace Enchere.Controllers
 {
+    [Authorize(Roles= "Admin")]
     public class ApplicationUsersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
