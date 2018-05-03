@@ -242,6 +242,10 @@
     <Compile Include="Migrations\201805012045490_alo.Designer.cs">
       <DependentUpon>201805012045490_alo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805031312580_testuni.cs" />
+    <Compile Include="Migrations\201805031312580_testuni.Designer.cs">
+      <DependentUpon>201805031312580_testuni.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Categorie.cs" />
@@ -382,6 +386,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805012045490_alo.resx">
       <DependentUpon>201805012045490_alo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805031312580_testuni.resx">
+      <DependentUpon>201805031312580_testuni.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
