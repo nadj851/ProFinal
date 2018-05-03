@@ -20,15 +20,20 @@ namespace EnchereTest
         {
             //Arrange
             HomeController controller = new HomeController();
+
             //act
             ViewResult result = controller.Essai() as ViewResult;
-            //Assert
 
+
+            //Assert
             // Assert.IsNotNull(result);
            Assert.AreEqual("bon",result.ViewBag.message);
 
             //Assert.IsNotNull(result);
 
         }
+
+
+
     }
 }
