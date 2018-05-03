@@ -11,7 +11,7 @@ using WebApplication1.Models;
 
 namespace Enchere.Controllers
 {
-    [Authorize(Roles ="Admins")]
+    [Authorize(Roles ="Admin")]
     //[Authorize(Users = "admin")]
     //[AllowAnonymous]
     public class CategoriesController : Controller

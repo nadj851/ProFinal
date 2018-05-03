@@ -9,7 +9,7 @@ using WebApplication1.Models;
 
 namespace Enchere.Controllers
 {
-    [Authorize(Roles = "Admins")]
+    [Authorize(Roles = "Admin")]
     public class RolesController : Controller
     {
         // GET: Roles
