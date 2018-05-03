@@ -238,5 +238,14 @@ namespace WebApplication1.Controllers
             return View(result);
         }
 
+
+        //pour tester le test unitaire
+        public ActionResult Essai()
+        {
+
+            ViewBag.message = "bon";
+            return View();
+        }
+
     }
 }
