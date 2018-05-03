@@ -155,10 +155,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\enchere.mdf" />
-    <Content Include="App_Data\enchere_log.ldf">
-      <DependentUpon>enchere.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
@@ -237,6 +233,14 @@
     <Compile Include="Migrations\201804300520445_initial1.Designer.cs">
       <DependentUpon>201804300520445_initial1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805011335327_ajouttabletest.cs" />
+    <Compile Include="Migrations\201805011335327_ajouttabletest.Designer.cs">
+      <DependentUpon>201805011335327_ajouttabletest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805012045490_alo.cs" />
+    <Compile Include="Migrations\201805012045490_alo.Designer.cs">
+      <DependentUpon>201805012045490_alo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Categorie.cs" />
@@ -247,6 +251,7 @@
     <Compile Include="Models\Objet.cs" />
     <Compile Include="Models\ObjetViewModel.cs" />
     <Compile Include="Models\RoleViewModel.cs" />
+    <Compile Include="Models\test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -325,6 +330,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Scripts\ckeditor\" />
     <Folder Include="Uploads\" />
   </ItemGroup>
@@ -364,6 +370,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804300520445_initial1.resx">
       <DependentUpon>201804300520445_initial1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805011335327_ajouttabletest.resx">
+      <DependentUpon>201805011335327_ajouttabletest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805012045490_alo.resx">
+      <DependentUpon>201805012045490_alo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
