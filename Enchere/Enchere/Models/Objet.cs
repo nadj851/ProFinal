@@ -15,26 +15,26 @@ namespace Enchere.Models
         [Display(Name = "Nom")]
         public string objetNom { get; set; }
 
-        [Display(Name = "Description")]
+        [Display(Name = "Déscription")]
         [AllowHtml]
         public string objetDescription { get; set; }
-        [Display(Name = "Prix de départ")]
+        [Display(Name = "Prix")]
         public double objetPrixDepart { get; set; }
 
-        [Display(Name = "Date et heure de l’inscription")]
+        [Display(Name = "Date inscription")]
         public DateTime objetDateInsc { get; set; }
 
         
-         [Display(Name = "Durée de vente")]
+         [Display(Name = "Durée Vente")]
         public int objetDureeVente { get; set; }
 
-        [Display(Name = "Date et heure d’achat")]
+        [Display(Name = "Date achat")]
         public DateTime objetDateAchat { get; set; }
 
         [Display(Name = "image")]
         public string objetImage { get; set; }
 
-        [Display(Name = "Categorie de l'objet")]
+        [Display(Name = "Catégorie")]
         public int categoryId { get; set; }
 
         public string UserId { get; set; }
