@@ -11,10 +11,10 @@ namespace Enchere.Models
     {
         public int Id { get; set; }
         [Required]
-        [Display(Name = "Nom de Category")]
+        [Display(Name = "Nom")]
         public string CategoryName { get; set; }
         [Required]
-        [Display(Name = "Description")]
+        [Display(Name = "Déscription")]
         public string  CategoryDescription { get; set; }
 
         public virtual ICollection<Objet> objets { get; set; }

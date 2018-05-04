@@ -45,6 +45,11 @@
     <tbody>
         @foreach (var item in Model)
         {
+            //ne selectionne pas l'admin
+            if (item.UserType!="Admin")
+            {
+
+
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Civilite)
@@ -77,6 +82,7 @@
                     @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                 </td>
             </tr>
+            }
         }
     </tbody>
 

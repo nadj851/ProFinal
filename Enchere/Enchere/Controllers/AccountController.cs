@@ -188,10 +188,7 @@ namespace WebApplication1.Controllers
             return View(model);
         }
 
-
-
-
-
+        
         public ActionResult EditProfile()
         {
 
@@ -219,7 +216,7 @@ namespace WebApplication1.Controllers
             var CurrentUser=db.Users.Where(a => a.Id == UserId).SingleOrDefault();
             if(!UserManager.CheckPassword(CurrentUser,profile.CurrentPassword))
             {
-                ViewBag.Message = "Erreur dans  Mot de passe actuel ";
+                ViewBag.Message = "Erreur sur le mot de passe actuel ";
 
             }
             else
