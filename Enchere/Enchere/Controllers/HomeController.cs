@@ -41,7 +41,7 @@ namespace WebApplication1.Controllers
               return View();
         }
 
-        [HttpPost]
+        [HttpPost] 
         public ActionResult Appliquer(Enchere.Models.Encheree en)
         {
             var UserId = User.Identity.GetUserId();
@@ -50,7 +50,7 @@ namespace WebApplication1.Controllers
 
             if (check.Count<1)
             {
-                var enchere = new Enchere.Models.Encheree();
+            var enchere = new Enchere.Models.Encheree();
             enchere.UserId = UserId;
             enchere.ObjetId = ObjetId;
             enchere.Message =en.Message;
