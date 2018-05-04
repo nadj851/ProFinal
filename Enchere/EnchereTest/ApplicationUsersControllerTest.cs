@@ -1,15 +1,15 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Web.Mvc;
 using Enchere.Controllers;
+using System.Web.Mvc;
 
 namespace EnchereTest
 {
     [TestClass]
-    public class CategoriesControllerTest
+    public class ApplicationUsersControllerTest
     {
-        [TestMethod]        
-        public void IndexCategorie()
+        [TestMethod]
+        public void IndexUser()
         {
 
             //Assert.IsNotNull(result);
@@ -18,7 +18,7 @@ namespace EnchereTest
             //Assert.AreEqual(result.Content.Name, item.Name);
             ////return View(db.Categories.ToList());
             //Arrange
-            CategoriesController controller = new CategoriesController();
+            ObjetsController controller = new ObjetsController();
             //act
             ViewResult result = controller.Index() as ViewResult;
 
@@ -30,10 +30,10 @@ namespace EnchereTest
         }
 
         //[TestMethod]
-        //public void EditCategorie()
+        //public void EditUser()
         //{
 
-        //    CategoriesController controller = new CategoriesController();
+        //    ApplicationUsersController controller = new ApplicationUsersController();
         //    //act
         //    ViewResult result = controller.Edit() as ViewResult;
 
@@ -45,10 +45,10 @@ namespace EnchereTest
         //}
 
         //[TestMethod]
-        //public void DeleteCategorie()
+        //public void DeleteUser()
         //{
 
-        //    CategoriesController controller = new CategoriesController();
+        //    ApplicationUsersController  controller = new ApplicationUsersController();
         //    //act
         //    ViewResult result = controller.Delete() as ViewResult;
 
@@ -60,10 +60,10 @@ namespace EnchereTest
         //}
 
         [TestMethod]
-        public void CreateCategorie()
+        public void CreateUser()
         {
 
-            CategoriesController controller = new CategoriesController();
+            ApplicationUsersController controller = new ApplicationUsersController();
             //act
             ViewResult result = controller.Create() as ViewResult;
 
@@ -71,11 +71,8 @@ namespace EnchereTest
             Assert.IsNotNull(result);
             //Assert.AreEqual("Create", result.ViewName);
 
-           
+
         }
-
-
 
     }
 }
-

@@ -1,15 +1,15 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Web.Mvc;
 using Enchere.Controllers;
+using System.Web.Mvc;
 
 namespace EnchereTest
 {
     [TestClass]
-    public class CategoriesControllerTest
+    public class RolesControllerTest
     {
-        [TestMethod]        
-        public void IndexCategorie()
+        [TestMethod]
+        public void IndexObjets()
         {
 
             //Assert.IsNotNull(result);
@@ -18,7 +18,7 @@ namespace EnchereTest
             //Assert.AreEqual(result.Content.Name, item.Name);
             ////return View(db.Categories.ToList());
             //Arrange
-            CategoriesController controller = new CategoriesController();
+            RolesController controller = new RolesController();
             //act
             ViewResult result = controller.Index() as ViewResult;
 
@@ -30,7 +30,7 @@ namespace EnchereTest
         }
 
         //[TestMethod]
-        //public void EditCategorie()
+        //public void EditObjets()
         //{
 
         //    CategoriesController controller = new CategoriesController();
@@ -45,7 +45,7 @@ namespace EnchereTest
         //}
 
         //[TestMethod]
-        //public void DeleteCategorie()
+        //public void DeleteObjets()
         //{
 
         //    CategoriesController controller = new CategoriesController();
@@ -60,10 +60,10 @@ namespace EnchereTest
         //}
 
         [TestMethod]
-        public void CreateCategorie()
+        public void CreateObjets()
         {
 
-            CategoriesController controller = new CategoriesController();
+            RolesController controller = new RolesController();
             //act
             ViewResult result = controller.Create() as ViewResult;
 
@@ -71,11 +71,7 @@ namespace EnchereTest
             Assert.IsNotNull(result);
             //Assert.AreEqual("Create", result.ViewName);
 
-           
+
         }
-
-
-
     }
 }
-
