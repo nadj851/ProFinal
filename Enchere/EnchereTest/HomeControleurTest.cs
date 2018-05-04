@@ -13,7 +13,7 @@ using WebApplication1.Controllers;
 namespace EnchereTest
 {
     [TestClass]
-    public class ControleurTest
+    public class HomeControleurTest
     {
         [TestMethod]
         public void Essai()
