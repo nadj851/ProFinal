@@ -174,7 +174,7 @@ namespace WebApplication1.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Munarela Enchere vous souhaite la bienvenue.";
 
             return View();
         }
@@ -239,13 +239,7 @@ namespace WebApplication1.Controllers
         }
 
 
-        //pour tester le test unitaire
-        public ActionResult Essai()
-        {
-
-            ViewBag.message = "bon";
-            return View();
-        }
+        
 
     }
 }

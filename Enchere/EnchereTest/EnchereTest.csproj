@@ -83,13 +83,18 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>False</Private>
+        </Reference>
       </ItemGroup>
     </Otherwise>
   </Choose>
   <ItemGroup>
     <Compile Include="HomeControleurTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CategoriesControllerTest.cs" />
+    <Compile Include="ObjetsControllerTest.cs" />
+    <Compile Include="UnitTest2.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

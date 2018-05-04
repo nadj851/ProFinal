@@ -457,7 +457,6 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ObjetsController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
-    <Compile Include="Controllers\testController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -542,7 +541,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Views\test\Index.cshtml" />
     <Content Include="fonts\Roboto-Bold.ttf" />
     <Content Include="fonts\Roboto-Black.ttf" />
     <Content Include="fonts\Roboto-BlackItalic.ttf" />
