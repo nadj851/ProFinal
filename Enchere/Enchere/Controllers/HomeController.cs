@@ -32,7 +32,7 @@ namespace WebApplication1.Controllers
             }
 
             Session["ObjetId"] = objetId;
-            return View(objet);
+            return View(objet); 
         }
 
         [Authorize]

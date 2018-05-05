@@ -39,9 +39,10 @@
                                              <strong> Bienvenue : @CurrentUser.UserName  </strong>      </p>
                                    @if (CurrentUser.UserType == "Membre")
                                    {
-                                    <a href="~/Home/GetObjetByVendeur" class="btn btn-success btn-block"> Objets que tu a met en vente </a>
+                                    <a href="~/Home/GetObjetByUser" class="btn btn-success btn-block"> Objets que tu a met en vente </a>
                                     <a href="~/Objets/Create" class="btn btn-success btn-block"> Ajouter un nouveau objet ici </a>
-                                    <a href="~/Home/GetObjetByUser" class="btn btn-success btn-block"> Objets que tu a  acheter ou encherer </a>
+                                    <a href="~/Home/GetObjetByVendeur" class="btn btn-success btn-block"> Objets que tu a  acheter ou encherer </a>
+                                      
 
 
                                    }
