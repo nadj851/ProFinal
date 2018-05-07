@@ -5,7 +5,7 @@
 @model IEnumerable<Enchere.Models.Categorie>
 @{
     ViewBag.Title = "Home Page";
-    
+
 }
 
 
@@ -52,7 +52,9 @@ else
            
             @foreach (var subitem in item.objets)
             {
-                
+               
+
+
                   <div class="col-md-3 img-thumbnail" style="margin-left:20px;margin-bottom:30px;min-height:380px;">
                       <p id="demo">  </p>
                       <img src="~/Uploads/@subitem.objetImage" style="width:200px;height:200px;" />                

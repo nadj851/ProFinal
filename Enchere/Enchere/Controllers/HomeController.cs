@@ -194,9 +194,9 @@ namespace WebApplication1.Controllers
             try
             {
                 var mail = new MailMessage();
-            var loginInfo = new NetworkCredential("admin@gmail.com", "pass");
+            var loginInfo = new NetworkCredential("hsisenator@gmail.com", "");
             mail.From = new MailAddress(contact.Email);
-            mail.To.Add(new MailAddress("admin@gmail.com"));
+            mail.To.Add(new MailAddress("hsisenator@gmail.com"));
             mail.Subject = contact.Subject;
 
             mail.IsBodyHtml = true;
