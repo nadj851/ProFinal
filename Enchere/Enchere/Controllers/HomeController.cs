@@ -9,6 +9,7 @@ using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models;
+using CaptchaMvc.HtmlHelpers;
 
 namespace WebApplication1.Controllers
 {
@@ -183,41 +184,46 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public ActionResult Contact()
         {
-
-
             return View();
         }
-
+        [CaptchaMvc.Attributes.CaptchaVerify("Captcha is not valid")]   
         [HttpPost]
         public ActionResult Contact(ContactModel contact)
         {
             try
             {
-                var mail = new MailMessage();
-            var loginInfo = new NetworkCredential("admin@gmail.com", "pass");
-            mail.From = new MailAddress(contact.Email);
-            mail.To.Add(new MailAddress("admin@gmail.com"));
-            mail.Subject = contact.Subject;
+                if (ModelState.IsValid)
+                {
+                    TempData["Message"] = "Message: captcha is valid.";
+                    var mail = new MailMessage();
+                    var loginInfo = new NetworkCredential("admin@gmail.com", "pass");
+                    mail.From = new MailAddress(contact.Email);
+                    mail.To.Add(new MailAddress("admin@gmail.com"));
+                    mail.Subject = contact.Subject;
 
-            mail.IsBodyHtml = true;
-            string body = "Nom expéditeur " + contact.Nom+"<br>"+
-                "email expéditeur "+contact.Email+ "<br>"+
-                "objet de message "+contact.Subject+ "<br>"+
-                "le message : <b>" + contact.Message+"</b>";
+                    mail.IsBodyHtml = true;
+                    string body = "Nom expéditeur " + contact.Nom + "<br>" +
+                        "email expéditeur " + contact.Email + "<br>" +
+                        "objet de message " + contact.Subject + "<br>" +
+                        "le message : <b>" + contact.Message + "</b>";
 
-            mail.Body = body;
-            //465
-            //587
-            var smtpClient = new SmtpClient("smtp.gmail.com",587);
-                      
-            smtpClient.EnableSsl = true;
-            smtpClient.Credentials = loginInfo;
-            smtpClient.Send(mail);
+                    mail.Body = body;
+                    //465
+                    //587
+                    var smtpClient = new SmtpClient("smtp.gmail.com", 587);
+
+                    smtpClient.EnableSsl = true;
+                    smtpClient.Credentials = loginInfo;
+                    smtpClient.Send(mail);
+                    return RedirectToAction("Index");
+                }
+
                 
             }
             catch(Exception ex)
             { }
-            return RedirectToAction("Index");
+            TempData["ErrorMessage"] = "Error: captcha is not valid.";
+            return View();
         }
 
 
