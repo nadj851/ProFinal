@@ -620,6 +620,7 @@
     <Content Include="Views\Evaluations\Details.cshtml" />
     <Content Include="Views\Evaluations\Edit.cshtml" />
     <Content Include="Views\Evaluations\Index.cshtml" />
+    <Content Include="Views\ApplicationUsers\listObjetVendu.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
