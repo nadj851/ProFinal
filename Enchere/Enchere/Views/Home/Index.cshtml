@@ -79,15 +79,18 @@ else
         foreach (var subitem in item.objets){
             long duree = subitem.objetDureeVente;
             DateTime dateLimite = subitem.objetDateInsc.AddMilliseconds(duree);
-            DateTime dateMaintenent = DateTime.UtcNow;
-            long elapsedTicks = dateLimite.Ticks- dateMaintenent.Ticks;
-            TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
+            //DateTime dateMaintenent = DateTime.UtcNow;
+            //long elapsedTicks = dateLimite.Ticks- dateMaintenent.Ticks;
+            //TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
+
+            long ms = (long)(dateLimite - DateTime.MinValue).TotalMilliseconds;
 
             // Set the date we're counting down to
 
-            @:objets.push("@((long)elapsedSpan.TotalMilliseconds)");
+             @:objets.push("@(ms)");
+           // @:objets.push("@((long)elapsedSpan.TotalMilliseconds)");
                 @:objetsId.push("@subitem.Id");
-            }
+                    }
     }
     //alert(objets);
 
