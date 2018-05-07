@@ -42,7 +42,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Message, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Message, new { htmlAttributes = new { @class = "form-control", @id = "objetDescription1" } })
+                @Html.TextAreaFor(model => model.Message, new { htmlAttributes = new { @class = "form-control", @id = "Des" } })
                 @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -60,9 +60,13 @@
 <div>
     @Html.ActionLink("Back to List ", "Index")
 </div>
+
+@section scripts
+    {
 <script>
-                CKEDITOR.replace("objetDescription1")
+    CKEDITOR.replace("Des");
 
 
 
 </script>
+    }

@@ -191,32 +191,28 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult Contact(ContactModel contact)
         {
-            try
-            {
-                var mail = new MailMessage();
-            var loginInfo = new NetworkCredential("hsisenator@gmail.com", "");
-            mail.From = new MailAddress(contact.Email);
-            mail.To.Add(new MailAddress("hsisenator@gmail.com"));
+            //comment faire pour envoyer un message à partir de la boite email de l'administrateur munarela@hotmail.com
+            SmtpClient SmtpServer = new SmtpClient("smtp.live.com");
+            var mail = new MailMessage();
+            mail.From = new MailAddress("munarela@hotmail.com");
+            mail.To.Add("munarela@hotmail.com");
             mail.Subject = contact.Subject;
-
             mail.IsBodyHtml = true;
-            string body = "Nom expéditeur " + contact.Nom+"<br>"+
-                "email expéditeur "+contact.Email+ "<br>"+
-                "objet de message "+contact.Subject+ "<br>"+
-                "le message : <b>" + contact.Message+"</b>";
+            //le message du body
+            string body = "Nom expéditeur " + contact.Nom + "<br>" +
+                "email expéditeur " + contact.Email + "<br>" +
+                "objet de message " + contact.Subject + "<br>" +
+                "le message : <b>" + contact.Message + "</b>";
 
             mail.Body = body;
-            //465
-            //587
-            var smtpClient = new SmtpClient("smtp.gmail.com",587);
                       
-            smtpClient.EnableSsl = true;
-            smtpClient.Credentials = loginInfo;
-            smtpClient.Send(mail);
-                
-            }
-            catch(Exception ex)
-            { }
+            SmtpServer.Port = 587;
+            SmtpServer.UseDefaultCredentials = false;
+            SmtpServer.Credentials = new System.Net.NetworkCredential("munarela@hotmail.com", "Web123456");
+            SmtpServer.EnableSsl = true;
+            SmtpServer.Send(mail);
+
+            
             return RedirectToAction("Index");
         }
 
@@ -243,3 +239,30 @@ namespace WebApplication1.Controllers
 
     }
 }
+/*commentaire de l'ancien envoi de message qui ne fonctionnait pas*/
+//try
+//{
+//    var mail = new MailMessage();
+//var loginInfo = new NetworkCredential("munarela@hotmail.com", "Web123456");
+//mail.From = new MailAddress(contact.Email);
+//mail.To.Add(new MailAddress("munarela@hotmail.com"));
+//mail.Subject = contact.Subject;
+
+//mail.IsBodyHtml = true;
+//string body = "Nom expéditeur " + contact.Nom+"<br>"+
+//    "email expéditeur "+contact.Email+ "<br>"+
+//    "objet de message "+contact.Subject+ "<br>"+
+//    "le message : <b>" + contact.Message+"</b>";
+
+//mail.Body = body;
+////465
+////587
+//var smtpClient = new SmtpClient("smtp.Live.com", 587);
+
+//smtpClient.EnableSsl = true;
+//smtpClient.Credentials = loginInfo;
+//smtpClient.Send(mail);
+//    Console.WriteLine(mail);
+//}
+//catch(Exception ex)
+//{ Console.WriteLine(ex); }
