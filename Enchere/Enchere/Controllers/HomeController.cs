@@ -48,8 +48,8 @@ namespace WebApplication1.Controllers
             var ObjetId =(int) Session["ObjetId"];
             var check = db.Encherees.Where(a => a.ObjetId == ObjetId && a.UserId == UserId).ToList();
 
-            if (check.Count<1)
-            {
+            //if (check.Count<1)
+            //{
             var enchere = new Enchere.Models.Encheree();
             enchere.UserId = UserId;
             enchere.ObjetId = ObjetId;
@@ -60,11 +60,11 @@ namespace WebApplication1.Controllers
             db.Encherees.Add(enchere);
             db.SaveChanges();
                 ViewBag.Result = "Envoyer avec success";
-            }
-            else
-            {
-                ViewBag.Result = "deja participer deja pour cette objet désolé";
-            }
+            //}
+            //else
+            //{
+            //    ViewBag.Result = "deja participer deja pour cette objet désolé";
+            //}
             return View();
         }
 
