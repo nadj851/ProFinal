@@ -9,7 +9,6 @@ using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models;
-using CaptchaMvc.HtmlHelpers;
 
 namespace WebApplication1.Controllers
 {
@@ -184,46 +183,37 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public ActionResult Contact()
         {
+
+
             return View();
         }
-        [CaptchaMvc.Attributes.CaptchaVerify("Captcha is not valid")]   
+
         [HttpPost]
         public ActionResult Contact(ContactModel contact)
         {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    TempData["Message"] = "Message: captcha is valid.";
-                    var mail = new MailMessage();
-                    var loginInfo = new NetworkCredential("admin@gmail.com", "pass");
-                    mail.From = new MailAddress(contact.Email);
-                    mail.To.Add(new MailAddress("admin@gmail.com"));
-                    mail.Subject = contact.Subject;
+            //comment faire pour envoyer un message à partir de la boite email de l'administrateur munarela@hotmail.com
+            SmtpClient SmtpServer = new SmtpClient("smtp.live.com");
+            var mail = new MailMessage();
+            mail.From = new MailAddress("munarela@hotmail.com");
+            mail.To.Add("munarela@hotmail.com");
+            mail.Subject = contact.Subject;
+            mail.IsBodyHtml = true;
+            //le message du body
+            string body = "Nom expéditeur " + contact.Nom + "<br>" +
+                "email expéditeur " + contact.Email + "<br>" +
+                "objet de message " + contact.Subject + "<br>" +
+                "le message : <b>" + contact.Message + "</b>";
 
-                    mail.IsBodyHtml = true;
-                    string body = "Nom expéditeur " + contact.Nom + "<br>" +
-                        "email expéditeur " + contact.Email + "<br>" +
-                        "objet de message " + contact.Subject + "<br>" +
-                        "le message : <b>" + contact.Message + "</b>";
+            mail.Body = body;
+                      
+            SmtpServer.Port = 587;
+            SmtpServer.UseDefaultCredentials = false;
+            SmtpServer.Credentials = new System.Net.NetworkCredential("munarela@hotmail.com", "Web123456");
+            SmtpServer.EnableSsl = true;
+            SmtpServer.Send(mail);
 
-                    mail.Body = body;
-                    //465
-                    //587
-                    var smtpClient = new SmtpClient("smtp.gmail.com", 587);
-
-                    smtpClient.EnableSsl = true;
-                    smtpClient.Credentials = loginInfo;
-                    smtpClient.Send(mail);
-                    return RedirectToAction("Index");
-                }
-
-                
-            }
-            catch(Exception ex)
-            { }
-            TempData["ErrorMessage"] = "Error: captcha is not valid.";
-            return View();
+            
+            return RedirectToAction("Index");
         }
 
 
@@ -249,3 +239,30 @@ namespace WebApplication1.Controllers
 
     }
 }
+/*commentaire de l'ancien envoi de message qui ne fonctionnait pas*/
+//try
+//{
+//    var mail = new MailMessage();
+//var loginInfo = new NetworkCredential("munarela@hotmail.com", "Web123456");
+//mail.From = new MailAddress(contact.Email);
+//mail.To.Add(new MailAddress("munarela@hotmail.com"));
+//mail.Subject = contact.Subject;
+
+//mail.IsBodyHtml = true;
+//string body = "Nom expéditeur " + contact.Nom+"<br>"+
+//    "email expéditeur "+contact.Email+ "<br>"+
+//    "objet de message "+contact.Subject+ "<br>"+
+//    "le message : <b>" + contact.Message+"</b>";
+
+//mail.Body = body;
+////465
+////587
+//var smtpClient = new SmtpClient("smtp.Live.com", 587);
+
+//smtpClient.EnableSsl = true;
+//smtpClient.Credentials = loginInfo;
+//smtpClient.Send(mail);
+//    Console.WriteLine(mail);
+//}
+//catch(Exception ex)
+//{ Console.WriteLine(ex); }
