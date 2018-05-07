@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Enchere.Models.ObjetViewModel>
+
+<h3>Objets mis en vente par : @ViewBag.Vendeur</h3>
+
+
+
+@foreach (var gr in Model)
+{
+    <h3>
+        @gr.ObjetNom
+    </h3>
+            <table class="table">
+
+
+                <tr>
+                    <th>
+                        Nom de l'acheteur
+                    </th>
+                    <th>
+                        Message
+                    </th>
+                    <th>
+                        Niveau
+                    </th>
+                    <th>
+                        date enchere
+                    </th>
+                </tr>
+
+                @foreach (var item in gr.Items)
+                {
+                    <tr>
+                        <td>
+                            @item.user.UserName
+                        </td>
+
+                        <td>
+                            @item.Message
+                        </td>
+                        <td>
+                            @item.enchereNiveau
+                        </td>
+                        <td>
+                            @item.enchereDate
+                        </td>
+                    </tr>
+
+                }
+            </table>
+
+}
+
+

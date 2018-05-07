@@ -8,9 +8,15 @@
    font-family: myfont2;
    src:url('../fonts/Roboto-Bold.ttf');
 }
+/*Mettre en capital les premieres lettres de chaque mot avant enregistrement dans toute les classes de form-control*/
+.form-control {
+text-transform:capitalize;
+}
 
-
-
+/*Mettre en miniscule les champs des classes lower-case comme les mots de passe et */
+.lower-case{
+text-transform:lowercase;
+}
 
 .navbar-default {
     background-color: #0c5c82;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Enchere.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -124,5 +125,34 @@ namespace Enchere.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+
+
+        [Authorize]
+        //[Authorize(Roles = "Vendeur,Admin")]
+        public ActionResult listObjetVendu(string id)
+        {
+            var UserId = db.Users.Find(id).Id;
+            ViewBag.Vendeur = db.Users.Find(id).UserName;
+
+            var encheres = from obj in db.Encherees
+                           join objet in db.Objets
+                           on obj.ObjetId equals objet.Id
+                           where objet.UserId == UserId
+                           select obj;
+
+            var groupe = from o in encheres
+                         group o by o.objet.objetNom
+                         into gr
+                         select new ObjetViewModel
+                         {
+                             ObjetNom = gr.Key,
+                             Items = gr
+                         };
+            return View(groupe.ToList());
+        }
+
+
     }
 }

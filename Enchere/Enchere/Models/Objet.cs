@@ -23,9 +23,9 @@ namespace Enchere.Models
 
         [Display(Name = "Date inscription")]
         public DateTime objetDateInsc { get; set; }
-
         
-         [Display(Name = "Durée Vente")]
+        
+        [Display(Name = "Durée Vente")]
         public int objetDureeVente { get; set; }
 
         [Display(Name = "Date achat")]
@@ -41,5 +41,8 @@ namespace Enchere.Models
 
         public virtual Categorie Category { get; set; }
         public virtual ApplicationUser  User { get; set; }
+
+        
     }
+    
 }
