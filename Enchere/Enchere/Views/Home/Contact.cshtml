@@ -1,4 +1,5 @@
 ﻿@model Enchere.Models.ContactModel
+@using CaptchaMvc.HtmlHelpers
 
 @{
     ViewBag.Title = "Contact";
@@ -8,10 +9,11 @@
 <h2>Contact</h2>
 <script src="~/Scripts/ckeditor/ckeditor.js"></script>
 
-@using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { enctype = "multipart/form-data" })) 
+@using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+    @Html.ValidationSummary(true)
+
     <div class="form-horizontal">
         <h4>Nous contacter</h4>
         <hr />
@@ -44,11 +46,12 @@
             <div class="col-md-10">
                 @Html.TextAreaFor(model => model.Message, new { htmlAttributes = new { @class = "form-control", @id = "Des" } })
                 @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                <br />
+                @Html.Captcha(4)
+                @*@Html.MathCaptcha()*@
+                <p style="color:red">  @ViewBag.ErrMessage </p>
             </div>
-        </div>
-
-        
-
+        </div>    
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Envoyer" class="btn btn-default" />
@@ -63,10 +66,10 @@
 
 @section scripts
     {
-<script>
-    CKEDITOR.replace("Des");
+    <script>
+        CKEDITOR.replace("Des");
 
 
 
-</script>
-    }
+    </script>
+}

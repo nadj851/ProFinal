@@ -9,6 +9,7 @@ using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models;
+using CaptchaMvc.HtmlHelpers;
 
 namespace WebApplication1.Controllers
 {
@@ -191,6 +192,13 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult Contact(ContactModel contact)
         {
+            if (!this.IsCaptchaValid("Validate your captcha")||!ModelState.IsValid)
+            {
+                ViewBag.ErrMessage = "Entrez la bonne reponse";
+                return View();
+            }
+            else {
+                 
             //comment faire pour envoyer un message à partir de la boite email de l'administrateur munarela@hotmail.com
             SmtpClient SmtpServer = new SmtpClient("smtp.live.com");
             var mail = new MailMessage();
@@ -214,6 +222,7 @@ namespace WebApplication1.Controllers
 
             
             return RedirectToAction("Index");
+            }
         }
 
 
