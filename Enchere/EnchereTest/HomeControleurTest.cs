@@ -133,7 +133,25 @@ namespace EnchereTest
 
         }
 
-       
+        [TestMethod]
+        public void About()
+        {
+            HomeController controller = new HomeController();
+            //act
+            ViewResult result = controller.About() as ViewResult;
+
+
+            //Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual("Munarela Enchere vous souhaite la bienvenue.", result.ViewBag.Message);
+
+
+        }
+
+      
+
+
+
 
 
 
