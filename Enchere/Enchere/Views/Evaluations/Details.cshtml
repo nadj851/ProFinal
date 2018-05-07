@@ -1,0 +1,51 @@
+﻿@model Enchere.Models.Evaluation
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Evaluation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.User.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateEvaluation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateEvaluation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cote)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cote)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Commentaire)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Commentaire)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -5,6 +5,7 @@
 @model IEnumerable<Enchere.Models.Categorie>
 @{
     ViewBag.Title = "Home Page";
+    
 }
 
 
@@ -47,18 +48,85 @@ else
         
         <div class="row panel-body " >
             <h5>@Html.DisplayFor(modelItem => item.CategoryDescription)</h5>
+            
+           
             @foreach (var subitem in item.objets)
             {
-                <div class="col-md-3 img-thumbnail" style="margin-left:20px;margin-bottom:30px;min-height:380px;">
-                   
-                    <img src="~/Uploads/@subitem.objetImage" style="width:200px;height:200px;" />
+                
+                  <div class="col-md-3 img-thumbnail" style="margin-left:20px;margin-bottom:30px;min-height:380px;">
+                      <p id="@subitem.Id">  </p>                      
+                      <img src="~/Uploads/@subitem.objetImage" style="width:200px;height:200px;" />                
                     <h3>@Html.DisplayFor(modelItem => subitem.objetNom)</h3>
                     <h5>@Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(modelItem => subitem.objetDescription).ToString()))</h5>
-                    @Html.ActionLink("Details", "Details", new { objetId = subitem.Id }, new { @class = "btn btn-primary" }) |
+                    @Html.ActionLink("Details", "Details", new { objetId = subitem.Id }, new { @class = "btn btn-primary" }) | <span id="spanPrix" class="badge badge-warning">Prix Initial: @subitem.objetPrixDepart $</span>
+                  
                 </div>
+                
             }
         </div>
-    </div>
+      
+    </div>  
 }
+
+
+
+
+<script>
+
+    var objets = [];
+    var objetsId = [];
+    @foreach (var item in Model){
+        foreach (var subitem in item.objets){
+            long duree = subitem.objetDureeVente;
+            DateTime dateLimite = subitem.objetDateInsc.AddMilliseconds(duree);
+            DateTime dateMaintenent = DateTime.UtcNow;
+            long elapsedTicks = dateLimite.Ticks- dateMaintenent.Ticks;
+            TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
+
+            // Set the date we're counting down to
+
+            @:objets.push("@((long)elapsedSpan.TotalMilliseconds)");
+                @:objetsId.push("@subitem.Id");
+            }
+    }
+    //alert(objets);
+
+    for (let i = 0; i < objets.length; i++) {
+        console.log(objets[i]);
+        // Set the date we're counting down to
+        //var countDownDate = new Date("TotalMilliseconds").getTime();
+        var countDownDate = new Date(parseInt(objets[i])).getTime();
+
+        // Update the count down every 1 second
+        var x = setInterval(function () {
+
+            // Get todays date and time
+            var now = new Date().getTime();
+
+            // Find the distance between now an the count down date
+            var distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result in the element with id="demo"
+            document.getElementById(objetsId[i]).innerHTML = days + "d " + hours + "h "
+            + minutes + "m " + seconds + "s ";
+
+            // If the count down is finished, write some text
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById(objetsId[i]).innerHTML = "EXPIRED";
+            }
+        }, 1000);
+    }
+
+
+</script>
+
+
 
 

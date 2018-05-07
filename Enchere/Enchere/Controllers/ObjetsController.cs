@@ -13,7 +13,8 @@ using Microsoft.AspNet.Identity;
 
 namespace Enchere.Controllers
 {
-    [Authorize(Roles="Admin")]
+    [Authorize]
+    //[Authorize(Roles = "Admin")]
     public class ObjetsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
