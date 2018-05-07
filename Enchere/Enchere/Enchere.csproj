@@ -525,6 +525,10 @@
     <Compile Include="Migrations\201805070551028_ajoutEntiteEvaluation.Designer.cs">
       <DependentUpon>201805070551028_ajoutEntiteEvaluation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805071514352_first.cs" />
+    <Compile Include="Migrations\201805071514352_first.Designer.cs">
+      <DependentUpon>201805071514352_first.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Categorie.cs" />
@@ -676,6 +680,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805070551028_ajoutEntiteEvaluation.resx">
       <DependentUpon>201805070551028_ajoutEntiteEvaluation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805071514352_first.resx">
+      <DependentUpon>201805071514352_first.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
