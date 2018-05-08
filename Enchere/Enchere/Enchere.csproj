@@ -647,6 +647,7 @@
     <Content Include="Views\Encherees\Details.cshtml" />
     <Content Include="Views\Encherees\Edit.cshtml" />
     <Content Include="Views\Encherees\Index.cshtml" />
+    <Content Include="Views\Encherees\Appliquer.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

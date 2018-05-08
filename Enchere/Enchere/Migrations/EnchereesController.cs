@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Enchere.Models;
 using WebApplication1.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Enchere.Migrations
 {
@@ -37,6 +38,41 @@ namespace Enchere.Migrations
             return View(encheree);
         }
 
+        [Authorize]
+        public ActionResult Appliquer()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Appliquer(Enchere.Models.Encheree en)
+        {
+            var UserId = User.Identity.GetUserId();
+            var ObjetId = Convert.ToInt32(Request.QueryString["id"]);
+            
+            var enchere = new Enchere.Models.Encheree();
+            enchere.UserId = UserId;
+            enchere.ObjetId = ObjetId;
+            enchere.Message = en.Message;
+            enchere.enchereNiveau = en.enchereNiveau;
+            enchere.enchereDate = DateTime.Now;
+            enchere.niveauMax = checkNiveauMax(en.enchereNiveau);
+
+            db.Encherees.Add(enchere);
+            db.SaveChanges();
+            ViewBag.Result = "Envoyer avec success";
+
+            return View();
+        }
+
+        private double checkNiveauMax(double enchereNiveau)
+        {
+            var ObjetId = (int)Session["ObjetId"];
+            // var check = db.Encherees.Where(a => a.ObjetId == ObjetId).ToList();
+            double max = db.Encherees.Where(a => a.ObjetId == ObjetId).Max(m => m.niveauMax);
+
+            return 0.1;
+        }
         // GET: Encherees/Create
         public ActionResult Create()
         {
