@@ -211,9 +211,9 @@ namespace WebApplication1.Controllers
             mail.Subject = contact.Subject;
             mail.IsBodyHtml = true;
             //le message du body
-            string body = "Nom expéditeur " + contact.Nom + "<br>" +
-                "email expéditeur " + contact.Email + "<br>" +
-                "objet de message " + contact.Subject + "<br>" +
+            string body = "Nom expéditeur: " + contact.Nom + "<br>" +
+                "email expéditeur: " + contact.Email + "<br>" +
+                "objet de message: " + contact.Subject + "<br>" +
                 "le message : <b>" + contact.Message + "</b>";
 
             mail.Body = body;
