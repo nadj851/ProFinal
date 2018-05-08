@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Enchere.Models.Encheree>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.objet.objetNom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.user.Civilite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.enchereNiveau)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Message)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.niveauMax)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.enchereDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.objet.objetNom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.user.Civilite)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.enchereNiveau)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Message)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.niveauMax)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.enchereDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Appliquer", "Appliquer", new { id = item.ObjetId }, new { @class = "btn btn-success" })            
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
