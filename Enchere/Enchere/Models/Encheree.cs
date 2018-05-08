@@ -15,6 +15,7 @@ namespace Enchere.Models
         [Display(Name = "Montant")]
         public double enchereNiveau { get; set; }
         public string Message { get; set; }
+        public double niveauMax { get; set; }
         public DateTime enchereDate { get; set; }
         public int ObjetId { get; set; }
         public string UserId { get; set; }

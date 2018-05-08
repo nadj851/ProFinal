@@ -545,7 +545,12 @@
     <Compile Include="Migrations\201805080209413_modtableeval2.Designer.cs">
       <DependentUpon>201805080209413_modtableeval2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805081442036_niveauMax.cs" />
+    <Compile Include="Migrations\201805081442036_niveauMax.Designer.cs">
+      <DependentUpon>201805081442036_niveauMax.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\EnchereesController.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Categorie.cs" />
     <Compile Include="Models\ContactModel.cs" />
@@ -637,6 +642,11 @@
     <Content Include="Views\Evaluations\Details.cshtml" />
     <Content Include="Views\Evaluations\Edit.cshtml" />
     <Content Include="Views\Evaluations\Index.cshtml" />
+    <Content Include="Views\Encherees\Create.cshtml" />
+    <Content Include="Views\Encherees\Delete.cshtml" />
+    <Content Include="Views\Encherees\Details.cshtml" />
+    <Content Include="Views\Encherees\Edit.cshtml" />
+    <Content Include="Views\Encherees\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -709,6 +719,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805080209413_modtableeval2.resx">
       <DependentUpon>201805080209413_modtableeval2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805081442036_niveauMax.resx">
+      <DependentUpon>201805081442036_niveauMax.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
