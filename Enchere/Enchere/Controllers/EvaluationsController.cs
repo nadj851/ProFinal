@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Enchere.Models;
 using WebApplication1.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Enchere.Controllers
 {
@@ -40,7 +41,13 @@ namespace Enchere.Controllers
         // GET: Evaluations/Create
         public ActionResult Create()
         {
-            ViewBag.UserId = new SelectList(db.Users, "Id", "Civilite");
+            var ObjetId = (int)Session["ObjetId"];
+
+            var obj = db.Objets.Where(a => a.Id == ObjetId).Single();
+            ViewBag.Vendeur = obj.User.UserName;
+
+            ViewBag.Name = User.Identity.Name;
+            //ViewBag.UserId = new SelectList(db.Users, "Id", "Civilite");
             return View();
         }
 
@@ -49,10 +56,18 @@ namespace Enchere.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,DateEvaluation,Cote,Commentaire,UserId")] Evaluation evaluation)
+        public ActionResult Create([Bind(Include = "Id,DateEvaluation,Cote,Commentaire,Vendeur,UserId")] Evaluation evaluation)
         {
             if (ModelState.IsValid)
             {
+                evaluation.UserId= User.Identity.GetUserId();
+                evaluation.DateEvaluation = DateTime.Now;
+
+                var ObjetId = (int)Session["ObjetId"];
+
+                var obj = db.Objets.Where(a => a.Id == ObjetId).Single();
+                   evaluation.Vendeur = obj.User.UserName;
+              
                 db.Evaluations.Add(evaluation);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -83,7 +98,7 @@ namespace Enchere.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,DateEvaluation,Cote,Commentaire,UserId")] Evaluation evaluation)
+        public ActionResult Edit([Bind(Include = "Id,DateEvaluation,Cote,Commentaire,Vendeur,UserId")] Evaluation evaluation)
         {
             if (ModelState.IsValid)
             {

@@ -537,6 +537,14 @@
     <Compile Include="Migrations\201805071744342_blabla.Designer.cs">
       <DependentUpon>201805071744342_blabla.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805080113479_modtableeval.cs" />
+    <Compile Include="Migrations\201805080113479_modtableeval.Designer.cs">
+      <DependentUpon>201805080113479_modtableeval.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805080209413_modtableeval2.cs" />
+    <Compile Include="Migrations\201805080209413_modtableeval2.Designer.cs">
+      <DependentUpon>201805080209413_modtableeval2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Categorie.cs" />
@@ -623,12 +631,12 @@
     <Content Include="Views\ApplicationUsers\Details.cshtml" />
     <Content Include="Views\ApplicationUsers\Edit.cshtml" />
     <Content Include="Views\ApplicationUsers\Index.cshtml" />
+    <Content Include="Views\ApplicationUsers\listObjetVendu.cshtml" />
     <Content Include="Views\Evaluations\Create.cshtml" />
     <Content Include="Views\Evaluations\Delete.cshtml" />
     <Content Include="Views\Evaluations\Details.cshtml" />
     <Content Include="Views\Evaluations\Edit.cshtml" />
     <Content Include="Views\Evaluations\Index.cshtml" />
-    <Content Include="Views\ApplicationUsers\listObjetVendu.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -695,6 +703,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805071744342_blabla.resx">
       <DependentUpon>201805071744342_blabla.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805080113479_modtableeval.resx">
+      <DependentUpon>201805080113479_modtableeval.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805080209413_modtableeval2.resx">
+      <DependentUpon>201805080209413_modtableeval2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -138,9 +138,9 @@ body{
   background-color: brown;
 }
 
-#demo{
+.demo{
  font-weight: bold;
-  font-size:25px;
+  font-size:21px;
   color:blue;
 }
 

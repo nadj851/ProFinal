@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using WebApplication1.Models;
@@ -10,6 +11,8 @@ namespace Enchere.Models
     {
 
         public int Id { get; set; }
+
+        [Display(Name = "Montant")]
         public double enchereNiveau { get; set; }
         public string Message { get; set; }
         public DateTime enchereDate { get; set; }
