@@ -549,6 +549,10 @@
     <Compile Include="Migrations\201805081442036_niveauMax.Designer.cs">
       <DependentUpon>201805081442036_niveauMax.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805081929223_temp.cs" />
+    <Compile Include="Migrations\201805081929223_temp.Designer.cs">
+      <DependentUpon>201805081929223_temp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\EnchereesController.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -723,6 +727,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805081442036_niveauMax.resx">
       <DependentUpon>201805081442036_niveauMax.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805081929223_temp.resx">
+      <DependentUpon>201805081929223_temp.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

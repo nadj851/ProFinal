@@ -80,14 +80,13 @@ else
     @foreach (var item in Model){
         foreach (var subitem in item.objets){
             long duree = subitem.objetDureeVente;
-            DateTime dateLimite = subitem.objetDateInsc.AddMilliseconds(duree);
+            DateTime dateLimite = subitem.objetDateInsc.AddDays(duree);
             long ms = (long)dateLimite.ToUniversalTime().Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds;
 
             // Set the date we're counting down to
 
              @:objets.push("@(ms)");
-           // @:objets.push("@((long)elapsedSpan.TotalMilliseconds)");
-                @:objetsId.push("@subitem.Id");
+             @:objetsId.push("@subitem.Id");
                     }
     }
     //alert(objets);
