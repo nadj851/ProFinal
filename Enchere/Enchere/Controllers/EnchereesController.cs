@@ -112,6 +112,7 @@ namespace Enchere.Migrations
                 }
                 else
                 {
+                    //Des tests doivent encore etre faits
                     enchereActuelle.niveauMax = enchereMax.niveauMax;
 
                     newEnchere = new Encheree();
