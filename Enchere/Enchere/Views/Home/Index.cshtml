@@ -81,11 +81,7 @@ else
         foreach (var subitem in item.objets){
             long duree = subitem.objetDureeVente;
             DateTime dateLimite = subitem.objetDateInsc.AddMilliseconds(duree);
-            //DateTime dateMaintenent = DateTime.UtcNow;
-            //long elapsedTicks = dateLimite.Ticks- dateMaintenent.Ticks;
-            //TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
-
-            long ms = (long)(dateLimite - DateTime.MinValue).TotalMilliseconds;
+            long ms = (long)dateLimite.ToUniversalTime().Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds;
 
             // Set the date we're counting down to
 
@@ -99,7 +95,6 @@ else
     for (let i = 0; i < objets.length; i++) {
         console.log(objets[i]);
         // Set the date we're counting down to
-        //var countDownDate = new Date("TotalMilliseconds").getTime();
         var countDownDate = new Date(parseInt(objets[i])).getTime();
 
         // Update the count down every 1 second
