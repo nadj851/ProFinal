@@ -62,6 +62,7 @@ namespace Enchere.Controllers
                 upload.SaveAs(path);
                 objet.objetImage = upload.FileName;
                 objet.UserId = User.Identity.GetUserId();
+                objet.objetDateInsc = DateTime.Now;
                 db.Objets.Add(objet);
                 db.SaveChanges();
                 return RedirectToAction("Index");
