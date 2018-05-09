@@ -16,7 +16,7 @@ namespace Enchere.Migrations
     public class EnchereesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        private Encheree newEnchere;
+        private Encheree newOffre;
         // GET: Encherees
         public ActionResult Index()
         {
@@ -46,7 +46,7 @@ namespace Enchere.Migrations
         }
 
         [HttpPost]
-        public ActionResult Appliquer(Enchere.Models.Encheree en)
+        public ActionResult Appliquer(Enchere.Models.Encheree offreEnchere)
         {
             var UserId = User.Identity.GetUserId();
             var ObjetId = (int)Session["ObjetId"];
@@ -56,30 +56,32 @@ namespace Enchere.Migrations
             {
                 niveauActuel = db.Encherees.Where(a => a.ObjetId == ObjetId).ToList().Max(m => m.enchereNiveau);
             }
-            
 
-            if (en.enchereNiveau > niveauActuel)
+            var dernierEncherisseur = db.Encherees.Where(a => a.ObjetId == ObjetId).Last().UserId;
+
+            if (offreEnchere.enchereNiveau > niveauActuel &&
+                offreEnchere.UserId != dernierEncherisseur)
             {
-                var enchere = checkEnchere(en, niveauActuel);
-                enchere.UserId = UserId;
-                enchere.ObjetId = ObjetId;
-                enchere.Message = en.Message;
-                enchere.enchereNiveau = en.enchereNiveau;
-                enchere.enchereDate = DateTime.Now;
-                enchere.niveauMax = en.niveauMax;
+                var offre = checkEnchere(offreEnchere, niveauActuel);
+                offre.UserId = UserId;
+                offre.ObjetId = ObjetId;
+                offre.Message = offreEnchere.Message;
+                offre.enchereNiveau = offreEnchere.enchereNiveau;
+                offre.enchereDate = DateTime.Now;
+                offre.niveauMax = offreEnchere.niveauMax;
 
 
-                db.Encherees.Add(enchere);
+                db.Encherees.Add(offre);
                 TempData["Result"] = "Bravo! Vous venez de surrenchérir!!";
                 db.SaveChanges();
 
-                if (newEnchere != null)
+                if (newOffre != null)
                 {
-                    newEnchere.ObjetId = ObjetId;
-                    newEnchere.enchereDate = DateTime.Now;
-                    newEnchere.Message = "Surrencherissement automatique";
+                    newOffre.ObjetId = ObjetId;
+                    newOffre.enchereDate = DateTime.Now;
+                    newOffre.Message = "Surrencherissement automatique";
 
-                    db.Encherees.Add(newEnchere);
+                    db.Encherees.Add(newOffre);
                     TempData["Result"] = "Bien Esseyé sauf qu'il va falloir surrenchérir pour gagner!!";
                 }
 
@@ -91,7 +93,14 @@ namespace Enchere.Migrations
             }
             else
             {
+                if(offreEnchere.UserId != dernierEncherisseur)
+                {
+                    ViewBag.Result = "Vous ne pouvez pas encherir.Vous détenez déjà l'enchere avec une offre de :"+ niveauActuel +"$.";
+                }
+                else
+                {
                 ViewBag.Result = "Le montant que vous proposé est inférieur ou égal au niveau actuel qui est de " + niveauActuel + " $.";
+                }
                 return View();
             }
 
@@ -99,47 +108,47 @@ namespace Enchere.Migrations
         }
 
 
-        private Encheree checkEnchere(Encheree enchereActuelle, double niveauActuel)
+        private Encheree checkEnchere(Encheree offreActuelle, double niveauActuel)
         {
             var ObjetId = (int)Session["ObjetId"];
-            newEnchere = null;
+            newOffre = null;
 
             if (db.Encherees.Where(a => a.ObjetId == ObjetId).Any())
             {
-                var enchereMax = db.Encherees.Where(a => a.ObjetId == ObjetId).ToList().MaxBy(m => m.niveauMax);
+                var offreMax = db.Encherees.Where(a => a.ObjetId == ObjetId).ToList().MaxBy(m => m.niveauMax);
 
-                if (enchereActuelle.enchereNiveau >= enchereMax.niveauMax)
+                if (offreActuelle.enchereNiveau >= offreMax.niveauMax)
                 {
-                    enchereActuelle.niveauMax = enchereActuelle.enchereNiveau;
-                    if(enchereActuelle.enchereNiveau != enchereMax.niveauMax)
+                    offreActuelle.niveauMax = offreActuelle.enchereNiveau;
+                    if(offreActuelle.enchereNiveau != offreMax.niveauMax)
                     {
-                    enchereActuelle.enchereNiveau = enchereMax.niveauMax + 1;
+                    offreActuelle.enchereNiveau = offreMax.niveauMax + 1;
                     }
 
                     //notifier User ici par email
-                    var idUser = enchereMax.UserId;
+                    var idUser = offreMax.UserId;
 
-                    return enchereActuelle;
+                    return offreActuelle;
 
                 }
                 else
                 {
                     //Des tests doivent encore etre faits
-                    enchereActuelle.niveauMax = enchereMax.niveauMax;
+                    offreActuelle.niveauMax = offreMax.niveauMax;
 
-                    newEnchere = new Encheree();
-                    newEnchere.niveauMax = enchereMax.niveauMax;
-                    newEnchere.enchereNiveau = enchereActuelle.enchereNiveau + 1;
-                    newEnchere.UserId = enchereMax.UserId;
-                    return enchereActuelle;
+                    newOffre = new Encheree();
+                    newOffre.niveauMax = offreMax.niveauMax;
+                    newOffre.enchereNiveau = offreActuelle.enchereNiveau + 1;
+                    newOffre.UserId = offreMax.UserId;
+                    return offreActuelle;
 
                 }
 
             }
             else
             {
-                enchereActuelle.niveauMax = enchereActuelle.enchereNiveau;
-                return enchereActuelle;
+                offreActuelle.niveauMax = offreActuelle.enchereNiveau;
+                return offreActuelle;
             }           
 
         }
