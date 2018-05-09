@@ -56,11 +56,11 @@ namespace Enchere.Migrations
             {
                 niveauActuel = db.Encherees.Where(a => a.ObjetId == ObjetId).ToList().Max(m => m.enchereNiveau);
             }
-
-            var dernierEncherisseur = db.Encherees.Where(a => a.ObjetId == ObjetId).Last().UserId;
+                        
+            var derniereOffre = db.Encherees.Where(a => a.ObjetId == ObjetId).ToList().MaxBy(m => m.enchereNiveau);
 
             if (offreEnchere.enchereNiveau > niveauActuel &&
-                offreEnchere.UserId != dernierEncherisseur)
+                UserId != derniereOffre.UserId)
             {
                 var offre = checkEnchere(offreEnchere, niveauActuel);
                 offre.UserId = UserId;
@@ -93,9 +93,9 @@ namespace Enchere.Migrations
             }
             else
             {
-                if(offreEnchere.UserId != dernierEncherisseur)
+                if(offreEnchere.UserId != derniereOffre.UserId)
                 {
-                    ViewBag.Result = "Vous ne pouvez pas encherir.Vous détenez déjà l'enchere avec une offre de :"+ niveauActuel +"$.";
+                    ViewBag.Result = "Vous ne devez pas encherir.Vous détenez déjà l'enchere avec une offre de :"+ niveauActuel +"$.";
                 }
                 else
                 {
@@ -153,20 +153,6 @@ namespace Enchere.Migrations
 
         }
 
-        private double checkNiveauMax(double enchereNiveau)
-        {
-            var ObjetId = (int)Session["ObjetId"];
-
-            if (db.Encherees.Where(a => a.ObjetId == ObjetId).Any())
-            {
-                var max = db.Encherees.Where(a => a.ObjetId == ObjetId).ToList().MaxBy(m => m.niveauMax);
-
-
-            }
-
-
-            return enchereNiveau;
-        }
         // GET: Encherees/Create
         public ActionResult Create()
         {
