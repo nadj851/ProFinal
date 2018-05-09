@@ -1,45 +1,30 @@
-@using Microsoft.AspNet.Identity
-@using WebApplication1.Models
+﻿@model Enchere.Models.ObjetsViewModel
 
-@model IEnumerable<Enchere.Models.Categorie>
 @{
-    ViewBag.Title = "Home Page";
-
+    ViewBag.Title = "Index2";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
-
-
-@*@if (Request.IsAuthenticated)
+@functions{
+    public double getNiveauEnchere(int id)
     {
-        var db = new ApplicationDbContext();
-        var UserID = User.Identity.GetUserId();
-        var CurrentUser = db.Users.Where(a => a.Id == UserID).SingleOrDefault();
-        @Html.AntiForgeryToken()
-
-        if (CurrentUser.UserType != "Admin")
+        if (Model.Enchere.Where(a => a.ObjetId == id).Any())
         {
-        <div class="jumbotron alert alert-info">
-            <h1>Bienvenue cher visiteur</h1>
-            <p class="lead">Bienvenue dans notre site enchere veuillez voir tous les objets qui vous interesse.</p>
-            <p><a href="http://asp.net" class="btn btn-primary btn-lg">Pour plus de detail</a></p>
-        </div>
-
+            return Model.Enchere.Where(a => a.ObjetId == id).ToList().Max(m => m.enchereNiveau);
         }
-        else {
-
+        else
+        {
+            return 0;
         }
     }
-    else
+    public int getNombreOffres(int id)
     {
+        return Model.Enchere.Where(a => a.ObjetId == id).Count();
+    }
+}
 
-    }*@
-@*<div class="jumbotron alert alert-info">
-        <h1>Bienvenue cher visiteur</h1>
-        <p class="lead">Bienvenue dans notre site enchere veuillez voir tous les objets qui vous interesse.</p>
-        <p><a href="http://asp.net" class="btn btn-primary btn-lg">Pour plus de detail</a></p>
-    </div>*@
+<h2>Index</h2>
 
-
-@foreach (var item in Model)
+@foreach (var item in Model.Categorie)
 {
     <div class="panel panel-info">
         <div class="panel-heading"><h1>@Html.DisplayFor(modelItem => item.CategoryName)</h1></div>
@@ -60,7 +45,9 @@
                     <h3>@Html.DisplayFor(modelItem => subitem.objetNom)</h3>
                     <h5>@Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(modelItem => subitem.objetDescription).ToString()))</h5>
                     @Html.ActionLink("Details", "Details", new { objetId = subitem.Id },
-                   new { @class = "btn btn-primary" }) | <span id="spanPrix" class="badge badge-warning">Prix Initial: @subitem.objetPrixDepart $</span>
+                                                                           new { @class = "btn btn-primary" }) |
+                    <span id="spanPrix" class="badge badge-warning">Prix actuel: @getNiveauEnchere(subitem.Id) $</span>
+                    <span id="spanOffre" class="badge">@getNombreOffres(subitem.Id) Offres</span>
 
                 </div>
 
@@ -77,7 +64,7 @@
 
     var objets = [];
     var objetsId = [];
-    @foreach (var item in Model){
+    @foreach (var item in Model.Categorie){
         foreach (var subitem in item.objets){
             long duree = subitem.objetDureeVente;
             DateTime dateLimite = subitem.objetDateInsc.AddDays(duree);
@@ -87,7 +74,7 @@
 
              @:objets.push("@(ms)");
              @:objetsId.push("@subitem.Id");
-                    }
+        }
     }
     //alert(objets);
 
@@ -96,36 +83,32 @@
         // Set the date we're counting down to
         var countDownDate = new Date(parseInt(objets[i])).getTime();
 
-        // Update the count down every 1 second
-        var x = setInterval(function () {
+    // Update the count down every 1 second
+    var x = setInterval(function () {
 
             // Get todays date and time
-            var now = new Date().getTime();
+        var now = new Date().getTime();
 
-            // Find the distance between now an the count down date
-            var distance = countDownDate - now;
+    // Find the distance between now an the count down date
+    var distance = countDownDate - now;
 
-            // Time calculations for days, hours, minutes and seconds
-            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    // Time calculations for days, hours, minutes and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            // Display the result in the element with id="demo"
-            document.getElementById(objetsId[i]).innerHTML = days + "d " + hours + "h "
+    // Display the result in the element with id="demo"
+    document.getElementById(objetsId[i]).innerHTML = days + "d " + hours + "h "
             + minutes + "m " + seconds + "s ";
 
             // If the count down is finished, write some text
             if (distance < 0) {
                 clearInterval(x);
-                document.getElementById(objetsId[i]).innerHTML = "EXPIRED";
+    document.getElementById(objetsId[i]).innerHTML = "EXPIRED";
             }
         }, 1000);
     }
 
 
 </script>
-
-
-
-
