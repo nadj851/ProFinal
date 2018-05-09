@@ -17,11 +17,11 @@ namespace WebApplication1.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        public ActionResult Index()
+        public ActionResult Index2()
         {
             return View(db.Categories.ToList());
         }
-        public ActionResult Index2()
+        public ActionResult Index()
         {
             var encheres = db.Encherees.Include(e => e.objet).Include(e => e.user).ToList();
             var categories = db.Categories.ToList();
