@@ -553,6 +553,10 @@
     <Compile Include="Migrations\201805081828398_new.Designer.cs">
       <DependentUpon>201805081828398_new.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805090427157_AjoutColloneTotalcote.cs" />
+    <Compile Include="Migrations\201805090427157_AjoutColloneTotalcote.Designer.cs">
+      <DependentUpon>201805090427157_AjoutColloneTotalcote.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Controllers\EnchereesController.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -731,6 +735,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805081828398_new.resx">
       <DependentUpon>201805081828398_new.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805090427157_AjoutColloneTotalcote.resx">
+      <DependentUpon>201805090427157_AjoutColloneTotalcote.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

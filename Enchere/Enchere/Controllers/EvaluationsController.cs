@@ -9,6 +9,14 @@ using System.Web.Mvc;
 using Enchere.Models;
 using WebApplication1.Models;
 using Microsoft.AspNet.Identity;
+using System.Net.Mail;
+
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Web.Security;
+using WebApplication1;
+using Microsoft.Ajax.Utilities;
 
 namespace Enchere.Controllers
 {
@@ -67,14 +75,67 @@ namespace Enchere.Controllers
 
                 var obj = db.Objets.Where(a => a.Id == ObjetId).Single();
                    evaluation.Vendeur = obj.User.UserName;
-              
+
+                //check sum cote
+                var total = (from eval in db.Evaluations
+
+                             where eval.Vendeur == obj.User.UserName
+                             select eval.Cote).Sum();
+
+                evaluation.TotalCote = total+evaluation.Cote;
+
+                //send notification
+                if (evaluation.TotalCote == -6)
+                {
+                    envoiMail(obj.User);
+                }
+                else if(evaluation.TotalCote < -6 )
+                {
+                    // Unlock the user account
+                    var UserId = User.Identity.GetUserId();
+                    var u = db.Users.Where(a => a.Id == obj.User.Id).Single();
+                     u.LockoutEnabled = false;
+
+                }
+
+                ViewBag.total= evaluation.TotalCote;
                 db.Evaluations.Add(evaluation);
-                db.SaveChanges();
+                db.SaveChanges();                                       
+                             
+                
                 return RedirectToAction("Index");
             }
 
             ViewBag.UserId = new SelectList(db.Users, "Id", "Civilite", evaluation.UserId);
             return View(evaluation);
+        }
+
+
+
+        private void envoiMail(ApplicationUser user)
+        {
+            SmtpClient SmtpServer = new SmtpClient("smtp.live.com");
+            var mail = new MailMessage();
+            mail.From = new MailAddress(user.Email);
+            mail.To.Add(user.Email);
+            mail.Subject = "Urgent";
+            mail.IsBodyHtml = true;
+            //le message du body
+            string body = "Nom expéditeur: " + "admin" + "<br>" +
+                "email expéditeur: " + "munarela@hotmail.com" + "<br>" +
+                "objet de message: " + "Urgent cote "+ "<br>" +
+                "le message : <b>" + "votre cote est atteindre -6 faite attention svp " + "</b>";
+
+            mail.Body = body;
+
+            SmtpServer.Port = 587;
+            SmtpServer.UseDefaultCredentials = false;
+            SmtpServer.Credentials = new System.Net.NetworkCredential(user.Email, "Web123456");
+            SmtpServer.EnableSsl = true;
+            SmtpServer.Send(mail);
+
+
+
         }
 
         // GET: Evaluations/Edit/5
@@ -144,5 +205,10 @@ namespace Enchere.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+
+
+
     }
 }

@@ -15,6 +15,7 @@ namespace Enchere.Models
         public DateTime DateEvaluation { get; set; }
         [Required]
         public double Cote { get; set; }
+        public double TotalCote { get; set; }
         [Required]
         [AllowHtml]
         public string Commentaire { get; set; }
