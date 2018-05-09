@@ -567,6 +567,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Objet.cs" />
+    <Compile Include="Models\ObjetsViewModel.cs" />
     <Compile Include="Models\ObjetViewModel.cs" />
     <Compile Include="Models\RoleViewModel.cs" />
     <Compile Include="Models\test.cs" />

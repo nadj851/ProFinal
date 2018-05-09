@@ -51,7 +51,7 @@ namespace Enchere.Migrations
             var UserId = User.Identity.GetUserId();
             var ObjetId = (int)Session["ObjetId"];
             double niveauActuel=0;
-            Encheree derniereOffre=null;
+            Encheree derniereOffre= offreEnchere;
 
             if (db.Encherees.Where(a => a.ObjetId == ObjetId).Any())
             {
