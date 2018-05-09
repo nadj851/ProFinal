@@ -41,7 +41,9 @@
             @Html.DisplayFor(modelItem => item.Cote)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Commentaire)
+
+            @Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(modelItem => item.Commentaire).ToString()))
+            
         </td>
         
         <td>
