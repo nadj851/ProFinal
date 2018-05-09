@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -50,7 +50,13 @@ namespace Enchere.Migrations
         {
             var UserId = User.Identity.GetUserId();
             var ObjetId = (int)Session["ObjetId"];
-            double niveauActuel = db.Encherees.Where(a => a.ObjetId == ObjetId).ToList().Max(m => m.enchereNiveau);
+            double niveauActuel=0;
+
+            if (db.Encherees.Where(a => a.ObjetId == ObjetId).Any())
+            {
+                niveauActuel = db.Encherees.Where(a => a.ObjetId == ObjetId).ToList().Max(m => m.enchereNiveau);
+            }
+            
 
             if (en.enchereNiveau > niveauActuel)
             {
@@ -105,10 +111,16 @@ namespace Enchere.Migrations
                 if (enchereActuelle.enchereNiveau >= enchereMax.niveauMax)
                 {
                     enchereActuelle.niveauMax = enchereActuelle.enchereNiveau;
+                    if(enchereActuelle.enchereNiveau != enchereMax.niveauMax)
+                    {
                     enchereActuelle.enchereNiveau = enchereMax.niveauMax + 1;
+                    }
 
-                    //notifier user ici par email
+                    //notifier User ici par email
                     var idUser = enchereMax.UserId;
+
+                    return enchereActuelle;
+
                 }
                 else
                 {
@@ -116,14 +128,19 @@ namespace Enchere.Migrations
                     enchereActuelle.niveauMax = enchereMax.niveauMax;
 
                     newEnchere = new Encheree();
-                    newEnchere.niveauMax = enchereMax.niveauMax;                
+                    newEnchere.niveauMax = enchereMax.niveauMax;
                     newEnchere.enchereNiveau = enchereActuelle.enchereNiveau + 1;
                     newEnchere.UserId = enchereMax.UserId;
+                    return enchereActuelle;
+
                 }
 
             }
-
-            return enchereActuelle;
+            else
+            {
+                enchereActuelle.niveauMax = enchereActuelle.enchereNiveau;
+                return enchereActuelle;
+            }           
 
         }
 
