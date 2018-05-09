@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mon application ASP.NET</title>
+    <title>@ViewBag.Title - Encheres Munarela</title>
 
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
@@ -50,7 +50,6 @@
 <body>
 
     <!--navbar-->
-
     <!--navbar-->
 
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -63,7 +62,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a href="~/Home" class="navbar-brand">
-                    <img src="~/images/enchereicone.jpg" class="logo" />
+                    <img src="~/images/logoEncheres.png" style="height:60px;width:auto" class="logo" />
                 </a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
@@ -74,11 +73,11 @@
                             home
                         </a>
                     </li>
-                   
+
                     <li>
                         <a href="~/Home/About">
                             <i class="glyphicon glyphicon-info-sign"></i>
-                           A propos de nous
+                            A propos de nous
                         </a>
                     </li>
 
@@ -92,16 +91,16 @@
                     </li>
 
                     <li>
-                     @using (Html.BeginForm("Recherche","Home",FormMethod.Post))
-                     {
-                        
-                        <input type="text" name="searchName" id="searchName"
-                               placeholder="Rechercher ici.." />
+                        @using (Html.BeginForm("Recherche", "Home", FormMethod.Post))
+                        {
+
+                            <input type="text" name="searchName" id="searchName"
+                                   placeholder="Rechercher ici.." />
 
 
-                     }
-                            
-                            
+                        }
+
+
                     </li>
                     <li>
                         <a>
@@ -117,8 +116,8 @@
                     </li>
 
                 </ul>
-               
-     @Html.Partial("_Login");
+
+                @Html.Partial("_Login");
 
             </div>
         </div>
@@ -131,65 +130,65 @@
 
         </div>
 
-     
+
 
     </div>
-  
+
     <!--footer-->
-  <footer class="myfooter">
+    <footer class="myfooter">
 
-      <div class="container">
+        <div class="container">
 
-          <div class="row">
+            <div class="row">
 
-           <div class="col-md-4">
-             <h3>
-                 <i class="glyphicon glyphicon-question-sign"></i>
-                A propos de nous!
-             </h3>
-               <p>
-                   En 2016, Petite-Entreprise.net a reçu la visite de 7 millions de créateurs et entrepreneurs venus de France et d'ailleurs.Chaque jour, ces entrepreneurs trouvent des milliers d'informations utiles dans leur quotidien de chef. 
+                <div class="col-md-4">
+                    <h3>
+                        <i class="glyphicon glyphicon-question-sign"></i>
+                        A propos de nous!
+                    </h3>
+                    <p>
+                        Créer en 2018 par une équipe dynamique et enthoustiaste, Munarela est une solution d'enchéres pour pouvoir acquérir des objetcs avec une grande facilité et sans avoir à payer les frais d'expéditions et c'est une solution pour, pourquoi pas, faire des rencontres intéressantes
 
-               </p>
+                    </p>
 
-           </div>
-              <div class="col-md-4">
-                  <h3>
-                      <i class="glyphicon glyphicon-globe"></i>
-                      liens importants 
-                  </h3>
-                 
-                  <ul>
-                      <li><a href="#"> item1  </a> </li>      
-                      <li><a href="#"> item2  </a> </li>
-                      <li><a href="#"> item3  </a> </li>
-                      <li><a href="#"> item4  </a> </li> 
-                                            
-                  </ul>
-              </div>
+                </div>
+                <div class="col-md-4">
+                    <h3>
+                        <i class="glyphicon glyphicon-globe"></i>
+                        liens importants
+                    </h3>
 
-              <div class="col-md-4">
-                  <h3>
-                      <i class="glyphicon glyphicon-envelope"></i>
-                     Rejoint Nous
-                  </h3>
+                    <ul>
+                        <li><a href="#"> item1  </a> </li>
+                        <li><a href="#"> item2  </a> </li>
+                        <li><a href="#"> item3  </a> </li>
+                        <li><a href="#"> item4  </a> </li>
 
-                  <ul>
-                      <li><a href="#"> facebook </a> </li>
-                      <li><a href="#"> tweeter  </a> </li>
-                      <li><a href="#"> Youtube  </a> </li>
-                      <li><a href="#"> laisser un message  </a> </li>
+                    </ul>
+                </div>
 
-                  </ul>
-              </div>
-          </div>
-         
+                <div class="col-md-4">
+                    <h3>
+                        <i class="glyphicon glyphicon-envelope"></i>
+                        Rejoint Nous
+                    </h3>
 
-      </div>
-     
-      <div class="subfooter"><span>Tous les droits reserve pour Munarela -2018</span></div>
-  </footer>
-     
-   @RenderSection("scripts",required:false)
+                    <ul>
+                        <li><a href="#"> facebook </a> </li>
+                        <li><a href="#"> tweeter  </a> </li>
+                        <li><a href="#"> Youtube  </a> </li>
+                        <li><a href="#"> laisser un message  </a> </li>
+
+                    </ul>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="subfooter"><span>Tous les droits résèrves pour Munarela -@DateTime.Now.Year</span></div>
+    </footer>
+
+    @RenderSection("scripts", required: false)
 </body>
 </html>

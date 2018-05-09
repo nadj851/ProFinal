@@ -1,5 +1,4 @@
-﻿
-@using Microsoft.AspNet.Identity
+﻿@using Microsoft.AspNet.Identity
 
 @using WebApplication1.Models
 
@@ -13,88 +12,89 @@
 
         @Html.AntiForgeryToken()
         <ul class="nav navbar-nav navbar-right">
-          
+
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <span class="glyphicon glyphicon-user"> </span>
                     <strong> Bienvenue : @CurrentUser.UserName  </strong>
                     <span class="glyphicon glyphicon-chevron-down"> </span>
                 </a>
-      
+
                 <ul class="dropdown-menu">
 
                     <li>
-                             <div class="navbar-user">
-                                 <div class="row">
-                                     <div class="col-lg-4">
-                                         <p class="text-center">
-                                             <span class="glyphicon glyphicon-user img-size"></span>
+                        <div class="navbar-user">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <p class="text-center">
+                                        <span class="glyphicon glyphicon-user img-size"></span>
 
-                                         </p>
-                                     </div>
-
-
-                                     <div class="col-lg-8">
-                                         <p class="text-right">
-                                             <strong> Bienvenue : @CurrentUser.UserName  </strong>      </p>
-                                   @if (CurrentUser.UserType == "Membre")
-                                   {
-                                    <a href="~/Home/GetObjetByVendeur" class="btn btn-success btn-block"> Objets mis en vente </a>
-                                    <a href="~/Objets/Create" class="btn btn-success btn-block"> Nouveau objet </a>
-                                    <a href="~/Home/GetObjetByUser" class="btn btn-success btn-block"> Achat Enchère </a>
-
-                                      
-
-                                   }
-
-                                   else if (CurrentUser.UserType == "Admin")
-                                   {
-
-                                    <a href="~/Objets/Index" class="btn btn-success btn-block"> Gestion Objets </a>
-                                    <a href="~/Categories/Index" class="btn btn-success btn-block"> Gestion Categories </a>
-                                    <a href="~/Roles/Index" class="btn btn-success btn-block"> Gestion Roles </a>
-                                    <a href="~/ApplicationUsers/Index" class="btn btn-success btn-block"> Gestion Utilisateur </a>
-
-                                   }
+                                    </p>
+                                </div>
 
 
-                                         <a href="~/Account/EditProfile" class="btn btn-primary btn-block"> Modifier votre Compte </a>
-                                     </div>
+                                <div class="col-lg-8">
+                                    <p class="text-right">
+                                        <strong> Bienvenue : @CurrentUser.UserName  </strong>
+                                    </p>
+                                    @if (CurrentUser.UserType == "Membre")
+                                    {
+                                        <a href="~/Home/GetObjetByVendeur" class="btn btn-success btn-block"> Objets mis en vente </a>
+                                        <a href="~/Objets/Create" class="btn btn-success btn-block"> Nouveau objet </a>
+                                        <a href="~/Home/GetObjetByUser" class="btn btn-success btn-block"> Achat Enchère </a>
 
-                                 </div>
 
-                            </div>
 
-                   </li>
-                    <li class="divider"></li>
-                    <li>
+                                    }
 
-                    <div>
+                                    else if (CurrentUser.UserType == "Admin")
+                                    {
 
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <p>
-                                    <a href="javascript:document.getElementById('logoff').submit()" class="btn btn-danger btn-block">Deconnecter       </a> 
-                                </p>
+                                        <a href="~/Objets/Index" class="btn btn-success btn-block"> Gestion Objets </a>
+                                        <a href="~/Categories/Index" class="btn btn-success btn-block"> Gestion Categories </a>
+                                        <a href="~/Roles/Index" class="btn btn-success btn-block"> Gestion Roles </a>
+                                        <a href="~/ApplicationUsers/Index" class="btn btn-success btn-block"> Gestion Utilisateur </a>
+
+                                    }
+
+
+                                    <a href="~/Account/EditProfile" class="btn btn-primary btn-block"> Modifier votre Compte </a>
+                                </div>
+
                             </div>
 
                         </div>
-                    </div>
+
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+
+                        <div>
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <p>
+                                        <a href="javascript:document.getElementById('logoff').submit()" class="btn btn-danger btn-block"> <i class="glyphicon glyphicon-log-out"></i>  Se déconnecter </a>
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
 
                     </li>
 
-                    </ul>
+                </ul>
 
-</li>
-
-                @*<li>
-                @Html.ActionLink("Bonjour: "+User.Identity.GetUserName(),"Index","Manage");
             </li>
 
-            <li>
-                <a href="javascript:document.getElementById('logoff').submit()">Deconnecter       </a>
-            </li>*@
-</ul>
+            @*<li>
+                    @Html.ActionLink("Bonjour: "+User.Identity.GetUserName(),"Index","Manage");
+                </li>
+
+                <li>
+                    <a href="javascript:document.getElementById('logoff').submit()">Deconnecter       </a>
+                </li>*@
+        </ul>
 
     }
 
@@ -102,20 +102,20 @@
 
 else
 {
-<ul class="nav navbar-nav navbar-right">
-    <li>
-        <a href="~/Account/Login">
-            <i class="glyphicon glyphicon-user"></i>
-            connecter
-        </a>
-    </li>
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a href="~/Account/Login">
+                <i class="glyphicon glyphicon-log-in"></i>
+                Se connecter
+            </a>
+        </li>
 
-    <li>
-        <a href="~/Account/Register">
-            <i class="glyphicon glyphicon-lock"></i>
-            Enregister
-        </a>
-    </li>
-</ul>
+        <li>
+            <a href="~/Account/Register">
+                <i class="glyphicon glyphicon-floppy-disk"></i>
+                Nouveau membre
+            </a>
+        </li>
+    </ul>
 
 }
