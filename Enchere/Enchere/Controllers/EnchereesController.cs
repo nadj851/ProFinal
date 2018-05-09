@@ -51,13 +51,15 @@ namespace Enchere.Migrations
             var UserId = User.Identity.GetUserId();
             var ObjetId = (int)Session["ObjetId"];
             double niveauActuel=0;
+            Encheree derniereOffre=null;
 
             if (db.Encherees.Where(a => a.ObjetId == ObjetId).Any())
             {
                 niveauActuel = db.Encherees.Where(a => a.ObjetId == ObjetId).ToList().Max(m => m.enchereNiveau);
+                derniereOffre = db.Encherees.Where(a => a.ObjetId == ObjetId).ToList().MaxBy(m => m.enchereNiveau);
             }
                         
-            var derniereOffre = db.Encherees.Where(a => a.ObjetId == ObjetId).ToList().MaxBy(m => m.enchereNiveau);
+             
 
             if (offreEnchere.enchereNiveau > niveauActuel &&
                 UserId != derniereOffre.UserId)
