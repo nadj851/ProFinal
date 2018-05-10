@@ -20,6 +20,8 @@
     {
         return Model.Enchere.Where(a => a.ObjetId == id).Count();
     }
+
+
 }
 
 
@@ -44,10 +46,10 @@
                     <img src="~/Uploads/@subitem.objetImage" style="width:200px;height:200px;" />
                     <h3>@Html.DisplayFor(modelItem => subitem.objetNom)</h3>
                     <h5>@Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(modelItem => subitem.objetDescription).ToString()))</h5>
-                    @Html.ActionLink("Details", "Details", new { objetId = subitem.Id },
-                                                                           new { @class = "btn btn-primary" }) |
-                    <span id="spanPrix" class="badge badge-warning">Prix actuel: @getNiveauEnchere(subitem.Id) $</span>
+                    @Html.ActionLink("Details", "Details", new { objetId = subitem.Id }, new { @class = "badge" }) |
+                    <span id="spanPrix" class="badge badge-warning">Prix actuel: @getNiveauEnchere(subitem.Id) $</span> 
                     <span id="spanOffre" class="badge">@getNombreOffres(subitem.Id) Offres</span>
+                    <span id="spanEtat" class="badge badge-info">@subitem.Statut</span>
 
                 </div>
 
