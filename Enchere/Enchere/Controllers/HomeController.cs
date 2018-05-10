@@ -208,6 +208,7 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Contact(ContactModel contact)
         {
             if (!this.IsCaptchaValid("Validate your captcha")||!ModelState.IsValid)
