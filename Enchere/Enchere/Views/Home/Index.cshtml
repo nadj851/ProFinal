@@ -71,7 +71,7 @@
             long duree = subitem.objetDureeVente;
             DateTime dateLimite = subitem.objetDateInsc.AddDays(duree);          
 
-             @:objets.push("@(dateLimite.ToShortDateString()");
+             @:objets.push("@(dateLimite.ToShortDateString())");
              @:objetsId.push("@subitem.Id");
         }
     }
