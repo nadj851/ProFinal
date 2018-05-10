@@ -33,7 +33,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.objetDescription)
+            @Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(model => model.objetDescription).ToString()))
+            @*@Html.DisplayFor(model => model.objetDescription)*@
         </dd>
 
         <dt>

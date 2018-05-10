@@ -202,7 +202,7 @@ namespace WebApplication1.Controllers
                 return View();
             }
             else {
-                 
+             //version fonctionne le 08/05/2018    
             //comment faire pour envoyer un message à partir de la boite email de l'administrateur munarela@hotmail.com
             SmtpClient SmtpServer = new SmtpClient("smtp.live.com");
             var mail = new MailMessage();
