@@ -77,10 +77,17 @@ namespace Enchere.Controllers
                    evaluation.Vendeur = obj.User.UserName;
 
                 //check sum cote
-                var total = (from eval in db.Evaluations
+                double total=0;
+
+                //On regarde si il y a une evaluation existante pour l'utilisateur donné
+                if (db.Evaluations.Where(a => a.Vendeur == obj.User.UserName).Any())
+                {
+                    total = (from eval in db.Evaluations
 
                              where eval.Vendeur == obj.User.UserName
                              select eval.Cote).Sum();
+
+                }
 
                 evaluation.TotalCote = total+evaluation.Cote;
 
@@ -94,12 +101,18 @@ namespace Enchere.Controllers
                 {
                     envoiMail(obj.User);
                 }
-                else if (evaluation.TotalCote <= -9)
+                if (evaluation.TotalCote <= -9)
                 {
-                    // Unlock the user account
                     var UserId = User.Identity.GetUserId();
                     var u = db.Users.Where(a => a.Id == obj.User.Id).Single();
-                    u.LockoutEnabled = false;
+
+                    //pour desactiver un compte
+                    //https://stackoverflow.com/questions/30452104/mvc-5-identity-2-0-lockout-doesnt-work
+                    //Il faut mettre a jour la colone lockout enable et donner une date jusqua quand ce sera bloquer sinon sa ne marchera pas
+                    u.LockoutEnabled = true;
+                    u.LockoutEndDateUtc = new DateTime(DateTime.Now.AddDays(7).Ticks);
+
+                    
 
                 }
 
@@ -127,7 +140,7 @@ namespace Enchere.Controllers
             string body = "Nom expéditeur: " + "admin" + "<br>" +
                 "email expéditeur: " + "munarela@hotmail.com" + "<br>" +
                 "objet de message: " + "Cote critique "+ "<br>" +
-                "le message : <b>Nous vous informons que votre cote à atteint le seuil critique de "+coteUser ;
+                "le message pour "+user.UserName +": <b>Nous vous informons que votre cote à atteint le seuil critique de "+coteUser ;
 
             mail.Body = body;
 
