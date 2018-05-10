@@ -28,12 +28,8 @@ namespace Enchere.Models
         [Display(Name = "Durée Vente")]
         public int objetDureeVente { get; set; }
 
-        [Display(Name = "Date achat")]
-        public DateTime objetDateAchat { get; set; }
-
         [Display(Name = "Statut")]
         public string Statut{ get; set; }
-
 
         [Display(Name = "image")]
         public string objetImage { get; set; }

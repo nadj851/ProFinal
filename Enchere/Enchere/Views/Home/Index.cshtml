@@ -48,17 +48,20 @@
 <script>
     var objets = [];
     var objetsId = [];
+    var nbrOffres = [];
+
     @foreach (var item in Model.Categorie){
         foreach (var subitem in item.objets){
             long duree = subitem.objetDureeVente;
             DateTime dateLimite = subitem.objetDateInsc.AddDays(duree);
 
              @:objets.push("@(dateLimite.ToShortDateString())");
-             @:objetsId.push("@subitem.Id");
-            }
+                 @:objetsId.push("@subitem.Id");
+                 @:nbrOffres.push("@getNombreOffres(subitem.Id)");
+                }
     }
     for (let i = 0; i < objets.length; i++) {
-
+        console.log(nbrOffres[i]);
         // Update the count down every 1 second
         var x = setInterval(function () {
 
@@ -84,7 +87,9 @@
             // If the count down is finished, write some text
             if (distance < 0) {
                 clearInterval(x);
-                document.getElementById(objetsId[i]).innerHTML = "EXPIRED";
+                var message = "EXPIRED";
+                if (parseInt(nbrOffres[i]) > 1) { message = "VENDU" }
+                document.getElementById(objetsId[i]).innerHTML = message;
             }
         }, 1000);
     }

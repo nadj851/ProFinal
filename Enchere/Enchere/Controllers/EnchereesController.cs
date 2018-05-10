@@ -41,7 +41,7 @@ namespace Enchere.Migrations
 
         [Authorize]
         public ActionResult Appliquer()
-        {
+        {            
             return View();
         }
 
@@ -50,8 +50,12 @@ namespace Enchere.Migrations
         {
             var UserId = User.Identity.GetUserId();
             var ObjetId = (int)Session["ObjetId"];
+            var objet = db.Objets.Where(a => a.Id == ObjetId);
+
             double niveauActuel=0;
+
             Encheree derniereOffre= offreEnchere;
+            //DateTime dateLimite = objet.objetDateInsc.AddDays(objet.objetDureeVente);
 
             if (db.Encherees.Where(a => a.ObjetId == ObjetId).Any())
             {
@@ -62,7 +66,7 @@ namespace Enchere.Migrations
              
 
             if (offreEnchere.enchereNiveau > niveauActuel &&
-                UserId != derniereOffre.UserId)
+                UserId != derniereOffre.UserId/* && dateLimite < DateTime.Now*/)
             {
                 var offre = checkEnchere(offreEnchere, niveauActuel);
                 offre.UserId = UserId;
@@ -99,6 +103,10 @@ namespace Enchere.Migrations
                 {
                     ViewBag.Result = "Vous ne devez pas encherir.Vous détenez déjà l'enchere avec une offre de :"+ niveauActuel +"$.";
                 }
+                //else if (dateLimite < DateTime.Now)
+                //{
+                //    ViewBag.Result = "L'enchere est Expiré depuis " + dateLimite + ".";
+                //}
                 else
                 {
                 ViewBag.Result = "Le montant que vous proposé est inférieur ou égal au niveau actuel qui est de " + niveauActuel + " $.";

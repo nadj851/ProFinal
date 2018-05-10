@@ -566,6 +566,10 @@
     <Compile Include="Migrations\201805101652336_ajoutchampStatutObjet.Designer.cs">
       <DependentUpon>201805101652336_ajoutchampStatutObjet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805102137374_dateAchatObjectEnlevé.cs" />
+    <Compile Include="Migrations\201805102137374_dateAchatObjectEnlevé.Designer.cs">
+      <DependentUpon>201805102137374_dateAchatObjectEnlevé.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Controllers\EnchereesController.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -755,6 +759,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805101652336_ajoutchampStatutObjet.resx">
       <DependentUpon>201805101652336_ajoutchampStatutObjet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805102137374_dateAchatObjectEnlevé.resx">
+      <DependentUpon>201805102137374_dateAchatObjectEnlevé.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
