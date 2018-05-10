@@ -558,6 +558,14 @@
     <Compile Include="Migrations\201805090427157_AjoutColloneTotalcote.Designer.cs">
       <DependentUpon>201805090427157_AjoutColloneTotalcote.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805101617252_teshhhh.cs" />
+    <Compile Include="Migrations\201805101617252_teshhhh.Designer.cs">
+      <DependentUpon>201805101617252_teshhhh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805101652336_ajoutchampStatutObjet.cs" />
+    <Compile Include="Migrations\201805101652336_ajoutchampStatutObjet.Designer.cs">
+      <DependentUpon>201805101652336_ajoutchampStatutObjet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Controllers\EnchereesController.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -742,6 +750,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805090427157_AjoutColloneTotalcote.resx">
       <DependentUpon>201805090427157_AjoutColloneTotalcote.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805101617252_teshhhh.resx">
+      <DependentUpon>201805101617252_teshhhh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805101652336_ajoutchampStatutObjet.resx">
+      <DependentUpon>201805101652336_ajoutchampStatutObjet.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
