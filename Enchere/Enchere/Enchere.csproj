@@ -660,6 +660,7 @@
     <Content Include="Views\Encherees\Index.cshtml" />
     <Content Include="Views\Encherees\Appliquer.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\InfoLegales.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

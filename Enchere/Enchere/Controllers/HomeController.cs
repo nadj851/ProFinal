@@ -254,6 +254,12 @@ namespace WebApplication1.Controllers
             return View();
         }
 
+        public ActionResult InfoLegales()
+        {
+
+            return View();
+        }
+
         [HttpPost]
         public ActionResult Recherche(string searchName)
         {
