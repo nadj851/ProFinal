@@ -5,17 +5,16 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>@Html.DisplayFor(model => model.monObjet.objetNom)</h2>
 <div class="container">
     <div class="container col-md-3 img-thumbnail" style="width:50% ; float:left">
         <div class="dl-horizontal ">
             @*<h4 class="dl-horizontal">@Html.DisplayFor(model => model.monObjet.Category.CategoryName)</h4>*@
-            <h4 class="dl-horizontal ">@Html.DisplayFor(model => model.monObjet.objetNom)</h4>
+           <p class="demo notranslate" id="CountDown">
             <dl>
                 @*<dt>
                         @Html.DisplayNameFor(model => model.monObjet.objetImage)
                     </dt>*@
-
                 <dd>
                     <img src="~/Uploads/@Html.DisplayFor(model => model.monObjet.objetImage)" style="width:200px;height:200px;" />
                 </dd>
@@ -96,7 +95,6 @@
                 </tr>
             </thead>
             <tbody>
-
                 @foreach (var item in Model.Items)
                 {
                     <tr>
@@ -113,7 +111,35 @@
                 }
             </tbody>
         </table>
-
     </div>
-
 </div>
+<script>
+        // Update the count down every 1 second
+        var x = setInterval(function () {
+
+            // Set the date we're counting down to
+            var countDownDate = new Date("@Model.monObjet.objetDateInsc.AddDays(Model.monObjet.objetDureeVente).ToShortDateString()").getTime();
+           
+            // Get todays date and time
+            var now = new Date().getTime();
+
+            // Find the distance between now an the count down date
+            var distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result in the element with id="demo"
+            document.getElementById("CountDown").innerHTML = days + "d " + hours + "h "
+                    + minutes + "m " + seconds + "s ";
+
+            // If the count down is finished, write some text
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("CountDown").innerHTML = "EXPIRED";
+            }
+        }, 1000);
+</script>
