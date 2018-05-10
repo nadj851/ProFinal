@@ -43,7 +43,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Commentaire)
+            @Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(modelItem => item.Commentaire).ToString()))
         </dd>
 
        

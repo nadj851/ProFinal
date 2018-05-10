@@ -24,6 +24,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -553,6 +554,10 @@
     <Compile Include="Migrations\201805081828398_new.Designer.cs">
       <DependentUpon>201805081828398_new.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805090427157_AjoutColloneTotalcote.cs" />
+    <Compile Include="Migrations\201805090427157_AjoutColloneTotalcote.Designer.cs">
+      <DependentUpon>201805090427157_AjoutColloneTotalcote.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Controllers\EnchereesController.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -563,6 +568,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Objet.cs" />
+    <Compile Include="Models\ObjetsViewModel.cs" />
     <Compile Include="Models\ObjetViewModel.cs" />
     <Compile Include="Models\RoleViewModel.cs" />
     <Compile Include="Models\test.cs" />
@@ -603,7 +609,7 @@
     <Content Include="Views\Account\VerifyCode.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Index2.cshtml" />
     <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
     <Content Include="Views\Manage\ChangePassword.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
@@ -653,6 +659,7 @@
     <Content Include="Views\Encherees\Edit.cshtml" />
     <Content Include="Views\Encherees\Index.cshtml" />
     <Content Include="Views\Encherees\Appliquer.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -731,6 +738,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805081828398_new.resx">
       <DependentUpon>201805081828398_new.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805090427157_AjoutColloneTotalcote.resx">
+      <DependentUpon>201805090427157_AjoutColloneTotalcote.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

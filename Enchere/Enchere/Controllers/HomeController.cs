@@ -1,4 +1,4 @@
-﻿using Enchere.Models;
+using Enchere.Models;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -17,23 +17,41 @@ namespace WebApplication1.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        public ActionResult Index2()
+        {
+            return View(db.Categories.ToList());
+        }
         public ActionResult Index()
         {
-           
-            return View(db.Categories.ToList());
+            var encheres = db.Encherees.Include(e => e.objet).Include(e => e.user).ToList();
+            var categories = db.Categories.ToList();
+            var encheresObjViewModel = new ObjetsViewModel
+            {
+                Enchere = encheres,
+                Categorie = categories
+            };
+            return View(encheresObjViewModel);
         }
 
 
         public ActionResult Details(int objetId)
         {
             var objet = db.Objets.Find(objetId);
-            if(objet==null)
+            var listeOffres = db.Encherees.Where(a => a.ObjetId == objetId).ToList();
+            if (objet==null)
             {
                 return HttpNotFound();
             }
+            var objViewModel = new ObjetViewModel
+            {
+                monObjet = objet,
+                Items = listeOffres
+            };
 
             Session["ObjetId"] = objetId;
-            return View(objet); 
+
+
+            return View(objViewModel); 
         }
 
         [Authorize]
