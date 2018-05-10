@@ -85,24 +85,24 @@ namespace Enchere.Controllers
                 evaluation.TotalCote = total+evaluation.Cote;
 
                 //send notification
-                if (evaluation.TotalCote == -6)
+              
+
+                ViewBag.total= evaluation.TotalCote;
+                db.Evaluations.Add(evaluation);
+                db.SaveChanges();
+                if (evaluation.TotalCote <= -6)
                 {
                     envoiMail(obj.User);
                 }
-                else if(evaluation.TotalCote < -6 )
+                else if (evaluation.TotalCote <= -9)
                 {
                     // Unlock the user account
                     var UserId = User.Identity.GetUserId();
                     var u = db.Users.Where(a => a.Id == obj.User.Id).Single();
-                     u.LockoutEnabled = false;
+                    u.LockoutEnabled = false;
 
                 }
 
-                ViewBag.total= evaluation.TotalCote;
-                db.Evaluations.Add(evaluation);
-                db.SaveChanges();                                       
-                             
-                
                 return RedirectToAction("Index");
             }
 
@@ -116,21 +116,24 @@ namespace Enchere.Controllers
         {
             SmtpClient SmtpServer = new SmtpClient("smtp.live.com");
             var mail = new MailMessage();
-            mail.From = new MailAddress(user.Email);
+            //recherche de la cote actuelle
+            var coteUser =  db.Evaluations.OrderByDescending(p => p.Id).FirstOrDefault().TotalCote;
+
+            mail.From = new MailAddress("munarela@hotmail.com");
             mail.To.Add(user.Email);
             mail.Subject = "Urgent";
             mail.IsBodyHtml = true;
             //le message du body
             string body = "Nom expéditeur: " + "admin" + "<br>" +
                 "email expéditeur: " + "munarela@hotmail.com" + "<br>" +
-                "objet de message: " + "Urgent cote "+ "<br>" +
-                "le message : <b>" + "votre cote est atteindre -6 faite attention svp " + "</b>";
+                "objet de message: " + "Cote critique "+ "<br>" +
+                "le message : <b>Nous vous informons que votre cote à atteint le seuil critique de "+coteUser ;
 
             mail.Body = body;
 
             SmtpServer.Port = 587;
             SmtpServer.UseDefaultCredentials = false;
-            SmtpServer.Credentials = new System.Net.NetworkCredential(user.Email, "Web123456");
+            SmtpServer.Credentials = new NetworkCredential("munarela@hotmail.com", "Web123456");
             SmtpServer.EnableSsl = true;
             SmtpServer.Send(mail);
 
