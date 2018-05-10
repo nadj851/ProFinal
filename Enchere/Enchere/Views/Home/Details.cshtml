@@ -6,99 +6,114 @@
 }
 
 <h2>Details</h2>
+<div class="container">
+    <div class="container col-md-3 img-thumbnail" style="width:50% ; float:left">
+        <div class="dl-horizontal ">
+            @*<h4 class="dl-horizontal">@Html.DisplayFor(model => model.monObjet.Category.CategoryName)</h4>*@
+            <h4 class="dl-horizontal ">@Html.DisplayFor(model => model.monObjet.objetNom)</h4>
+            <dl>
+                @*<dt>
+                        @Html.DisplayNameFor(model => model.monObjet.objetImage)
+                    </dt>*@
 
-<div class="w3-display-left" style="width:70%">
-    <div class="dl-horizontal">
-        <h4  class="dl-horizontal">@Html.DisplayFor(model => model.monObjet.Category.CategoryName)</h4>
-        <dl>
+                <dd>
+                    <img src="~/Uploads/@Html.DisplayFor(model => model.monObjet.objetImage)" style="width:200px;height:200px;" />
+                </dd>
+                <dt>
+                    @*@Html.DisplayNameFor(model => model.monObjet.Category.CategoryName)*@
+                    Catégorie
+                </dt>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.monObjet.Category.CategoryName)
-            </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.monObjet.Category.CategoryName)
+                </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.monObjet.Category.CategoryName)
-            </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.monObjet.objetNom)
+                </dt>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.monObjet.objetNom)
-            </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.monObjet.objetNom)
+                </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.monObjet.objetNom)
-            </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.monObjet.objetDescription)
+                </dt>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.monObjet.objetDescription)
-            </dt>
+                <dd>
+                    @Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(model => model.monObjet.objetDescription).ToString()))
+                </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.monObjet.objetDescription)
-            </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.monObjet.objetPrixDepart) Initial
+                </dt>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.monObjet.objetPrixDepart)
-            </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.monObjet.objetPrixDepart) $
+                </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.monObjet.objetPrixDepart)
-            </dd>
+                <dt>
+                    @*@Html.DisplayNameFor(model => model.monObjet.objetDateInsc)*@
+                    Date dépôt
+                </dt>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.monObjet.objetDateInsc)
-            </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.monObjet.objetDateInsc)
+                </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.monObjet.objetDateInsc)
-            </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.monObjet.objetDureeVente)
+                </dt>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.monObjet.objetDureeVente)
-            </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.monObjet.objetDureeVente) jours
+                </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.monObjet.objetDureeVente)
-            </dd>
+                @*<dt>
+                        @Html.DisplayNameFor(model => model.monObjet.objetDateAchat)
+                    </dt>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.monObjet.objetDateAchat)
-            </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.monObjet.objetDateAchat)
+                    </dd>*@
 
-            <dd>
-                @Html.DisplayFor(model => model.monObjet.objetDateAchat)
-            </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.monObjet.objetImage)
-            </dt>
 
-            <dd>
-                <img src="~/Uploads/@Html.DisplayFor(model => model.monObjet.objetImage)" class="thumbnail" style="width:128px;height:128px;" />
-            </dd>
-
-        </dl>
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Enchérir", "Appliquer", "Encherees", new { id = Model.monObjet.Id }, new { @class = "btn btn-primary" }) |
+            @Html.ActionLink("Retour à la liste", "Index", new { @class = "btn btn-default" })
+        </p>
     </div>
-    <p>
-        @Html.ActionLink("Choisir cette objet", "Appliquer", "Encherees", new { id = Model.monObjet.Id }, new { @class = "btn btn-success" }) |
-        @Html.ActionLink("Back to List", "Index", new { @class = "btn btn-default" })
-    </p>
+    <div class="container" style="width:50%; float:right">
+        <h4>Historique Enchères</h4>
+        <table id="userstable" class="table" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Montant</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model.Items)
+                {
+                    <tr>
+                        <td>
+
+                            @Html.DisplayFor(modelItem => item.enchereNiveau) $
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.enchereDate)
+                        </td>
+                        @*@Html.DisplayFor(modelItem => item.user.UserName)
+                            <br />*@
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+
 </div>
-<div class="w3-display-right" style="width:30%">
-    <h4>Historique Enchères</h4>
-    <dl>
-        @foreach (var item in Model.Items)
-    {
-        <dt>
-            @Html.DisplayFor(modelItem => item.enchereNiveau) $
-        </dt>
-        <dd>
-            @Html.DisplayFor(modelItem => item.enchereDate)
-        </dd>
-            @*@Html.DisplayFor(modelItem => item.user.UserName)
-            <br />*@
-
-            }
-    </dl>
-
-</div>
-

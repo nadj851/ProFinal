@@ -94,7 +94,19 @@
                 <li>
                     <a href="javascript:document.getElementById('logoff').submit()">Deconnecter       </a>
                 </li>*@
-        </ul>
+            <li>
+                <a>
+                    <div id="google_translate_element"></div>
+                    <script type="text/javascript">
+                        function googleTranslateElementInit() {
+                            new google.translate.TranslateElement({ pageLanguage: 'fr', includedLanguages: 'fr,ar,en,es', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+                            $("#google_translate_element img").eq(0).remove();
+                        }
+
+                    </script>
+                </a>
+            </li>
+        </ul>//fin ul
 
     }
 
@@ -102,20 +114,33 @@
 
 else
 {
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            <a href="~/Account/Login">
-                <i class="glyphicon glyphicon-log-in"></i>
-                Se connecter
-            </a>
-        </li>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="~/Account/Login">
+                    <i class="glyphicon glyphicon-log-in"></i>
+                    Se connecter
+                </a>
+            </li>
 
-        <li>
-            <a href="~/Account/Register">
-                <i class="glyphicon glyphicon-floppy-disk"></i>
-                Nouveau membre
-            </a>
-        </li>
-    </ul>
+            <li>
+                <a href="~/Account/Register">
+                    <i class="glyphicon glyphicon-floppy-disk"></i>
+                    Nouveau membre
+                </a>
+            </li>
+
+            <li>
+                <a>
+                    <div id="google_translate_element"></div>
+                    <script type="text/javascript">
+                        function googleTranslateElementInit() {
+                            new google.translate.TranslateElement({ pageLanguage: 'fr', includedLanguages: 'fr,ar,en,es', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+                            $("#google_translate_element img").eq(0).remove();
+                        }
+
+                    </script>
+                </a>
+            </li>
+        </ul>
 
 }
