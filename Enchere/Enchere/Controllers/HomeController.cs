@@ -268,8 +268,47 @@ namespace WebApplication1.Controllers
             return View(result);
         }
 
+     
+            [HttpGet]
+        public ActionResult EnvoiCourriel()
+        {
 
-        
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult EnvoiCourriel(ContactModel contact)
+        {
+            
+                //version fonctionne le 08/05/2018    
+                //comment faire pour envoyer un message à partir de la boite email de l'administrateur munarela@hotmail.com
+                SmtpClient SmtpServer = new SmtpClient("smtp.live.com");
+                var mail = new MailMessage();
+                mail.From = new MailAddress("munarela@hotmail.com");
+                mail.To.Add(contact.Email);
+                mail.Subject = contact.Subject;
+                mail.IsBodyHtml = true;
+                //le message du body
+                string body = "Nom expéditeur: " + "admin"+ "<br>" +
+                    "email expéditeur: " +" munarela@hotmail.com "+ "<br>" +
+                    "objet de message: " + contact.Subject + "<br>" +
+                    "le message : <b>" + contact.Message + "</b>";
+
+                mail.Body = body;
+
+                SmtpServer.Port = 587;
+                SmtpServer.UseDefaultCredentials = false;
+                SmtpServer.Credentials = new System.Net.NetworkCredential("munarela@hotmail.com", "Web123456");
+                SmtpServer.EnableSsl = true;
+                SmtpServer.Send(mail);
+
+
+                return RedirectToAction("Index");
+          
+        }
+
 
     }
 }

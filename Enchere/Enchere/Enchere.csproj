@@ -672,6 +672,7 @@
     <Content Include="Views\Encherees\Appliquer.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\InfoLegales.cshtml" />
+    <Content Include="Views\Home\EnvoiCourriel.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
