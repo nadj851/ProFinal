@@ -1,7 +1,7 @@
 @model Enchere.Models.ObjetsViewModel
 
 @{
-    ViewBag.Title = "Munarela Ench�re - Accueil";
+    ViewBag.Title = "Accueil";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 @functions{
@@ -35,10 +35,35 @@
                     <img src="~/Uploads/@subitem.objetImage" style="width:200px;height:200px;" />
                     <h3>@Html.DisplayFor(modelItem => subitem.objetNom)</h3>
                     <h5>@Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(modelItem => subitem.objetDescription).ToString()))</h5>
-                    @Html.ActionLink("Details", "Details", new { objetId = subitem.Id }, new { @class = "badge" }) |
+                    @Html.ActionLink("Détail", "Details", new { objetId = subitem.Id }, new { @class = "badge" }) |
                     <span id="spanPrix" class="badge badge-warning">Prix actuel: @getNiveauEnchere(subitem.Id) $</span>
                     <span id="spanOffre" class="badge">@getNombreOffres(subitem.Id) Offres</span>
                     <span id="spanEtat" class="badge badge-info">@subitem.Statut</span>
+                   
+                    <!-- Modal -->
+                    <!-- Trigger the modal with a button -->
+
+                    <a href="#" data-toggle="modal" data-target="#myModal">
+                        <span class="glyphicon glyphicon-question-sign"></span>
+                    </a>
+                    <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">@subitem.objetNom</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>l'objet à été mis le @subitem.objetDateInsc.Date.ToLongDateString() avec un prix de départ de @subitem.objetPrixDepart $ </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>@*fin modal window*@
+
+
                 </div>
             }
         </div>
@@ -51,13 +76,16 @@
     var nbrOffres = [];
 
     @foreach (var item in Model.Categorie){
+
         foreach (var subitem in item.objets){
+
             long duree = subitem.objetDureeVente;
             DateTime dateLimite = subitem.objetDateInsc.AddDays(duree);
 
-             @:objets.push("@(dateLimite.ToShortDateString())");
+                 @:objets.push("@(dateLimite.ToShortDateString())");
                  @:objetsId.push("@subitem.Id");
                  @:nbrOffres.push("@getNombreOffres(subitem.Id)");
+
                 }
     }
     for (let i = 0; i < objets.length; i++) {
