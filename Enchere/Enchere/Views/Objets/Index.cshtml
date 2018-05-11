@@ -33,9 +33,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.objetDureeVente)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.objetDateAchat)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.objetImage)
             </th>
@@ -65,9 +65,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.objetDureeVente)
                 </td>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.objetDateAchat)
-                </td>
+                </td>*@
                 <td>
                     <img src="~/Uploads/@Html.DisplayFor(model => item.objetImage)" class="thumbnail"
                          style="width:48px;height:48px;" />
