@@ -29,8 +29,11 @@ namespace Enchere.Controllers
 
         // GET: Evaluations
         public ActionResult Index()
-        {
-            var evaluations = db.Evaluations.Include(e => e.User);
+        {           
+            var ObjetId = (int)Session["ObjetId"];
+            var obj = db.Objets.Where(a => a.Id == ObjetId).Single();
+              var evaluations = db.Evaluations.Where(a => a.Vendeur == obj.User.UserName);                    
+           
             return View(evaluations.ToList());
         }
 
