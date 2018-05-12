@@ -677,6 +677,7 @@
     <Content Include="Views\Home\EnvoiCourriel.cshtml" />
     <Content Include="Views\Evaluations\GetListeEvalMembre.cshtml" />
     <Content Include="Views\Objets\GetListeObjetVenduWithPrix.cshtml" />
+    <Content Include="Views\Objets\GetObjetmise.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

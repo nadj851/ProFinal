@@ -11,7 +11,7 @@ namespace Enchere.Models
     {
         public int Id { get; set; }
         [Required]
-        [Display(Name = "Nom")]
+        [Display(Name = "Nom Categorie")]
         public string CategoryName { get; set; }
         [Required]
         [Display(Name = "Déscription")]

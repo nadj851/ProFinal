@@ -193,6 +193,15 @@ namespace Enchere.Controllers
          
         }
 
+       
+             [Authorize]
+        public ActionResult GetObjetmise()
+        {
+            var UserId = User.Identity.GetUserId();
+
+            var objets = db.Objets.Where(a => a.UserId == UserId);
+            return View(objets.ToList());
+        }
 
 
     }
