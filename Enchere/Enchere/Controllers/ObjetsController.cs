@@ -193,7 +193,7 @@ namespace Enchere.Controllers
          
         }
 
-       
+       //objets vendu par chaque membre
              [Authorize]
         public ActionResult GetObjetmise()
         {
@@ -203,6 +203,25 @@ namespace Enchere.Controllers
             return View(objets.ToList());
         }
 
+
+        //objets vendu par chaque membre
+        [Authorize]
+        public ActionResult GetObjetAchte()
+        {
+            var UserId = User.Identity.GetUserId();
+
+
+            var objets = from obj in db.Objets
+                           join ench in db.Encherees
+                           on obj.Id equals ench.ObjetId
+                           where ench.UserId == UserId && obj.Statut == "Acheté"
+                           select obj;
+
+          
+          return View(objets.ToList());
+        }
+
+       
 
     }
 }
