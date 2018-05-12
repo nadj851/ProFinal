@@ -43,8 +43,6 @@
                                         <a href="~/Objets/Create" class="btn btn-success btn-block"> Nouveau objet </a>
                                         <a href="~/Home/GetObjetByUser" class="btn btn-success btn-block"> Achat Enchère </a>
 
-
-
                                     }
 
                                     else if (CurrentUser.UserType == "Admin")
@@ -55,7 +53,8 @@
                                         <a href="~/Roles/Index" class="btn btn-success btn-block"> Gestion Roles </a>
                                         <a href="~/ApplicationUsers/Index" class="btn btn-success btn-block"> Gestion Utilisateur </a>
                                         <a href="~/Home/EnvoiCourriel" class="btn btn-success btn-block"> Envoi courriel </a>
-                                       
+                                        <a href="~/Evaluations/GetListeEvalMembre" class="btn btn-success btn-block"> Rapport #4  </a>
+
 
                                     }
 
@@ -68,24 +67,29 @@
                         </div>
 
                     </li>
-                    <li class="divider"></li>
-                    <li>
 
-                        <div>
+                             
 
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <p>
-                                        <a href="javascript:document.getElementById('logoff').submit()" class="btn btn-danger btn-block"> <i class="glyphicon glyphicon-log-out"></i>  Se déconnecter </a>
-                                    </p>
-                                </div>
+                   
 
-                            </div>
+            <li class="divider"></li>
+            <li>
+
+                <div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <p>
+                                <a href="javascript:document.getElementById('logoff').submit()" class="btn btn-danger btn-block"> <i class="glyphicon glyphicon-log-out"></i>  Se déconnecter </a>
+                            </p>
                         </div>
 
-                    </li>
+                    </div>
+                </div>
 
-                </ul>
+            </li>
+
+        </ul>
 
             </li>
 
@@ -146,3 +150,19 @@ else
         </ul>
 
 }
+
+
+
+
+
+<script>
+		$(function() {
+			// Affichage du sous menu en douceur
+			jQuery('ul.nav li.dropdown').hover(function() {
+			  jQuery(this).find('.jqueryFadeIn').stop(true, true).delay(200).fadeIn();
+			}, function() {
+			  jQuery(this).find('.jqueryFadeIn').stop(true, true).delay(200).fadeOut();
+			});
+
+		});
+</script>
