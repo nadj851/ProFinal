@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Enchere.Models.RaportObjetVenduPrixModel>
+
+@{
+    ViewBag.Title = "GetListeObjetVenduWithPrix";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>GetListeObjetVenduWithPrix</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table id="rap2table" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MembreVendeur)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ObjetName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ObjetCategorie)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrixInitial)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrixFinal)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MembreVendeur)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ObjetName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ObjetCategorie)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrixInitial)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrixFinal)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#rap2table').DataTable(
+                { dom: 'Blfrtip', buttons: [{ extend: 'csv', exportOptions: { columns: [':visible'] } }, { extend: 'print', exportOptions: { columns: [':visible'] } }, { extend: 'copyHtml5', exportOptions: { columns: [':visible'] } }, { extend: 'excelHtml5', exportOptions: { columns: [':visible'] } }, { extend: 'pdfHtml5', exportOptions: { columns: [':visible'] } }, [{ extend: 'colvis', postfixButtons: ['colvisRestore'] }]], "pageLength": -1, "lengthMenu": [[10, 50, 100, 500, 1000, -1], [10, 50, 100, 500, "1000", "All"]] }
+
+                );
+        });
+    </script>
+}

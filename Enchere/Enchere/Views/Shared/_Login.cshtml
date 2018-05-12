@@ -39,9 +39,12 @@
                                     </p>
                                     @if (CurrentUser.UserType == "Membre")
                                     {
-                                        <a href="~/Home/GetObjetByVendeur" class="btn btn-success btn-block"> Objets mis en vente </a>
+                                        <a href="~/Home/GetObjetByVendeur" class="btn btn-success btn-block"> Objets enchiré par autre </a>
                                         <a href="~/Objets/Create" class="btn btn-success btn-block"> Nouveau objet </a>
                                         <a href="~/Home/GetObjetByUser" class="btn btn-success btn-block"> Achat Enchère </a>
+                                        <a href="~/Objets/GetObjetmise" class="btn btn-success btn-block"> Objets mis en vente </a>
+                                        <a href="~/Objets/GetObjetAchete" class="btn btn-success btn-block"> Objets Acheté </a>
+                                        <a href="~/Evaluations/GetEvalMembre" class="btn btn-success btn-block"> Mes Evaluations</a>
 
                                     }
 
@@ -53,6 +56,7 @@
                                         <a href="~/Roles/Index" class="btn btn-success btn-block"> Gestion Roles </a>
                                         <a href="~/ApplicationUsers/Index" class="btn btn-success btn-block"> Gestion Utilisateur </a>
                                         <a href="~/Home/EnvoiCourriel" class="btn btn-success btn-block"> Envoi courriel </a>
+                                        <a href="~/Objets/GetListeObjetVenduWithPrix" class="btn btn-success btn-block"> Rapport #2  </a>
                                         <a href="~/Evaluations/GetListeEvalMembre" class="btn btn-success btn-block"> Rapport #4  </a>
 
 

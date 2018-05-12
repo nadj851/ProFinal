@@ -21,14 +21,19 @@ using static Enchere.Controllers.EvaluationsController;
 
 namespace Enchere.Controllers
 {
+
+    [Authorize]
     public class EvaluationsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Evaluations
         public ActionResult Index()
-        {
-            var evaluations = db.Evaluations.Include(e => e.User);
+        {           
+            var ObjetId = (int)Session["ObjetId"];
+            var obj = db.Objets.Where(a => a.Id == ObjetId).Single();
+              var evaluations = db.Evaluations.Where(a => a.Vendeur == obj.User.UserName);                    
+           
             return View(evaluations.ToList());
         }
 
@@ -249,6 +254,20 @@ namespace Enchere.Controllers
         }
 
 
+        //get evaluation pour un membre
+        [Authorize]
+        public ActionResult GetEvalMembre()
+        {
+            var Username= User.Identity.GetUserName();
+
+
+
+            var eval = db.Evaluations.Where(a => a.Vendeur == Username);
+
+
+            return View(eval.ToList());
+        }
+    
 
 
     }
