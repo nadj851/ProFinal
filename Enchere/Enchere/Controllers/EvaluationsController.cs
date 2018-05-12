@@ -254,6 +254,20 @@ namespace Enchere.Controllers
         }
 
 
+        //get evaluation pour un membre
+        [Authorize]
+        public ActionResult GetEvalMembre()
+        {
+            var Username= User.Identity.GetUserName();
+
+
+
+            var eval = db.Evaluations.Where(a => a.Vendeur == Username);
+
+
+            return View(eval.ToList());
+        }
+    
 
 
     }
