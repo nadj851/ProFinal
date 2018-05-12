@@ -153,5 +153,47 @@ namespace Enchere.Controllers
             base.Dispose(disposing);
         }
 
+
+
+        [Authorize]
+       // Rapport #2 
+       //Liste des objets vendus par un membre incluant l’information sur le prix
+        //de départ et le prix final.       
+                    
+        //[Authorize(Roles = "Vendeur,Admin")]
+        public ActionResult GetListeObjetVenduWithPrix()
+        {
+            
+
+
+            var groupe = (from fuss in db.Objets
+                         join ench in db.Encherees
+                         on fuss.Id equals ench.ObjetId
+                         select new { fuss, ench });
+
+            var liste = from o in groupe
+                        group o by new { o.fuss.User.UserName, o.fuss.Id } 
+                        
+                          into gr
+                        select new RaportObjetVenduPrixModel
+                        {
+                            MembreVendeur = gr.FirstOrDefault().fuss.User.UserName,
+                            ObjetName = gr.Select(a => a.fuss.objetNom).FirstOrDefault(),
+                            ObjetCategorie = gr.Select(a => a.fuss.Category.CategoryName).FirstOrDefault(),
+                            PrixInitial = gr.Select(a => a.fuss.objetPrixDepart).FirstOrDefault(),
+                            PrixFinal = gr.Select(a => a.ench.niveauMax).Max()
+
+                         };
+
+
+          
+            return View(liste.ToList());
+
+            
+         
+        }
+
+
+
     }
 }

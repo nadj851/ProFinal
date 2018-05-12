@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Enchere.Models.RaportObjetVenduPrixModel>
+
+@{
+    ViewBag.Title = "GetListeObjetVenduWithPrix";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>GetListeObjetVenduWithPrix</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MembreVendeur)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ObjetName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ObjetCategorie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrixInitial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrixFinal)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MembreVendeur)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ObjetName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ObjetCategorie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrixInitial)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrixFinal)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

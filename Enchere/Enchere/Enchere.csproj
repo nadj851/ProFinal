@@ -583,6 +583,7 @@
     <Compile Include="Models\ObjetsViewModel.cs" />
     <Compile Include="Models\ObjetViewModel.cs" />
     <Compile Include="Models\RaportModelEval.cs" />
+    <Compile Include="Models\RaportObjetVenduPrixModel.cs" />
     <Compile Include="Models\RoleViewModel.cs" />
     <Compile Include="Models\test.cs" />
     <Compile Include="MoreLinq\MoreEnumerable.MaxBy.cs" />
@@ -675,6 +676,7 @@
     <Content Include="Views\Home\InfoLegales.cshtml" />
     <Content Include="Views\Home\EnvoiCourriel.cshtml" />
     <Content Include="Views\Evaluations\GetListeEvalMembre.cshtml" />
+    <Content Include="Views\Objets\GetListeObjetVenduWithPrix.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
