@@ -17,6 +17,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System.Web.Security;
 using WebApplication1;
 using Microsoft.Ajax.Utilities;
+using static Enchere.Controllers.EvaluationsController;
 
 namespace Enchere.Controllers
 {
@@ -222,6 +223,30 @@ namespace Enchere.Controllers
             base.Dispose(disposing);
         }
 
+
+
+        // Rapport #4 
+        //Cote de popularité des membres incluant le niveau de la cote, le nombre d’évaluations.
+        
+
+                [Authorize]
+        public ActionResult GetListeEvalMembre()
+        {
+           
+            var group = (from gr in db.Evaluations
+                       
+                            group gr by  gr.Vendeur).Select(ac => new RaportModelEval
+                            {
+
+                                Membre = ac.FirstOrDefault().Vendeur,
+                                NbrEval = ac.Count(),
+                                CotePo = ac.Sum(acs => acs.Cote)
+                              
+                            });
+
+
+            return View(group.ToList());
+        }
 
 
 

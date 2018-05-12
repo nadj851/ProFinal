@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Enchere.Models.RaportModelEval>
+
+@{
+    ViewBag.Title = "GetListeEvalMembre";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>GetListeEvalMembre</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table id="raptable" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Membre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NbrEval)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CotePo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Membre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NbrEval)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CotePo)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#raptable').DataTable(
+                { dom: 'Blfrtip', buttons: [{ extend: 'csv', exportOptions: { columns: [':visible'] } }, { extend: 'print', exportOptions: { columns: [':visible'] } }, { extend: 'copyHtml5', exportOptions: { columns: [':visible'] } }, { extend: 'excelHtml5', exportOptions: { columns: [':visible'] } }, { extend: 'pdfHtml5', exportOptions: { columns: [':visible'] } }, [{ extend: 'colvis', postfixButtons: ['colvisRestore'] }]], "pageLength": -1, "lengthMenu": [[10, 50, 100, 500, 1000, -1], [10, 50, 100, 500, "1000", "All"]] }
+
+                );
+        });
+    </script>
+}
