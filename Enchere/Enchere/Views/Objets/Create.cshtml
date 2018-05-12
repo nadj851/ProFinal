@@ -20,154 +20,155 @@
             </span>
         </div>
     </div>
-            <div class="form-horizontal">
+    <div class="form-horizontal">
 
-                <h4>Objet</h4>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(model => model.objetNom, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.objetNom, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.objetNom, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+        <h4>Objet</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.objetNom, htmlAttributes: new { @class = "control-label col-md-2" })
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.objetDescription, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.TextAreaFor(model => model.objetDescription, new { htmlAttributes = new { @class = "form-control", @id = "objetDescription" } })
-                        @Html.ValidationMessageFor(model => model.objetDescription, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.objetPrixDepart, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.objetPrixDepart, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.objetPrixDepart, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                @*<div class="form-group">
-                    @Html.LabelFor(model => model.objetDateInsc, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.objetDateInsc, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.objetDateInsc, "", new { @class = "text-danger" })
-                    </div>
-                </div>*@
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.objetDureeVente, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.objetDureeVente, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.objetDureeVente, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.objetDateAchat, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.objetDateAchat, new { htmlAttributes = new { @class = "form-control datepicker", @id = "datePicker" } })
-                        @Html.ValidationMessageFor(model => model.objetDateAchat, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.objetImage, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        <input type="file" name="upload" id="myImage"/>
-                        @Html.ValidationMessageFor(model => model.objetImage, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.categoryId, "categoryId", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DropDownList("categoryId", null, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.categoryId, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                @*<div class="form-group">
-                    <label class="col-xs-3 control-label">Date</label>
-                    <div class="col-xs-5 date">
-                        <div class="input-group input-append date" id="datePicker">
-                            <input type="text" class="form-control" name="date" />
-                            <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
-                        </div>
-                    </div>
-                </div>*@
-
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Create" class="btn btn-default" id="Create"   />
-                    </div>
-                </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.objetNom, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.objetNom, "", new { @class = "text-danger" })
             </div>
-            }
+        </div>
 
-            <div>
-                @Html.ActionLink("Back to List", "Index")
+        <div class="form-group">
+            @Html.LabelFor(model => model.objetDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.objetDescription, new { htmlAttributes = new { @class = "form-control", @id = "objetDescription" } })
+                @Html.ValidationMessageFor(model => model.objetDescription, "", new { @class = "text-danger" })
             </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.objetPrixDepart, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.objetPrixDepart, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.objetPrixDepart, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.objetDateInsc, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.objetDateInsc, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.objetDateInsc, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.objetDureeVente, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.objetDureeVente, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.objetDureeVente, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.objetDateAchat, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.objetDateAchat, new { htmlAttributes = new { @class = "form-control datepicker", @id = "datePicker" } })
+                @Html.ValidationMessageFor(model => model.objetDateAchat, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.objetImage, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="upload" id="myImage" />
+                @Html.ValidationMessageFor(model => model.objetImage, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.categoryId, "categoryId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("categoryId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.categoryId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @*<div class="form-group">
+                <label class="col-xs-3 control-label">Date</label>
+                <div class="col-xs-5 date">
+                    <div class="input-group input-append date" id="datePicker">
+                        <input type="text" class="form-control" name="date" />
+                        <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" id="Create" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
 
 
-            <script>
-                CKEDITOR.replace("objetDescription")
+<script>
+    CKEDITOR.replace("objetDescription")
 
 
 
-            </script>
+</script>
 
 @*Ajout validation creation image*@
 
 @section scripts
     {
     <script>
-    $(function(){
-        $('#datePicker')
-        .datepicker({
-            format: 'yyyy/mm/dd'
-        })
-        .on('changeDate', function (e) {
-            // Revalidate the date field
-            $('#eventForm').formValidation('revalidateField', 'date');
+        $(function () {
+            $('#datePicker')
+                .datepicker({
+                    format: 'yyyy/mm/dd'
+                })
+                .on('changeDate', function (e) {
+                    // Revalidate the date field
+                    $('#eventForm').formValidation('revalidateField', 'date');
+                });
+            //$('.datepicker').datepicker(); //Initialise any date pickers
+
+            $("#Create").click(function () {
+
+                //verifie si input empty
+                /*if ($("#myImage").val() == "") {
+
+                    $("#error-div").fadeIn();
+                    $("#view-err").append("veuillez charger l'image de l'objet");
+                    return false;
+                }*/
+
+                if ($("#myImage").val() != "") {
+                    //verifie si extension is valid
+                    var filename = document.getElementById("myImage").value;
+                    var extensionImg = filename.substr(filename.lastIndexOf('.') + 1);
+                    var validExtension = ['jpg', 'png', 'gif', 'bmp'];
+                    if ($.inArray(extensionImg, validExtension) == -1) {
+
+                        $("#error-div").fadeIn();
+                        $("#view-err").append("format incorrecte");
+                        return false;
+
+                    }
+                    //verifie si size valid 2m
+
+                    var myfilesize = document.getElementById("myImage").files[0].size / 1024 / 1024;
+                    if (myfilesize > 2) {
+
+                        $("#error-div").fadeIn();
+                        $("#view-err").append("size sup a 2m ");
+                        return false;
+                    }
+                }
+            });
         });
-        //$('.datepicker').datepicker(); //Initialise any date pickers
-
-        $("#Create").click(function(){
-
-             //verifie si input empty
-            /*if ($("#myImage").val() == "") {
-
-                $("#error-div").fadeIn();
-                $("#view-err").append("veuillez charger l'image de l'objet");
-                return false;
-            }*/
-
-            if ($("#myImage").val() != "") {
-                //verifie si extension is valid
-                var filename = document.getElementById("myImage").value;
-            var extensionImg = filename.substr(filename.lastIndexOf('.')+1);
-            var validExtension = ['jpg', 'png', 'gif', 'bmp'];
-            if ($.inArray(extensionImg, validExtension)==-1) {
-
-                $("#error-div").fadeIn();
-                $("#view-err").append("format incorrecte");
-                return false;
-
-            }
-            //verifie si size valid 2m
-
-            var myfilesize = document.getElementById("myImage").files[0].size / 1024 / 1024;
-            if (myfilesize>2) {
-
-                $("#error-div").fadeIn();
-                $("#view-err").append("size sup a 2m ");
-                return false;
-            }
-            }
-        });
-    });
 
     </script>
 
