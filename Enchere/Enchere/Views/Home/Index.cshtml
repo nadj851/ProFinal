@@ -1,5 +1,5 @@
 @model Enchere.Models.ObjetsViewModel
-
+@using System.Globalization
 @{
     ViewBag.Title = "Accueil";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
@@ -30,6 +30,7 @@
             <h5>@Html.DisplayFor(modelItem => item.CategoryDescription)</h5>
             @foreach (var subitem in item.objets)
             {
+
                 <div class="col-md-3 img-thumbnail" style="margin-left:20px;margin-bottom:30px;min-height:380px;">
                     <p class="demo notranslate" id="@subitem.Id">  </p>
                     <img src="~/Uploads/@subitem.objetImage" style="width:200px;height:200px;" />
@@ -39,14 +40,14 @@
                     <span id="spanPrix" class="badge badge-warning">Prix actuel: @getNiveauEnchere(subitem.Id) $</span>
                     <span id="spanOffre" class="badge">@getNombreOffres(subitem.Id) Offres</span>
                     <span id="spanEtat" class="badge badge-info">@subitem.Statut</span>
-                   
+
                     <!-- Modal -->
                     <!-- Trigger the modal with a button -->
 
-                    <a href="#" data-toggle="modal" data-target="#myModal">
+                    <a href="#" data-toggle="modal" data-target="#mod_@subitem.Id">
                         <span class="glyphicon glyphicon-question-sign"></span>
                     </a>
-                    <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal fade" id="mod_@subitem.Id" role="dialog">
                         <div class="modal-dialog modal-sm">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -75,25 +76,29 @@
     var objetsId = [];
     var nbrOffres = [];
 
-    @foreach (var item in Model.Categorie){
+       @foreach (var item in Model.Categorie){
 
         foreach (var subitem in item.objets){
 
             long duree = subitem.objetDureeVente;
             DateTime dateLimite = subitem.objetDateInsc.AddDays(duree);
-
-                 @:objets.push("@(dateLimite.ToShortDateString())");
+            
+               //convertir la date du systeme au format demandé par la classe Date de javascript
+                 @:objets.push("@dateLimite.ToString("MM dd yyyy HH:MM:ss")");
                  @:objetsId.push("@subitem.Id");
                  @:nbrOffres.push("@getNombreOffres(subitem.Id)");
 
                 }
     }
+
     for (let i = 0; i < objets.length; i++) {
-        console.log(nbrOffres[i]);
+
+
         // Update the count down every 1 second
         var x = setInterval(function () {
 
             // Set the date we're counting down to
+
             var countDownDate = new Date(objets[i]).getTime();
 
             // Get todays date and time
@@ -101,7 +106,7 @@
 
             // Find the distance between now an the count down date
             var distance = countDownDate - now;
-
+            console.log(i + 1 + " nboffres " + nbrOffres[i] + ", time :" + objets[i] + ", distance :" + distance + ",  countdown :" + countDownDate);
             // Time calculations for days, hours, minutes and seconds
             var days = Math.floor(distance / (1000 * 60 * 60 * 24));
             var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
