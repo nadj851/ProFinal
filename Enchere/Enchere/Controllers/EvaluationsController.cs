@@ -21,6 +21,8 @@ using static Enchere.Controllers.EvaluationsController;
 
 namespace Enchere.Controllers
 {
+
+    [Authorize]
     public class EvaluationsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
