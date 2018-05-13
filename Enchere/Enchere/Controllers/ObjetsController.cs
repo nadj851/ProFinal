@@ -206,7 +206,7 @@ namespace Enchere.Controllers
 
         //objets vendu par chaque membre
         [Authorize]
-        public ActionResult GetObjetAchete()
+        public ActionResult GetObjetAchte()
         {
             var UserId = User.Identity.GetUserId();
 
