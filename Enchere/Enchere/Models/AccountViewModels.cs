@@ -166,13 +166,13 @@ namespace WebApplication1.Models
          [Display(Name = "Date d’inscription")]
          [DataType(DataType.DateTime)]
          [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy*/
-        [Required]
+       // [Required]
         [StringLength(100, ErrorMessage = "La chaîne {0} doit comporter au moins {2} caractères.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = " Mot de passe Actuel")]
         public string CurrentPassword { get; set; }
 
-        [Required]
+        //[Required]
         [StringLength(100, ErrorMessage = "La chaîne {0} doit comporter au moins {2} caractères.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Nouveau Mot de passe")]

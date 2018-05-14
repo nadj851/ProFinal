@@ -214,15 +214,15 @@ namespace WebApplication1.Controllers
         {
             var UserId = User.Identity.GetUserId();
             var CurrentUser=db.Users.Where(a => a.Id == UserId).SingleOrDefault();
-            if(!UserManager.CheckPassword(CurrentUser,profile.CurrentPassword))
-            {
-                ViewBag.Message = "Erreur sur le mot de passe actuel ";
+            //if(!UserManager.CheckPassword(CurrentUser,profile.CurrentPassword))
+            //{
+            //    ViewBag.Message = "Erreur sur le mot de passe actuel ";
 
-            }
-            else
+            //}
+            //else
 
-            {
-                var newPasswoedHashe = UserManager.PasswordHasher.HashPassword(profile.NewPassword);
+            //{
+               // var newPasswoedHashe = UserManager.PasswordHasher.HashPassword(profile.NewPassword);
                 CurrentUser.UserName = profile.UserName;
                 CurrentUser.Email = profile.Email;
                 CurrentUser.Civilite = profile.Civilite;
@@ -230,11 +230,11 @@ namespace WebApplication1.Controllers
                 CurrentUser.Langue = profile.Langue;
                 CurrentUser.Tel = profile.Tel;
                 CurrentUser.Adresse = profile.Adresse;
-                CurrentUser.PasswordHash = newPasswoedHashe;
+               // CurrentUser.PasswordHash = newPasswoedHashe;
                 db.Entry(CurrentUser).State = EntityState.Modified;
                 db.SaveChanges();
                 ViewBag.Message = "Actualisation de compte avec success ";
-            }
+            //}
 
             //  VriewBag.UserType = db.Roles.Where(a => !a.Name.Contains("Admin")).ToList();
             return View(profile);
