@@ -89,20 +89,27 @@
                             contacter nous
                         </a>
                     </li>
+                    <li>
+                        <a href="#">
+                            <i class="glyphicon glyphicon-time"></i>
+                            @DateTime.Now
+                            @*<p id="tempsActuel">@DateTime.Now</p>*@
+                        </a>
+                    </li>
 
                     @*<li>
-                        @using (Html.BeginForm("Recherche", "Home", FormMethod.Post))
-                        {
+            @using (Html.BeginForm("Recherche", "Home", FormMethod.Post))
+            {
 
-                            <input type="text" name="searchName" id="searchName"
-                                   placeholder="Rechercher ici.." />
-
-
-                        }
+                <input type="text" name="searchName" id="searchName"
+                       placeholder="Rechercher ici.." />
 
 
-                    </li>*@
-                   
+            }
+
+
+        </li>*@
+
 
                 </ul>
 
@@ -181,3 +188,41 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+@*<script>
+   
+
+
+        // Update the count down every 1 second
+        var x = setInterval(function () {
+
+            // Set the date we're counting down to
+
+            //var countDownDate = new Date().getTime();
+
+            // Get todays date and time
+            var now = new Date().getTime();
+
+            // Find the distance between now an the count down date
+            //var distance = countDownDate - now;
+            //console.log(i + 1 + " nboffres " + nbrOffres[i] + ", time :" + objets[i] + ", distance :" + distance + ",  countdown :" + countDownDate);
+            // Time calculations for days, hours, minutes and seconds
+            console.log(now);
+            var days = Math.floor(now / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((now % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((now % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((now % (1000 * 60)) / 1000);
+
+            // Display the result in the element with id="demo"
+            document.getElementById("tempsActuel").innerHTML = days + "j " + hours + "h "
+                    + minutes + "m " + seconds + "s ";
+
+            // If the count down is finished, write some text
+            //if (distance < 0) {
+            //    clearInterval(x);
+            //    var message = "EXPIRED";
+            //    if (parseInt(nbrOffres[i]) > 1) { message = "VENDU" }
+            //    document.getElementById("tempsActuel").innerHTML = message;
+            //}
+        }, 1000);
+   
+</script>*@
