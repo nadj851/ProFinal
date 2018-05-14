@@ -81,7 +81,7 @@
         <div class="form-group">
             @Html.LabelFor(m => m.Tel, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Tel, new { @class = "form-control", @required = "required" })
+                @Html.TextBoxFor(m => m.Tel, new { @class = "form-control phone", @required = "required" })
             </div>
         </div>
 
@@ -121,3 +121,19 @@
         </div>
     }
 
+<script>
+    $(document).ready(function () {
+        $('#Tel').keyup(function () {
+            var val = this.value.replace(/\D/g, '');
+            var newVal = '';
+            while (val.length > 3) {
+                newVal += val.substr(0, 3) + '-';
+                val = val.substr(3);
+            }
+            newVal += val;
+            this.value = newVal;
+        });
+        //$("#ssn").mask("999-999-999");
+    });
+    
+</script>
