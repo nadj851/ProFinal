@@ -18,14 +18,14 @@ namespace WebApplication1.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        private ApplicationDbContext db; 
+        private ApplicationDbContext db;
         public AccountController()
         {
-    db= new ApplicationDbContext();
+            db = new ApplicationDbContext();
 
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -37,9 +37,9 @@ namespace WebApplication1.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -123,7 +123,7 @@ namespace WebApplication1.Controllers
             // Si un utilisateur entre des codes incorrects pendant un certain intervalle, le compte de cet utilisateur 
             // est alors verrouillé pendant une durée spécifiée. 
             // Vous pouvez configurer les paramètres de verrouillage du compte dans IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -167,18 +167,18 @@ namespace WebApplication1.Controllers
                 ///ViewBag.Langue = new SelectList(new[] { "Francais", "Anglais" });
                 ViewBag.UserType = db.Roles.Where(a => !a.Name.Contains("Admin")).ToList();
 
-                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, Civilite = model.Civilite, Prenom = model.Prenom, UserType=model.UserType, Langue = model.Langue , Tel = model.Tel, Adresse=model.Adresse };
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, Civilite = model.Civilite, Prenom = model.Prenom, UserType = model.UserType, Langue = model.Langue, Tel = model.Tel, Adresse = model.Adresse };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     // Pour plus d'informations sur l'activation de la confirmation du compte et la réinitialisation du mot de passe, consultez http://go.microsoft.com/fwlink/?LinkID=320771
                     // Envoyer un message électronique avec ce lien
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirmez votre compte", "Confirmez votre compte en cliquant <a href=\"" + callbackUrl + "\">ici</a>");
-                    await UserManager.AddToRoleAsync(user.Id,model.UserType);
+                    await UserManager.AddToRoleAsync(user.Id, model.UserType);
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
@@ -188,14 +188,14 @@ namespace WebApplication1.Controllers
             return View(model);
         }
 
-        
+
         public ActionResult EditProfile()
         {
 
             var UserId = User.Identity.GetUserId();
             var user = db.Users.Where(a => a.Id == UserId).SingleOrDefault();
             EditProfileViewModel profile = new EditProfileViewModel();
-          //  UserName = model.UserName, Email = model.Email, Civilite = model.Civilite, Prenom = model.Prenom, UserType = model.UserType, Langue = model.Langue , Tel = model.Tel, Adresse = model.Adresse };
+            //  UserName = model.UserName, Email = model.Email, Civilite = model.Civilite, Prenom = model.Prenom, UserType = model.UserType, Langue = model.Langue , Tel = model.Tel, Adresse = model.Adresse };
             profile.UserName = user.UserName;
             profile.Email = user.Email;
             profile.Civilite = user.Civilite;
@@ -203,26 +203,29 @@ namespace WebApplication1.Controllers
             profile.Langue = user.Langue;
             profile.Tel = user.Tel;
             profile.Adresse = user.Adresse;
-            
 
-           // ViewBag.UserType = db.Roles.Where(a => !a.Name.Contains("Admin")).ToList();
+
+            // ViewBag.UserType = db.Roles.Where(a => !a.Name.Contains("Admin")).ToList();
             return View(profile);
         }
 
         [HttpPost]
-        public ActionResult EditProfile( EditProfileViewModel profile)
+        public ActionResult EditProfile(EditProfileViewModel profile)
         {
             var UserId = User.Identity.GetUserId();
-            var CurrentUser=db.Users.Where(a => a.Id == UserId).SingleOrDefault();
-            //if(!UserManager.CheckPassword(CurrentUser,profile.CurrentPassword))
-            //{
-            //    ViewBag.Message = "Erreur sur le mot de passe actuel ";
+            var CurrentUser = db.Users.Where(a => a.Id == UserId).SingleOrDefault();
+            //Si aucun mot de passe n'est transcrit, on ne veut pas modifier notre mot de passe, ce code s'exécute
+            if (profile.CurrentPassword==null)
+            {
+                //if(!UserManager.CheckPassword(CurrentUser,profile.CurrentPassword))
+                //{
+                //    ViewBag.Message = "Erreur sur le mot de passe actuel ";
 
-            //}
-            //else
+                //}
+                //else
 
-            //{
-               // var newPasswoedHashe = UserManager.PasswordHasher.HashPassword(profile.NewPassword);
+                //{
+                // var newPasswoedHashe = UserManager.PasswordHasher.HashPassword(profile.NewPassword);
                 CurrentUser.UserName = profile.UserName;
                 CurrentUser.Email = profile.Email;
                 CurrentUser.Civilite = profile.Civilite;
@@ -230,12 +233,37 @@ namespace WebApplication1.Controllers
                 CurrentUser.Langue = profile.Langue;
                 CurrentUser.Tel = profile.Tel;
                 CurrentUser.Adresse = profile.Adresse;
-               // CurrentUser.PasswordHash = newPasswoedHashe;
+                // CurrentUser.PasswordHash = newPasswoedHashe;
                 db.Entry(CurrentUser).State = EntityState.Modified;
                 db.SaveChanges();
                 ViewBag.Message = "Actualisation de compte avec success ";
-            //}
+                //}
+            }
+            //Si on veut modifier notre mot de passe ce code s'exécute
+            else
+            {
+                if (!UserManager.CheckPassword(CurrentUser, profile.CurrentPassword))
+                {
+                    ViewBag.Message = "Erreur sur le mot de passe actuel ";
 
+                }
+                else
+
+                {
+                    var newPasswoedHashe = UserManager.PasswordHasher.HashPassword(profile.NewPassword);
+                    CurrentUser.UserName = profile.UserName;
+                    CurrentUser.Email = profile.Email;
+                    CurrentUser.Civilite = profile.Civilite;
+                    CurrentUser.Prenom = profile.Prenom;
+                    CurrentUser.Langue = profile.Langue;
+                    CurrentUser.Tel = profile.Tel;
+                    CurrentUser.Adresse = profile.Adresse;
+                    CurrentUser.PasswordHash = newPasswoedHashe;
+                    db.Entry(CurrentUser).State = EntityState.Modified;
+                    db.SaveChanges();
+                    ViewBag.Message = "Actualisation de compte avec success ";
+                }
+            }
             //  VriewBag.UserType = db.Roles.Where(a => !a.Name.Contains("Admin")).ToList();
             return View(profile);
         }
