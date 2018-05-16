@@ -118,6 +118,7 @@
             //soustraire le nombre de jour du mois 
             //if (days > 30) days -= 30;
             // Display the result in the element with id="demo"
+            if (document.getElementById(objetsId[i]) === null) return;
             document.getElementById(objetsId[i]).innerHTML ="Temps restant "+/* mois +"M "+*/days + "j " + hours + "h "
                 + minutes + "m " + seconds + "s";
 
