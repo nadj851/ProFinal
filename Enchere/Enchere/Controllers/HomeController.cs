@@ -89,6 +89,7 @@ namespace WebApplication1.Controllers
             var UserId = User.Identity.GetUserId();
 
             var objets = db.Encherees.Where(a => a.UserId == UserId);
+
             return View(objets.ToList());
         }
 

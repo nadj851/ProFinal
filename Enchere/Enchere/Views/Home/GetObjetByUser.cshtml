@@ -1,11 +1,13 @@
 ﻿@model IEnumerable<Enchere.Models.Encheree>
 
 @{
-    ViewBag.Title = "GetObjetByUser";
+    ViewBag.Title = "Liste des objet(s) enchéri(s)";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<h2>tous les objets  par utilisateur actuels</h2>
+<h2>Liste des objet(s) enchéri(s)</h2>
+<br />
+<br />
 
 
 <table class="table">
@@ -21,9 +23,8 @@
             @Html.DisplayNameFor(model => model.Message)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.enchereDate)
+            Date
         </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model) {
@@ -33,7 +34,7 @@
         </td>
         
         <td>
-            @Html.DisplayFor(modelItem => item.enchereNiveau)
+            @Html.DisplayFor(modelItem => item.enchereNiveau) $
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Message)
@@ -41,11 +42,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.enchereDate)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "DetailEnchere", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
+
     </tr>
 }
 

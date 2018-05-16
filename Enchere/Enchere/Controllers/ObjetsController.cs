@@ -10,6 +10,7 @@ using Enchere.Models;
 using WebApplication1.Models;
 using System.IO;
 using Microsoft.AspNet.Identity;
+using MoreLinq;
 
 namespace Enchere.Controllers
 {
@@ -53,12 +54,12 @@ namespace Enchere.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Objet objet,HttpPostedFileBase upload)
+        public ActionResult Create(Objet objet, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
 
-                string path = Path.Combine(Server.MapPath("~/Uploads"),upload.FileName);
+                string path = Path.Combine(Server.MapPath("~/Uploads"), upload.FileName);
                 upload.SaveAs(path);
                 objet.objetImage = upload.FileName;
                 objet.UserId = User.Identity.GetUserId();
@@ -93,14 +94,14 @@ namespace Enchere.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Objet objet,HttpPostedFileBase upload)
+        public ActionResult Edit(Objet objet, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
                 string oldPath = Path.Combine(Server.MapPath("~/Uploads"), objet.objetImage);
-               
 
-                if (upload!=null)
+
+                if (upload != null)
                 {
                     System.IO.File.Delete(oldPath);
                     string path = Path.Combine(Server.MapPath("~/Uploads"), upload.FileName);
@@ -109,7 +110,7 @@ namespace Enchere.Controllers
 
                 }
 
-               
+
                 db.Entry(objet).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -156,24 +157,21 @@ namespace Enchere.Controllers
 
 
         [Authorize]
-       // Rapport #2 
-       //Liste des objets vendus par un membre incluant l’information sur le prix
+        // Rapport #2 
+        //Liste des objets vendus par un membre incluant l’information sur le prix
         //de départ et le prix final.       
-                    
+
         //[Authorize(Roles = "Vendeur,Admin")]
         public ActionResult GetListeObjetVenduWithPrix()
         {
-            
-
-
             var groupe = (from fuss in db.Objets
-                         join ench in db.Encherees
-                         on fuss.Id equals ench.ObjetId
-                         select new { fuss, ench });
+                          join ench in db.Encherees
+                          on fuss.Id equals ench.ObjetId
+                          select new { fuss, ench });
 
             var liste = from o in groupe
-                        group o by new { o.fuss.User.UserName, o.fuss.Id } 
-                        
+                        group o by new { o.fuss.User.UserName, o.fuss.Id }
+
                           into gr
                         select new RaportObjetVenduPrixModel
                         {
@@ -183,18 +181,12 @@ namespace Enchere.Controllers
                             PrixInitial = gr.Select(a => a.fuss.objetPrixDepart).FirstOrDefault(),
                             PrixFinal = gr.Select(a => a.ench.niveauMax).Max()
 
-                         };
-
-
-          
+                        };
             return View(liste.ToList());
-
-            
-         
         }
 
-       //objets vendu par chaque membre
-             [Authorize]
+        //objets vendu par chaque membre
+        [Authorize]
         public ActionResult GetObjetmise()
         {
             var UserId = User.Identity.GetUserId();
@@ -208,20 +200,28 @@ namespace Enchere.Controllers
         [Authorize]
         public ActionResult GetObjetAchte()
         {
-            var UserId = User.Identity.GetUserId();
+            var UserId = User.Identity.GetUserId();           
+
+            if (db.Encherees.Where(a => a.UserId == UserId).Any())
+            {
+                var objets = db.Encherees.GroupBy(l => l.ObjetId).
+                    Select(g => g.OrderByDescending(c => c.UserId).FirstOrDefault()).
+                    Where(u => u.UserId == UserId);
+                
+                return View(objets.ToList());
+                //var objets = db.Encherees.Where(a => a.UserId == UserId);
+                //return View(objets.DistinctBy(a => a.ObjetId).ToList());
+            }
+            else{
+                return View();
+
+            }
 
 
-            var objets = from obj in db.Objets
-                           join ench in db.Encherees
-                           on obj.Id equals ench.ObjetId
-                           where ench.UserId == UserId/* && obj.Statut == "Acheté"*/
-                           select obj;
-
-          
-          return View(objets.ToList().Where(x => x.Statut == enumStatutObjet.VD));
+           
         }
 
-       
+
 
     }
 }

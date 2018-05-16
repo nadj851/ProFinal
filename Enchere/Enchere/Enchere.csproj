@@ -600,6 +600,7 @@
     <Compile Include="Models\RaportObjetVenduPrixModel.cs" />
     <Compile Include="Models\RoleViewModel.cs" />
     <Compile Include="Models\test.cs" />
+    <Compile Include="MoreLinq\MoreEnumerable.DistinctBy.cs" />
     <Compile Include="MoreLinq\MoreEnumerable.MaxBy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />

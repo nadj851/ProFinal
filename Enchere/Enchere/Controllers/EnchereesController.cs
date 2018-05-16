@@ -52,21 +52,30 @@ namespace Enchere.Migrations
             var ObjetId = (int)Session["ObjetId"];
             Objet objet = (Objet)db.Objets.Where(a => a.Id == ObjetId).First();
 
-            double niveauActuel=0;
+            string message = "";
+            double niveauActuel = 0;
+            bool bonPrixDepart = false;
 
-            Encheree derniereOffre= offreEnchere;
-
-            DateTime dateLimite = objet.objetDateInsc.AddDays(objet.objetDureeVente); 
+            Encheree derniereOffre = offreEnchere;
+            DateTime dateLimite = objet.objetDateInsc.AddDays(objet.objetDureeVente);
 
             if (db.Encherees.Where(a => a.ObjetId == ObjetId).Any())
             {
                 niveauActuel = db.Encherees.Where(a => a.ObjetId == ObjetId).ToList().Max(m => m.enchereNiveau);
                 derniereOffre = db.Encherees.Where(a => a.ObjetId == ObjetId).ToList().MaxBy(m => m.enchereNiveau);
+                bonPrixDepart = true;
+            }
+            else
+            {
+                if (offreEnchere.enchereNiveau > objet.objetPrixDepart)
+                {
+                    bonPrixDepart = true;                    
+                }
             }
                         
              
 
-            if (offreEnchere.enchereNiveau > niveauActuel &&
+            if (offreEnchere.enchereNiveau > niveauActuel && bonPrixDepart &&
                 UserId != derniereOffre.UserId && dateLimite > DateTime.Now)
             {
                 var offre = checkEnchere(offreEnchere, niveauActuel);
@@ -79,7 +88,7 @@ namespace Enchere.Migrations
 
 
                 db.Encherees.Add(offre);
-                TempData["Result"] = "Bravo! Vous venez de surrenchérir!!";
+                message = "Bravo! Vous venez de surrenchérir!!";
                 db.SaveChanges();
 
                 if (newOffre != null)
@@ -89,29 +98,34 @@ namespace Enchere.Migrations
                     newOffre.Message = "Surrencherissement automatique";
 
                     db.Encherees.Add(newOffre);
-                    TempData["Result"] = "Bien Esseyé sauf qu'il va falloir surrenchérir pour gagner!!";
+                    message = "Bien Esseyé sauf qu'il va falloir surrenchérir pour gagner!!";
                 }
-
                 db.SaveChanges();
 
+                TempData["Result"] = message;
 
                 return RedirectToAction("Index");
 
             }
             else
             {
-                if(offreEnchere.UserId != derniereOffre.UserId)
+                if(derniereOffre.UserId == UserId)
                 {
-                    ViewBag.Result = "Vous ne devez pas encherir.Vous détenez déjà l'enchere avec une offre de :"+ niveauActuel +"$.";
+                    message = "Vous ne devez pas encherir.Vous détenez déjà l'enchere avec une offre de :"+ niveauActuel +"$.";
                 }
-                //else if (dateLimite < DateTime.Now)
-                //{
-                //    ViewBag.Result = "L'enchere est Expiré depuis " + dateLimite + ".";
-                //}
+                else if (dateLimite < DateTime.Now)
+                {
+                    message = "Erreur!! L'enchere est Expiré depuis " + dateLimite + ".";
+                }
+                else if (!bonPrixDepart)
+                {
+                    message = "L'offre que vous venez de faire est inférieure ou égale au prix initial qui est de " + objet.objetPrixDepart + "$";
+                }
                 else
                 {
-                ViewBag.Result = "Le montant que vous proposé est inférieur ou égal au niveau actuel qui est de " + niveauActuel + " $.";
+                    message = "Le montant que vous proposé est inférieur ou égal au niveau actuel qui est de " + niveauActuel + " $.";
                 }
+                ViewBag.Result = message;
                 return View();
             }
 
@@ -122,6 +136,7 @@ namespace Enchere.Migrations
         private Encheree checkEnchere(Encheree offreActuelle, double niveauActuel)
         {
             var ObjetId = (int)Session["ObjetId"];
+
             newOffre = null;
 
             if (db.Encherees.Where(a => a.ObjetId == ObjetId).Any())
