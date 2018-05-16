@@ -28,8 +28,18 @@ namespace Enchere.Models
         [Display(Name = "Durée Vente")]
         public int objetDureeVente { get; set; }
 
+        private ApplicationDbContext db = new ApplicationDbContext();
+
+        //Status de l'objet programmé coté serveur.  La codification actuelle c'est: "Vendu","Expire" et "En Vente". Peut-etre qu'il faudrait penser à une enumeration à la place.
         [Display(Name = "Statut")]
-        public string Statut{ get; set; }
+        public string Statut{ get {
+                DateTime dateLimite = this.objetDateInsc.AddDays(this.objetDureeVente);
+                if (DateTime.Now >= dateLimite) {                    
+                    if (db.Encherees.Where(a => a.ObjetId == Id).Any()) return "Vendu";
+                    return "Expire";
+                }
+                return "En Vente";
+            }}
 
         [Display(Name = "image")]
         public string objetImage { get; set; }
