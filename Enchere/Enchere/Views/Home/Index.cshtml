@@ -135,7 +135,7 @@
             if (distance < 0) {
                 clearInterval(x);
                 var message = "EXPIRÉ";
-                if (parseInt(nbrOffres[i]) > 1) { message = "VENDU" }
+                if (parseInt(nbrOffres[i]) > 0) { message = "VENDU" }
                 document.getElementById(objetsId[i]).innerHTML = message;
             }
         }, 1000);
