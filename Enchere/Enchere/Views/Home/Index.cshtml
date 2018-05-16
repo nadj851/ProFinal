@@ -27,12 +27,14 @@
     <div class="panel panel-info">
         <div class="panel-heading"><h1>@Html.DisplayFor(modelItem => item.CategoryName)</h1></div>
         <div class="row panel-body ">
-            <h5>@Html.DisplayFor(modelItem => item.CategoryDescription)</h5>
+            <h4>@Html.DisplayFor(modelItem => item.CategoryDescription)</h4>
             @foreach (var subitem in item.objets)
             {
 
                 <div class="col-md-3 img-thumbnail" style="margin-left:20px;margin-bottom:30px;min-height:380px;">
-                    <p class="demo notranslate" id="@subitem.Id">  </p>
+                    <p class="demo notranslate" style="font-size:16px; color:gray; 
+                                                       font-family :Arial, Helvetica, sans-serif" 
+                                                id="@subitem.Id">  </p>
                     <img src="~/Uploads/@subitem.objetImage" style="width:200px;height:200px;" />
                     <h3>@Html.DisplayFor(modelItem => subitem.objetNom)</h3>
                     <h5>@Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(modelItem => subitem.objetDescription).ToString()))</h5>
@@ -108,19 +110,21 @@
             var distance = countDownDate - now;
             console.log(i + 1 + " nboffres " + nbrOffres[i] + ", time :" + objets[i] + ", distance :" + distance + ",  countdown :" + countDownDate);
             // Time calculations for days, hours, minutes and seconds
+            var mois = Math.floor(distance / (1000 * 60 * 60*24*30));
             var days = Math.floor(distance / (1000 * 60 * 60 * 24));
             var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
+            //soustraire le nombre de jour du mois 
+            //if (days > 30) days -= 30;
             // Display the result in the element with id="demo"
-            document.getElementById(objetsId[i]).innerHTML = days + "j " + hours + "h "
-                    + minutes + "m " + seconds + "s ";
+            document.getElementById(objetsId[i]).innerHTML ="Temps restant "+/* mois +"M "+*/days + "j " + hours + "h "
+                + minutes + "m " + seconds + "s";
 
             // If the count down is finished, write some text
             if (distance < 0) {
                 clearInterval(x);
-                var message = "EXPIRED";
+                var message = "EXPIRÉ";
                 if (parseInt(nbrOffres[i]) > 1) { message = "VENDU" }
                 document.getElementById(objetsId[i]).innerHTML = message;
             }
