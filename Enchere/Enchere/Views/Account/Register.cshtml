@@ -14,11 +14,11 @@
 
 
 
-    //List<SelectListItem> lesroles = new List<SelectListItem>();
-    //foreach (IdentityRole role in ViewBag.UserType)
-    //{
-    //    lesroles.Add(new SelectListItem { Text = role.Name, Value = role.Id.ToString() });
-    //}
+    List<SelectListItem> lesroles = new List<SelectListItem>();
+    foreach (IdentityRole role in ViewBag.UserType)
+    {
+        lesroles.Add(new SelectListItem { Text = role.Name, Value = role.Id.ToString() });
+    }
 
 
 

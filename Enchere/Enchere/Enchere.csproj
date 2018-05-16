@@ -575,6 +575,10 @@
     <Compile Include="Migrations\201805102137374_dateAchatObjectEnlevé.Designer.cs">
       <DependentUpon>201805102137374_dateAchatObjectEnlevé.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805161345028_emailChange_DureeChange.cs" />
+    <Compile Include="Migrations\201805161345028_emailChange_DureeChange.Designer.cs">
+      <DependentUpon>201805161345028_emailChange_DureeChange.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Controllers\EnchereesController.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -776,6 +780,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805102137374_dateAchatObjectEnlevé.resx">
       <DependentUpon>201805102137374_dateAchatObjectEnlevé.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805161345028_emailChange_DureeChange.resx">
+      <DependentUpon>201805161345028_emailChange_DureeChange.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
