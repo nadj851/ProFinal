@@ -39,7 +39,16 @@
                     <h3 class="notranslate" >@Html.DisplayFor(modelItem => subitem.objetNom)</h3>
                     @*<h5>@Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(modelItem => subitem.objetDescription).ToString()))</h5>*@
                     @Html.ActionLink("Détail", "Details", new { objetId = subitem.Id }, new { @class = "badge" }) |
-                    <span id="spanPrix" class="badge badge-warning">Prix actuel: @getNiveauEnchere(subitem.Id) $</span>
+                   
+                        
+                         <span id="spanPrix" class="badge badge-warning">
+                        Prix actuel : 
+                        @{
+                            if (getNombreOffres(subitem.Id) > 0) {  @getNiveauEnchere(subitem.Id); } else { @subitem.objetPrixDepart;  }
+                            } $
+                    </span>
+                        
+                        
                     <span id="spanOffre" class="badge">@getNombreOffres(subitem.Id) Offres</span>
                     @*<span id="spanEtat" class="badge badge-info">@subitem.Statut</span>*@
 
