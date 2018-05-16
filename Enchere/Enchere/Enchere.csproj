@@ -579,12 +579,17 @@
     <Compile Include="Migrations\201805161503561_status.Designer.cs">
       <DependentUpon>201805161503561_status.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805161731111_toto.cs" />
+    <Compile Include="Migrations\201805161731111_toto.Designer.cs">
+      <DependentUpon>201805161731111_toto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Controllers\EnchereesController.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Categorie.cs" />
     <Compile Include="Models\ContactModel.cs" />
     <Compile Include="Models\Encheree.cs" />
+    <Compile Include="Models\enumStatutObjet.cs" />
     <Compile Include="Models\Evaluation.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -783,6 +788,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805161503561_status.resx">
       <DependentUpon>201805161503561_status.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805161731111_toto.resx">
+      <DependentUpon>201805161731111_toto.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
