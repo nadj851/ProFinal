@@ -32,13 +32,13 @@ namespace Enchere.Models
 
         //Status de l'objet programmé coté serveur.  La codification actuelle c'est: "Vendu","Expire" et "En Vente". Peut-etre qu'il faudrait penser à une enumeration à la place.
         [Display(Name = "Statut")]
-        public string Statut{ get {
+        public enumStatutObjet Statut{ get {
                 DateTime dateLimite = this.objetDateInsc.AddDays(this.objetDureeVente);
                 if (DateTime.Now >= dateLimite) {                    
-                    if (db.Encherees.Where(a => a.ObjetId == Id).Any()) return "Vendu";
-                    return "Expire";
+                    if (db.Encherees.Where(a => a.ObjetId == Id).Any()) return enumStatutObjet.VD;
+                    return enumStatutObjet.EX;
                 }
-                return "En Vente";
+                return enumStatutObjet.EV;
             }}
 
         [Display(Name = "image")]

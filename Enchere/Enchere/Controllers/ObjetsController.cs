@@ -214,11 +214,11 @@ namespace Enchere.Controllers
             var objets = from obj in db.Objets
                            join ench in db.Encherees
                            on obj.Id equals ench.ObjetId
-                           where ench.UserId == UserId && obj.Statut == "Acheté"
+                           where ench.UserId == UserId/* && obj.Statut == "Acheté"*/
                            select obj;
 
           
-          return View(objets.ToList());
+          return View(objets.ToList().Where(x => x.Statut == enumStatutObjet.VD));
         }
 
        

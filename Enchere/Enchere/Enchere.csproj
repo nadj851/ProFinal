@@ -585,6 +585,7 @@
     <Compile Include="Models\Categorie.cs" />
     <Compile Include="Models\ContactModel.cs" />
     <Compile Include="Models\Encheree.cs" />
+    <Compile Include="Models\enumStatutObjet.cs" />
     <Compile Include="Models\Evaluation.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />

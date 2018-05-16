@@ -50,12 +50,13 @@ namespace Enchere.Migrations
         {
             var UserId = User.Identity.GetUserId();
             var ObjetId = (int)Session["ObjetId"];
-            var objet = db.Objets.Where(a => a.Id == ObjetId);
+            Objet objet = (Objet)db.Objets.Where(a => a.Id == ObjetId).First();
 
             double niveauActuel=0;
 
             Encheree derniereOffre= offreEnchere;
-            //DateTime dateLimite = objet.objetDateInsc.AddDays(objet.objetDureeVente);
+
+            DateTime dateLimite = objet.objetDateInsc.AddDays(objet.objetDureeVente); 
 
             if (db.Encherees.Where(a => a.ObjetId == ObjetId).Any())
             {
@@ -66,7 +67,7 @@ namespace Enchere.Migrations
              
 
             if (offreEnchere.enchereNiveau > niveauActuel &&
-                UserId != derniereOffre.UserId/* && dateLimite < DateTime.Now*/)
+                UserId != derniereOffre.UserId && dateLimite > DateTime.Now)
             {
                 var offre = checkEnchere(offreEnchere, niveauActuel);
                 offre.UserId = UserId;
