@@ -139,9 +139,9 @@ body{
 }
 
 .demo{
- font-weight: bold;
-  font-size:21px;
-  color:blue;
+ /*font-weight: bold;*/
+  font-size:18px;
+  color:gray;
 }
 
 
