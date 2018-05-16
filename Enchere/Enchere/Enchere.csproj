@@ -575,9 +575,9 @@
     <Compile Include="Migrations\201805102137374_dateAchatObjectEnlevé.Designer.cs">
       <DependentUpon>201805102137374_dateAchatObjectEnlevé.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201805161345028_emailChange_DureeChange.cs" />
-    <Compile Include="Migrations\201805161345028_emailChange_DureeChange.Designer.cs">
-      <DependentUpon>201805161345028_emailChange_DureeChange.cs</DependentUpon>
+    <Compile Include="Migrations\201805161503561_status.cs" />
+    <Compile Include="Migrations\201805161503561_status.Designer.cs">
+      <DependentUpon>201805161503561_status.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Controllers\EnchereesController.cs" />
@@ -781,8 +781,8 @@
     <EmbeddedResource Include="Migrations\201805102137374_dateAchatObjectEnlevé.resx">
       <DependentUpon>201805102137374_dateAchatObjectEnlevé.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805161345028_emailChange_DureeChange.resx">
-      <DependentUpon>201805161345028_emailChange_DureeChange.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805161503561_status.resx">
+      <DependentUpon>201805161503561_status.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
