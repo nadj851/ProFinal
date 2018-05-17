@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using WebApplication1.Models;
 using System.Data.Entity;
+using System.Net.Mail;
 
 namespace WebApplication1.Controllers
 {
@@ -308,20 +309,58 @@ namespace WebApplication1.Controllers
                 var user = await UserManager.FindByEmailAsync(model.Email);
                 if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
                 {
+                    /**************************************************************************/
+                    /********Notre méthode pour récupérer le mot de passe en utilisant un *****/
+                    /**************************************************************************/
+                    string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                    var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    string bodyMessage = "Réinitialisez votre mot de passe en cliquant <a href=\"" + callbackUrl + "\">ici</a>";
+                    string subjectMessage = "Réinitialiser le mot de passe";
+                    //comment faire pour envoyer un message à partir de la boite email de l'administrateur munarela@hotmail.com
+
+                    EnvoiMessage(model.Email, bodyMessage, subjectMessage);
+
+                    /*********************************fin*****************************************/
+
+
                     // Ne révélez pas que l'utilisateur n'existe pas ou qu'il n'est pas confirmé
                     return View("ForgotPasswordConfirmation");
                 }
-
+                /**************************************************************************/
+                /********méthode MVC ne fonctionnant pas***********************************/
+                /**************************************************************************/
                 // Pour plus d'informations sur l'activation de la confirmation du compte et la réinitialisation du mot de passe, consultez http://go.microsoft.com/fwlink/?LinkID=320771
                 // Envoyer un message électronique avec ce lien
-                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                await UserManager.SendEmailAsync(user.Id, "Réinitialiser le mot de passe", "Réinitialisez votre mot de passe en cliquant <a href=\"" + callbackUrl + "\">ici</a>");
+                //string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                //var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+
+
+                //await UserManager.SendEmailAsync(user.Id, "Réinitialiser le mot de passe", "Réinitialisez votre mot de passe en cliquant <a href=\"" + callbackUrl + "\">ici</a>");
                 return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
             // Si nous sommes arrivés là, un échec s’est produit. Réafficher le formulaire
             return View(model);
+        }
+        //Méthode pour Envoie de message par l'administrateur aux membres
+        public static void EnvoiMessage(string Email, string bodyMessage,string subjectMessage)
+        {
+            SmtpClient SmtpServer = new SmtpClient("smtp.live.com");
+            var mail = new MailMessage();
+            mail.From = new MailAddress("munarela@hotmail.com");
+            mail.To.Add(Email);
+            mail.Subject = subjectMessage;
+            mail.IsBodyHtml = true;
+            //le message du body
+            string body = bodyMessage;
+
+            mail.Body = body;
+
+            SmtpServer.Port = 587;
+            SmtpServer.UseDefaultCredentials = false;
+            SmtpServer.Credentials = new System.Net.NetworkCredential("munarela@hotmail.com", "Web123456");
+            SmtpServer.EnableSsl = true;
+            SmtpServer.Send(mail);
         }
 
         //

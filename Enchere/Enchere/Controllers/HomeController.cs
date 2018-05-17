@@ -11,6 +11,7 @@ using System.Web.Mvc;
 using WebApplication1.Models;
 using CaptchaMvc.HtmlHelpers;
 
+
 namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
@@ -271,10 +272,15 @@ namespace WebApplication1.Controllers
 
      
             [HttpGet]
-        public ActionResult EnvoiCourriel()
+        public ActionResult EnvoiCourriel(String id)
         {
-
-
+            if (id != null && !"".Equals(id.Trim()))
+            {
+                var user= db.Users.Where(u => u.Id == id).First();
+                ContactModel contactModel = new ContactModel();
+                contactModel.Email = user.UserName + "(" + user.Email+ ")";
+                return View(contactModel);
+            }
             return View();
         }
 
@@ -288,6 +294,11 @@ namespace WebApplication1.Controllers
                 SmtpClient SmtpServer = new SmtpClient("smtp.live.com");
                 var mail = new MailMessage();
                 mail.From = new MailAddress("munarela@hotmail.com");
+
+                //extrait le courriel si la convetion User (email) est utilisé
+                if (contact.Email.Contains("(") && contact.Email.Contains(")"))
+                contact.Email = contact.Email.Split('(')[1].Split(')')[0];
+
                 mail.To.Add(contact.Email);
                 mail.Subject = contact.Subject;
                 mail.IsBodyHtml = true;
@@ -311,55 +322,24 @@ namespace WebApplication1.Controllers
         }
 
 
-        
-        public ActionResult GetMail()
+        [HttpGet]
+        public JsonResult UsersAutocomplete(String term)
         {
-            
-            return View();
+            bool isAdmin = false;
+            //TODO: Check the user if it is admin or normal user, (true-Admin, false- Normal user)  
 
-        }
+           var l=  db.Users.Where(c => c.UserName.ToLower().Contains(term.ToLower())).ToList();
 
+            if (term.Trim().Equals("*")| term.Trim().Equals("?")| term.Trim().Equals("%")) l = db.Users.ToList();
 
+            LinkedList<String> list = new LinkedList<string>();
 
-        [HttpPost]
-        public ActionResult GetMail(mailSansAuth m)
-
-          {
-
-
-
-            return RedirectToAction("GetListeObjetSansAuth", "Home",m);
-        }
-
-
-
-        public ActionResult GetListeObjetSansAuth(mailSansAuth m)
-
-        {
-
-            var chk = db.Users.Where(e => e.Email == m.mail).Count();
-
-
-
-            if (chk >=1)
+            foreach (var item in l)
             {
-
-                var UserId = (db.Users.Where(e => e.Email == m.mail).Single()).Id;
-
-                
-                var obj = db.Objets.Where(e => e.UserId == UserId).ToList();
-
-                return View(obj);
-
+                list.AddLast(item.UserName+ "(" +item.Email+")");
             }
 
-            else
-            {
-
-                return RedirectToAction("Index");
-
-            }
-
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
 
     }

@@ -59,26 +59,26 @@ namespace Enchere.Migrations
             Encheree derniereOffre = offreEnchere;
             DateTime dateLimite = objet.objetDateInsc.AddDays(objet.objetDureeVente);
 
+            //est-ce qu'il y a deja une offre placé?
             if (db.Encherees.Where(a => a.ObjetId == ObjetId).Any())
             {
                 niveauActuel = db.Encherees.Where(a => a.ObjetId == ObjetId).ToList().Max(m => m.enchereNiveau);
                 derniereOffre = db.Encherees.Where(a => a.ObjetId == ObjetId).ToList().MaxBy(m => m.enchereNiveau);
                 bonPrixDepart = true;
             }
+            //est-ce que la premiere offre est acceptable
             else
             {
                 if (offreEnchere.enchereNiveau > objet.objetPrixDepart)
                 {
                     bonPrixDepart = true;                    
-                }
-            }
-                        
-             
+                }                
+            }   
 
             if (offreEnchere.enchereNiveau > niveauActuel && bonPrixDepart &&
-                UserId != derniereOffre.UserId && dateLimite > DateTime.Now)
+                UserId != derniereOffre.UserId && dateLimite > DateTime.Now && objet.UserId != UserId)
             {
-                var offre = checkEnchere(offreEnchere, niveauActuel);
+                var offre = checkEnchere(offreEnchere, niveauActuel, bonPrixDepart);
                 offre.UserId = UserId;
                 offre.ObjetId = ObjetId;
                 offre.Message = offreEnchere.Message;
@@ -121,6 +121,10 @@ namespace Enchere.Migrations
                 {
                     message = "L'offre que vous venez de faire est inférieure ou égale au prix initial qui est de " + objet.objetPrixDepart + "$";
                 }
+                else if (objet.UserId == UserId)
+                {
+                    message = "Vous ne pouvez pas faire une offre sur un objet que vous vendez";
+                }                
                 else
                 {
                     message = "Le montant que vous proposé est inférieur ou égal au niveau actuel qui est de " + niveauActuel + " $.";
@@ -133,12 +137,14 @@ namespace Enchere.Migrations
         }
 
 
-        private Encheree checkEnchere(Encheree offreActuelle, double niveauActuel)
+        private Encheree checkEnchere(Encheree offreActuelle, double niveauActuel, bool premiereOffre)
         {
             var ObjetId = (int)Session["ObjetId"];
+            Objet objet = (Objet)db.Objets.Where(a => a.Id == ObjetId).First();
 
             newOffre = null;
 
+            //est-ce qu'il y a déjà une o frre placée?
             if (db.Encherees.Where(a => a.ObjetId == ObjetId).Any())
             {
                 var offreMax = db.Encherees.Where(a => a.ObjetId == ObjetId).ToList().MaxBy(m => m.niveauMax);
@@ -146,6 +152,7 @@ namespace Enchere.Migrations
                 if (offreActuelle.enchereNiveau >= offreMax.niveauMax)
                 {
                     offreActuelle.niveauMax = offreActuelle.enchereNiveau;
+
                     if(offreActuelle.enchereNiveau != offreMax.niveauMax)
                     {
                     offreActuelle.enchereNiveau = offreMax.niveauMax + 1;
@@ -155,7 +162,6 @@ namespace Enchere.Migrations
                     var idUser = offreMax.UserId;
 
                     return offreActuelle;
-
                 }
                 else
                 {
@@ -166,14 +172,18 @@ namespace Enchere.Migrations
                     newOffre.niveauMax = offreMax.niveauMax;
                     newOffre.enchereNiveau = offreActuelle.enchereNiveau + 1;
                     newOffre.UserId = offreMax.UserId;
+
                     return offreActuelle;
-
                 }
-
             }
             else
             {
                 offreActuelle.niveauMax = offreActuelle.enchereNiveau;
+               
+                if(offreActuelle.enchereNiveau - objet.objetPrixDepart > 1)
+                {
+                    offreActuelle.enchereNiveau = objet.objetPrixDepart + 1;
+                }
                 return offreActuelle;
             }           
 

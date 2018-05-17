@@ -8,6 +8,23 @@
 <h2>EnvoiCourriel</h2>
 <script src="~/Scripts/ckeditor/ckeditor.js"></script>
 
+    <script>
+        jQuery(document).ready(function ($) {
+            $('#Email').autocomplete({
+                source: 'UsersAutocomplete',
+                minLength: 1
+            });
+            $("#Email").keydown(function (event) {
+                if (event.keyCode === 13 && jQuery.support.submitBubbles) {
+                    $('#mainform').submit();
+                }
+                ;
+            });
+            $("#Email").prop("placeholder","Commencer à taper le nom. Tapez '?' pour les voir tous");
+        });
+</script>
+
+
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
