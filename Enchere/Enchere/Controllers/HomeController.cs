@@ -235,8 +235,9 @@ namespace WebApplication1.Controllers
 
             mail.Body = body;
                       
-            SmtpServer.Port = 587;
-            SmtpServer.UseDefaultCredentials = false;
+            //SmtpServer.Port = 587;
+                SmtpServer.Port = 587;
+                SmtpServer.UseDefaultCredentials = false;
             SmtpServer.Credentials = new System.Net.NetworkCredential("munarela2@hotmail.com", "Web123456");
             SmtpServer.EnableSsl = true;
             SmtpServer.Send(mail);
