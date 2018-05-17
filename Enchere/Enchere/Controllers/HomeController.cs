@@ -235,6 +235,7 @@ namespace WebApplication1.Controllers
             return View(result);
         }
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult EnvoiCourriel(String id)
         {
             if (id != null && !"".Equals(id.Trim()))
@@ -248,6 +249,7 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateInput(false)]
         public ActionResult EnvoiCourriel(ContactModel contact)
         {
