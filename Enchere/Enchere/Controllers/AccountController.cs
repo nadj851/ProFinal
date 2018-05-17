@@ -316,7 +316,7 @@ namespace WebApplication1.Controllers
                     var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     string bodyMessage = "Réinitialisez votre mot de passe en cliquant <a href=\"" + callbackUrl + "\">ici</a>";
                     string subjectMessage = "Réinitialiser le mot de passe";
-                    //comment faire pour envoyer un message à partir de la boite email de l'administrateur munarela@hotmail.com
+                    //comment faire pour envoyer un message à partir de la boite email de l'administrateur munarela2@hotmail.com
 
                     EnvoiMessage(model.Email, bodyMessage, subjectMessage);
 
@@ -347,7 +347,7 @@ namespace WebApplication1.Controllers
         {
             SmtpClient SmtpServer = new SmtpClient("smtp.live.com");
             var mail = new MailMessage();
-            mail.From = new MailAddress("munarela@hotmail.com");
+            mail.From = new MailAddress("munarela2@hotmail.com");
             mail.To.Add(Email);
             mail.Subject = subjectMessage;
             mail.IsBodyHtml = true;
@@ -358,7 +358,7 @@ namespace WebApplication1.Controllers
 
             SmtpServer.Port = 587;
             SmtpServer.UseDefaultCredentials = false;
-            SmtpServer.Credentials = new System.Net.NetworkCredential("munarela@hotmail.com", "Web123456");
+            SmtpServer.Credentials = new System.Net.NetworkCredential("munarela2@hotmail.com", "Web123456");
             SmtpServer.EnableSsl = true;
             SmtpServer.Send(mail);
         }

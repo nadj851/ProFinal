@@ -220,11 +220,11 @@ namespace WebApplication1.Controllers
             }
             else {
              //version fonctionne le 08/05/2018    
-            //comment faire pour envoyer un message à partir de la boite email de l'administrateur munarela@hotmail.com
+            //comment faire pour envoyer un message à partir de la boite email de l'administrateur munarela2@hotmail.com
             SmtpClient SmtpServer = new SmtpClient("smtp.live.com");
             var mail = new MailMessage();
-            mail.From = new MailAddress("munarela@hotmail.com");
-            mail.To.Add("munarela@hotmail.com");
+            mail.From = new MailAddress("munarela2@hotmail.com");
+            mail.To.Add("munarela2@hotmail.com");
             mail.Subject = contact.Subject;
             mail.IsBodyHtml = true;
             //le message du body
@@ -237,7 +237,7 @@ namespace WebApplication1.Controllers
                       
             SmtpServer.Port = 587;
             SmtpServer.UseDefaultCredentials = false;
-            SmtpServer.Credentials = new System.Net.NetworkCredential("munarela@hotmail.com", "Web123456");
+            SmtpServer.Credentials = new System.Net.NetworkCredential("munarela2@hotmail.com", "Web123456");
             SmtpServer.EnableSsl = true;
             SmtpServer.Send(mail);
 
@@ -290,10 +290,10 @@ namespace WebApplication1.Controllers
         {
             
                 //version fonctionne le 08/05/2018    
-                //comment faire pour envoyer un message à partir de la boite email de l'administrateur munarela@hotmail.com
+                //comment faire pour envoyer un message à partir de la boite email de l'administrateur munarela2@hotmail.com
                 SmtpClient SmtpServer = new SmtpClient("smtp.live.com");
                 var mail = new MailMessage();
-                mail.From = new MailAddress("munarela@hotmail.com");
+                mail.From = new MailAddress("munarela2@hotmail.com");
 
                 //extrait le courriel si la convetion User (email) est utilisé
                 if (contact.Email.Contains("(") && contact.Email.Contains(")"))
@@ -304,7 +304,7 @@ namespace WebApplication1.Controllers
                 mail.IsBodyHtml = true;
                 //le message du body
                 string body = "Nom expéditeur: " + "admin"+ "<br>" +
-                    "email expéditeur: " +" munarela@hotmail.com "+ "<br>" +
+                    "email expéditeur: " +" munarela2@hotmail.com "+ "<br>" +
                     "objet de message: " + contact.Subject + "<br>" +
                     "le message : <b>" + contact.Message + "</b>";
 
@@ -312,7 +312,7 @@ namespace WebApplication1.Controllers
 
                 SmtpServer.Port = 587;
                 SmtpServer.UseDefaultCredentials = false;
-                SmtpServer.Credentials = new System.Net.NetworkCredential("munarela@hotmail.com", "Web123456");
+                SmtpServer.Credentials = new System.Net.NetworkCredential("munarela2@hotmail.com", "Web123456");
                 SmtpServer.EnableSsl = true;
                 SmtpServer.Send(mail);
 
@@ -348,9 +348,9 @@ namespace WebApplication1.Controllers
 //try
 //{
 //    var mail = new MailMessage();
-//var loginInfo = new NetworkCredential("munarela@hotmail.com", "Web123456");
+//var loginInfo = new NetworkCredential("munarela2@hotmail.com", "Web123456");
 //mail.From = new MailAddress(contact.Email);
-//mail.To.Add(new MailAddress("munarela@hotmail.com"));
+//mail.To.Add(new MailAddress("munarela2@hotmail.com"));
 //mail.Subject = contact.Subject;
 
 //mail.IsBodyHtml = true;

@@ -1,64 +1,88 @@
 ﻿@model IEnumerable<Enchere.Models.Evaluation>
 
 @{
-    ViewBag.Title = "GetEvalMembre";
+    ViewBag.Title = "Mes évaluations";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<h2>GetEvalMembre</h2>
-
-<p>
+<h2>Mes évaluations</h2>
+<br />
+<br />
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.User.Civilite)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateEvaluation)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cote)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TotalCote)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Commentaire)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Vendeur)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.Civilite)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateEvaluation)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cote)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalCote)
-        </td>
-        <td>
-            @Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(modelItem => item.Commentaire).ToString()))
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Vendeur)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
-
+</p>*@
+<table id="evaluationmembre" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.User.Civilite)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateEvaluation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cote)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalCote)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Commentaire)
+            </th>
+            <th>
+                    @Html.DisplayNameFor(model => model.Vendeur)
+                </th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Civilite)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateEvaluation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cote)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalCote)
+                </td>
+                <td>
+                    @Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(modelItem => item.Commentaire).ToString()))
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vendeur)
+                </td>
+                @*<td>
+                        @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+                    </td>*@
+            </tr>
+        }
+    </tbody>
 </table>
+
+<script>
+
+    $(document).ready(function () {
+
+        $('#evaluationmembre').DataTable(
+            {
+                dom: 'Blfrtip', buttons: [{ extend: 'csv', exportOptions: { columns: [':visible'] } }, { extend: 'print', exportOptions: { columns: [':visible'] } }, { extend: 'copyHtml5', exportOptions: { columns: [':visible'] } }, { extend: 'excelHtml5', exportOptions: { columns: [':visible'] } }, { extend: 'pdfHtml5', exportOptions: { columns: [':visible'] } }, [{ extend: 'colvis', postfixButtons: ['colvisRestore'] }]], "pageLength": -1, "lengthMenu": [[10, 50, 100, 500, 1000, -1], [10, 50, 100, 500, "1000", "All"]], "language": {
+                    "lengthMenu": "Montrer _MENU_ Afficher par page",
+                    "zeroRecords": "Rien trouvé - Désolé",
+                    "info": "Montrer page _PAGE_ de _PAGES_",
+                    "infoEmpty": "Pas d'enregistrement disponible",
+                    "infoFiltered": "(filtered from _MAX_ total records)"
+                }
+            }
+
+            );
+        //$('label').contents()[0].html("Voir");
+    });
+</script>
