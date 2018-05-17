@@ -592,6 +592,7 @@
     <Compile Include="Models\enumStatutObjet.cs" />
     <Compile Include="Models\Evaluation.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\mailSansAuth.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Objet.cs" />
     <Compile Include="Models\ObjetsViewModel.cs" />
@@ -696,6 +697,8 @@
     <Content Include="Views\Objets\GetObjetAchte.cshtml" />
     <Content Include="Views\Evaluations\GetEvalMembre.cshtml" />
     <Content Include="Scripts\jquery-1.9.0.min.map" />
+    <Content Include="Views\Home\GetMail.cshtml" />
+    <Content Include="Views\Home\GetListeObjetSansAuth.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

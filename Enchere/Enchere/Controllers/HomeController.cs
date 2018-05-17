@@ -311,6 +311,57 @@ namespace WebApplication1.Controllers
         }
 
 
+        
+        public ActionResult GetMail()
+        {
+            
+            return View();
+
+        }
+
+
+
+        [HttpPost]
+        public ActionResult GetMail(mailSansAuth m)
+
+          {
+
+
+
+            return RedirectToAction("GetListeObjetSansAuth", "Home",m);
+        }
+
+
+
+        public ActionResult GetListeObjetSansAuth(mailSansAuth m)
+
+        {
+
+            var chk = db.Users.Where(e => e.Email == m.mail).Count();
+
+
+
+            if (chk >=1)
+            {
+
+                var UserId = (db.Users.Where(e => e.Email == m.mail).Single()).Id;
+
+                
+                var obj = db.Objets.Where(e => e.UserId == UserId).ToList();
+
+                return View(obj);
+
+            }
+
+            else
+            {
+
+                return RedirectToAction("Index");
+
+            }
+
+        }
+
     }
 }
 /*commentaire de l'ancien envoi de message qui ne fonctionnait pas*/
