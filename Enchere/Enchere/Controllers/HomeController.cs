@@ -11,6 +11,7 @@ using System.Web.Mvc;
 using WebApplication1.Models;
 using CaptchaMvc.HtmlHelpers;
 
+
 namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
@@ -288,6 +289,11 @@ namespace WebApplication1.Controllers
                 SmtpClient SmtpServer = new SmtpClient("smtp.live.com");
                 var mail = new MailMessage();
                 mail.From = new MailAddress("munarela@hotmail.com");
+
+                //extrait le courriel si la convetion User (email) est utilisé
+                if (contact.Email.Contains("(") && contact.Email.Contains(")"))
+                contact.Email = contact.Email.Split('(')[1].Split(')')[0];
+
                 mail.To.Add(contact.Email);
                 mail.Subject = contact.Subject;
                 mail.IsBodyHtml = true;
@@ -310,6 +316,26 @@ namespace WebApplication1.Controllers
           
         }
 
+
+        [HttpGet]
+        public JsonResult UsersAutocomplete(String term)
+        {
+            bool isAdmin = false;
+            //TODO: Check the user if it is admin or normal user, (true-Admin, false- Normal user)  
+
+           var l=  db.Users.Where(c => c.UserName.ToLower().Contains(term.ToLower())).ToList();
+
+            if (term.Trim().Equals("*")| term.Trim().Equals("?")| term.Trim().Equals("%")) l = db.Users.ToList();
+
+            LinkedList<String> list = new LinkedList<string>();
+
+            foreach (var item in l)
+            {
+                list.AddLast(item.UserName+ "(" +item.Email+")");
+            }
+
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
 
     }
 }
