@@ -314,28 +314,14 @@ namespace WebApplication1.Controllers
                     /**************************************************************************/
                     string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    
-
+                    string bodyMessage = "Réinitialisez votre mot de passe en cliquant <a href=\"" + callbackUrl + "\">ici</a>";
+                    string subjectMessage = "Réinitialiser le mot de passe";
                     //comment faire pour envoyer un message à partir de la boite email de l'administrateur munarela@hotmail.com
-                    SmtpClient SmtpServer = new SmtpClient("smtp.live.com");
-                    var mail = new MailMessage();
-                    mail.From = new MailAddress("munarela@hotmail.com");
-                    mail.To.Add(model.Email);
-                    mail.Subject = "Réinitialiser le mot de passe";
-                    mail.IsBodyHtml = true;
-                    //le message du body
-                    string body = "Réinitialisez votre mot de passe en cliquant <a href=\"" + callbackUrl + "\">ici</a>";
 
-                    mail.Body = body;
-
-                    SmtpServer.Port = 587;
-                    SmtpServer.UseDefaultCredentials = false;
-                    SmtpServer.Credentials = new System.Net.NetworkCredential("munarela@hotmail.com", "Web123456");
-                    SmtpServer.EnableSsl = true;
-                    SmtpServer.Send(mail);
+                    EnvoiMessage(model.Email, bodyMessage, subjectMessage);
 
                     /*********************************fin*****************************************/
-                 
+
 
                     // Ne révélez pas que l'utilisateur n'existe pas ou qu'il n'est pas confirmé
                     return View("ForgotPasswordConfirmation");
@@ -355,6 +341,26 @@ namespace WebApplication1.Controllers
 
             // Si nous sommes arrivés là, un échec s’est produit. Réafficher le formulaire
             return View(model);
+        }
+        //Méthode pour Envoie de message par l'administrateur aux membres
+        public static void EnvoiMessage(string Email, string bodyMessage,string subjectMessage)
+        {
+            SmtpClient SmtpServer = new SmtpClient("smtp.live.com");
+            var mail = new MailMessage();
+            mail.From = new MailAddress("munarela@hotmail.com");
+            mail.To.Add(Email);
+            mail.Subject = subjectMessage;
+            mail.IsBodyHtml = true;
+            //le message du body
+            string body = bodyMessage;
+
+            mail.Body = body;
+
+            SmtpServer.Port = 587;
+            SmtpServer.UseDefaultCredentials = false;
+            SmtpServer.Credentials = new System.Net.NetworkCredential("munarela@hotmail.com", "Web123456");
+            SmtpServer.EnableSsl = true;
+            SmtpServer.Send(mail);
         }
 
         //
