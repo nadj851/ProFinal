@@ -699,6 +699,7 @@
     <Content Include="Scripts\jquery-1.9.0.min.map" />
     <Content Include="Views\Home\GetMail.cshtml" />
     <Content Include="Views\Home\GetListeObjetSansAuth.cshtml" />
+    <Content Include="Views\Objets\CreateEval.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
