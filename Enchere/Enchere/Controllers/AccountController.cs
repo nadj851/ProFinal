@@ -345,22 +345,28 @@ namespace WebApplication1.Controllers
         //Méthode pour Envoie de message par l'administrateur aux membres
         public static void EnvoiMessage(string Email, string bodyMessage,string subjectMessage)
         {
-            SmtpClient SmtpServer = new SmtpClient("smtp.live.com");
-            var mail = new MailMessage();
-            mail.From = new MailAddress("munarela@hotmail.com");
-            mail.To.Add(Email);
-            mail.Subject = subjectMessage;
-            mail.IsBodyHtml = true;
-            //le message du body
-            string body = bodyMessage;
+            try
+            {
+                SmtpClient SmtpServer = new SmtpClient("smtp.live.com");
+                var mail = new MailMessage();
+                mail.From = new MailAddress("munarela@hotmail.com");
+                mail.To.Add(Email);
+                mail.Subject = subjectMessage;
+                mail.IsBodyHtml = true;
+                //le message du body
+                string body = bodyMessage;
 
-            mail.Body = body;
+                mail.Body = body;
 
-            SmtpServer.Port = 587;
-            SmtpServer.UseDefaultCredentials = false;
-            SmtpServer.Credentials = new System.Net.NetworkCredential("munarela@hotmail.com", "Web123456");
-            SmtpServer.EnableSsl = true;
-            SmtpServer.Send(mail);
+                SmtpServer.Port = 587;
+                SmtpServer.UseDefaultCredentials = false;
+                SmtpServer.Credentials = new System.Net.NetworkCredential("munarela@hotmail.com", "Web123456");
+                SmtpServer.EnableSsl = true;
+                SmtpServer.Send(mail);
+            }
+            catch (Exception e) {
+                System.Diagnostics.Debug.WriteLine(e);
+            }
         }
 
         //
