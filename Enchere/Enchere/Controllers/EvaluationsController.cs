@@ -138,13 +138,13 @@ namespace Enchere.Controllers
             //recherche de la cote actuelle
             var coteUser =  db.Evaluations.OrderByDescending(p => p.Id).FirstOrDefault().TotalCote;
 
-            mail.From = new MailAddress("munarela@hotmail.com");
+            mail.From = new MailAddress("munarela2@hotmail.com");
             mail.To.Add(user.Email);
             mail.Subject = "Urgent";
             mail.IsBodyHtml = true;
             //le message du body
             string body = "Nom expéditeur: " + "admin" + "<br>" +
-                "email expéditeur: " + "munarela@hotmail.com" + "<br>" +
+                "email expéditeur: " + "munarela2@hotmail.com" + "<br>" +
                 "objet de message: " + "Cote critique "+ "<br>" +
                 "le message pour "+user.UserName +": <b>Nous vous informons que votre cote à atteint le seuil critique de "+coteUser ;
 
@@ -152,7 +152,7 @@ namespace Enchere.Controllers
 
             SmtpServer.Port = 587;
             SmtpServer.UseDefaultCredentials = false;
-            SmtpServer.Credentials = new NetworkCredential("munarela@hotmail.com", "Web123456");
+            SmtpServer.Credentials = new NetworkCredential("munarela2@hotmail.com", "Web123456");
             SmtpServer.EnableSsl = true;
             SmtpServer.Send(mail);
 

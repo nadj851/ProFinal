@@ -9,60 +9,75 @@
 <br />
 <br />
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.objet.Category.CategoryName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.objet.objetNom)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.objet.objetPrixDepart)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.objet.objetDateInsc)
-        </th>
-        <th>
-            Date d'achat
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.objet.objetImage)
-        </th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<table id="objetachetes" class="table">
+    <thead>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.objet.Category.CategoryName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.objet.objetNom)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.enchereNiveau) $
-            </td>
-            <td>
-                @(item.objet.objetDateInsc.ToString("MM/dd/yyyy"))
-            </td>
-            <td>
-                @(item.objet.objetDateInsc.AddDays(item.objet.objetDureeVente).ToString("MM/dd/yyyy"))
-            </td>
-            <td>
-                <img src="~/Uploads/@Html.DisplayFor(model => item.objet.objetImage)" class="thumbnail"
-                     style="width:48px;height:48px;" />
-            </td>
-            <td>
-               @Html.ActionLink("Evaluations Vendeur ", "CreateEval", new { objetId = item.objet.Id }, new { @class = "badge" })
-            </td>
-
+            <th>
+                @*@Html.DisplayNameFor(model => model.objet.Category.CategoryName)*@
+                Vendeur
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.objet.objetNom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.objet.objetPrixDepart)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.objet.objetDateInsc)
+            </th>
+            <th>
+                Date d'achat
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.objet.objetImage)
+            </th>
         </tr>
-        
-            }
-
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.objet.Category.CategoryName)*@
+                    @Html.DisplayFor(modelItem => item.objet.User.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.objet.objetNom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.enchereNiveau) $
+                </td>
+                <td>
+                    @(item.objet.objetDateInsc.ToString("MM/dd/yyyy"))
+                </td>
+                <td>
+                    @(item.objet.objetDateInsc.AddDays(item.objet.objetDureeVente).ToString("MM/dd/yyyy"))
+                </td>
+                <td>
+                    <img src="~/Uploads/@Html.DisplayFor(model => item.objet.objetImage)" class="thumbnail"
+                         style="width:48px;height:48px;" />
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
 
+<script>
 
+        $(document).ready(function () {
 
- 
+            $('#objetachetes').DataTable(
+                {
+                    dom: 'Blfrtip', buttons: [{ extend: 'csv', exportOptions: { columns: [':visible'] } }, { extend: 'print', exportOptions: { columns: [':visible'] } }, { extend: 'copyHtml5', exportOptions: { columns: [':visible'] } }, { extend: 'excelHtml5', exportOptions: { columns: [':visible'] } }, { extend: 'pdfHtml5', exportOptions: { columns: [':visible'] } }, [{ extend: 'colvis', postfixButtons: ['colvisRestore'] }]], "pageLength": -1, "lengthMenu": [[10, 50, 100, 500, 1000, -1], [10, 50, 100, 500, "1000", "All"]], "language": {
+                        "lengthMenu": "Montrer _MENU_ Afficher par page",
+                        "zeroRecords": "Rien trouvé - Désolé",
+                        "info": "Montrer page _PAGE_ de _PAGES_",
+                        "infoEmpty": "Pas d'enregistrement disponible",
+                        "infoFiltered": "(filtered from _MAX_ total records)"
+                    }
+                }
+
+                );
+            //$('label').contents()[0].html("Voir");
+        });
+</script>
