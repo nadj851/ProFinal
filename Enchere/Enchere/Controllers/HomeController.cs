@@ -272,10 +272,15 @@ namespace WebApplication1.Controllers
 
      
             [HttpGet]
-        public ActionResult EnvoiCourriel()
+        public ActionResult EnvoiCourriel(String id)
         {
-
-
+            if (id != null && !"".Equals(id.Trim()))
+            {
+                var user= db.Users.Where(u => u.Id == id).First();
+                ContactModel contactModel = new ContactModel();
+                contactModel.Email = user.UserName + "(" + user.Email+ ")";
+                return View(contactModel);
+            }
             return View();
         }
 
