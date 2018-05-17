@@ -5,11 +5,11 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<h2>GetObjetmise</h2>
+<h2>Liste de mes objets proposés</h2>
 
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
+</p>*@
 <table class="table">
     <tr>
         <th>
@@ -72,11 +72,11 @@
             <img src="~/Uploads/@Html.DisplayFor(model => item.objetImage)" class="thumbnail"
                  style="width:48px;height:48px;" />
         </td>
-        <td>
+        @*<td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
+        </td>*@
     </tr>
 }
 
