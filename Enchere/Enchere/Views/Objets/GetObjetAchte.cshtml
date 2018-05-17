@@ -31,6 +31,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.objet.objetImage)
             </th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -56,6 +57,10 @@
                 <td>
                     <img src="~/Uploads/@Html.DisplayFor(model => item.objet.objetImage)" class="thumbnail"
                          style="width:48px;height:48px;" />
+                </td>
+                <td>
+                    @Html.ActionLink("Evaluations Vendeur ", "CreateEval", new { objetId = item.objet.Id }, new { @class = "badge" })
+                 
                 </td>
             </tr>
         }

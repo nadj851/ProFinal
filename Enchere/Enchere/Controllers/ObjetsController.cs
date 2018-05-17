@@ -233,7 +233,7 @@ namespace Enchere.Controllers
 
             ViewBag.Name = User.Identity.Name;
             //ViewBag.UserId = new SelectList(db.Users, "Id", "Civilite");
-            return View();
+            return View(); 
 
         }
 
