@@ -36,21 +36,24 @@ namespace WebApplication1
         // Specify what you want to happen when the Elapsed event is raised.
         private static void OnTimedEvent(object source, ElapsedEventArgs e)
         {
-            var list = db.Objets.ToList();
-            foreach (var item in list)
-            {
-                if (!item.notifie && item.Statut == Enchere.Models.enumStatutObjet.EV && ((item.objetDateInsc.AddDays(item.objetDureeVente).Ticks - DateTime.Now.Ticks) / 10000) <= 86400000)
-                {
-                    if (!db.Encherees.Where(a => a.objet.Id == item.Id).Any()) {
-                        item.notifie = true;
-                        System.Diagnostics.Debug.WriteLine(" Sending Message Regarding Article: " + item.objetNom);
-                        Controllers.AccountController.EnvoiMessage(item.User.Email, item.objetNom + " expirera bientot" , "l'objet" + item.objetNom + " expirera bientot et il n'y a eu aucune enchère à date. Pensez à offrir un meilleur prix");
-                    }
-                }
+            //var list = db.Objets.ToList();
+            //foreach (var item in list)
+            //{
+            //    if (!item.notifie && item.Statut == Enchere.Models.enumStatutObjet.EV && ((item.objetDateInsc.AddDays(item.objetDureeVente).Ticks - DateTime.Now.Ticks) / 10000) <= 86400000)
+            //    {
+            //        if (!db.Encherees.Where(a => a.objet.Id == item.Id).Any())
+            //        {
+            //            item.notifie = true;
+            //            System.Diagnostics.Debug.WriteLine(" Sending Message Regarding Article: " + item.objetNom);
+            //            string subject = item.objetNom + " expirera bientot";
+            //            string body = "l'objet" + item.objetNom + " expirera bientot et il n'y a eu aucune enchère à date. Pensez à offrir un meilleur prix";
+            //            Controllers.AccountController.EnvoiMessage(item.User.Email, body, subject);
+            //        }
+            //    }
 
-            }
-            
-            
+            //}
+
+
         }
 
 
