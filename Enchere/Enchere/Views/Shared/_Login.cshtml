@@ -55,6 +55,8 @@
                                         <a href="~/Categories/Index" class="btn btn-success btn-block"> Gestion Categories </a>
                                         <a href="~/Roles/Index" class="btn btn-success btn-block"> Gestion Roles </a>
                                         <a href="~/ApplicationUsers/Index" class="btn btn-success btn-block"> Gestion Utilisateur </a>
+                                        <a href="~/Encherees/Index" class="btn btn-success btn-block"> Les enchères </a>
+                                        <a href="~/Evaluations/GetListeEvalMembre" class="btn btn-success btn-block"> Les évaluations </a>
                                         <a href="~/Home/EnvoiCourriel" class="btn btn-success btn-block"> Envoi courriel </a>
                                         <a href="~/Objets/GetListeObjetVenduWithPrix" class="btn btn-success btn-block"> objets vendus(Rapport #2)  </a>
                                         <a href="~/Evaluations/GetListeEvalMembre" class="btn btn-success btn-block">Cote de popularité(Rapport #4)   </a>
@@ -72,28 +74,28 @@
 
                     </li>
 
-                             
 
-                   
 
-            <li class="divider"></li>
-            <li>
 
-                <div>
 
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <p>
-                                <a href="javascript:document.getElementById('logoff').submit()" class="btn btn-danger btn-block"> <i class="glyphicon glyphicon-log-out"></i>  Se déconnecter </a>
-                            </p>
+                    <li class="divider"></li>
+                    <li>
+
+                        <div>
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <p>
+                                        <a href="javascript:document.getElementById('logoff').submit()" class="btn btn-danger btn-block"> <i class="glyphicon glyphicon-log-out"></i>  Se déconnecter </a>
+                                    </p>
+                                </div>
+
+                            </div>
                         </div>
 
-                    </div>
-                </div>
+                    </li>
 
-            </li>
-
-        </ul>
+                </ul>
 
             </li>
 
@@ -124,34 +126,34 @@
 
 else
 {
-        <ul class="nav navbar-nav navbar-right">
-            <li>
-                <a href="~/Account/Login">
-                    <i class="glyphicon glyphicon-log-in"></i>
-                    Se connecter
-                </a>
-            </li>
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a href="~/Account/Login">
+                <i class="glyphicon glyphicon-log-in"></i>
+                Se connecter
+            </a>
+        </li>
 
-            <li>
-                <a href="~/Account/Register">
-                    <i class="glyphicon glyphicon-floppy-disk"></i>
-                    Nouveau membre
-                </a>
-            </li>
+        <li>
+            <a href="~/Account/Register">
+                <i class="glyphicon glyphicon-floppy-disk"></i>
+                Nouveau membre
+            </a>
+        </li>
 
-            <li>
-                <a>
-                    <div id="google_translate_element"></div>
-                    <script type="text/javascript">
-                        function googleTranslateElementInit() {
-                            new google.translate.TranslateElement({ pageLanguage: 'fr', includedLanguages: 'fr,ar,en,es', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
-                            $("#google_translate_element img").eq(0).remove();
-                        }
+        <li>
+            <a>
+                <div id="google_translate_element"></div>
+                <script type="text/javascript">
+                    function googleTranslateElementInit() {
+                        new google.translate.TranslateElement({ pageLanguage: 'fr', includedLanguages: 'fr,ar,en,es', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+                        $("#google_translate_element img").eq(0).remove();
+                    }
 
-                    </script>
-                </a>
-            </li>
-        </ul>
+                </script>
+            </a>
+        </li>
+    </ul>
 
 }
 
@@ -160,13 +162,13 @@ else
 
 
 <script>
-		$(function() {
-			// Affichage du sous menu en douceur
-			jQuery('ul.nav li.dropdown').hover(function() {
-			  jQuery(this).find('.jqueryFadeIn').stop(true, true).delay(200).fadeIn();
-			}, function() {
-			  jQuery(this).find('.jqueryFadeIn').stop(true, true).delay(200).fadeOut();
-			});
+    $(function () {
+        // Affichage du sous menu en douceur
+        jQuery('ul.nav li.dropdown').hover(function () {
+            jQuery(this).find('.jqueryFadeIn').stop(true, true).delay(200).fadeIn();
+        }, function () {
+            jQuery(this).find('.jqueryFadeIn').stop(true, true).delay(200).fadeOut();
+        });
 
-		});
+    });
 </script>

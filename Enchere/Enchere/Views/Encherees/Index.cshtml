@@ -5,70 +5,93 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Les enchères</h2>
 
 
 <div>
     <h3 style="color:dodgerblue"> @TempData["Result"] </h3>
 </div>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.objet.objetNom)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.user.Civilite)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.enchereNiveau)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Message)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.niveauMax)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.enchereDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.user.UserName)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<table class="table" id="encheresAdmin">
+    <thead>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.objet.objetNom)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.user.Civilite)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.enchereNiveau)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Message)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.niveauMax)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.enchereDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.user.UserName)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Appliquer", "Appliquer", new { id = item.ObjetId }, new { @class = "btn btn-success" })
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.objet.objetNom)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.user.Civilite)
+            </th>*@
+            <th>
+                L'enchère
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Message)
+            </th>
+            <th>
+                Niveau max
+            </th>
+            <th>
+                Date d'enchère
+            </th>
+            <th>
+                L'enchireur
+            </th>
+            @*<th></th>*@
         </tr>
-    }
+    </thead>
+    <tbody>
 
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-capitalize">
+                    @Html.DisplayFor(modelItem => item.objet.objetNom)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.user.Civilite)
+                </td>*@
+                <td style="text-align:center">
+                    @Html.DisplayFor(modelItem => item.enchereNiveau) $
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Message)
+                </td>
+                <td style="text-align:center">
+                    @Html.DisplayFor(modelItem => item.niveauMax) $
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.enchereDate)
+                </td>
+                <td class="text-capitalize">
+                    @Html.DisplayFor(modelItem => item.user.UserName)
+                </td>
+                @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Appliquer", "Appliquer", new { id = item.ObjetId }, new { @class = "btn btn-success" })
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>*@
+            </tr>
+        }
+    </tbody>
 </table>
+
+<script>
+
+        $(document).ready(function () {
+
+            $('#encheresAdmin').DataTable(
+                {
+                    dom: 'Blfrtip', buttons: [{ extend: 'csv', exportOptions: { columns: [':visible'] } }, { extend: 'print', exportOptions: { columns: [':visible'] } }, { extend: 'copyHtml5', exportOptions: { columns: [':visible'] } }, { extend: 'excelHtml5', exportOptions: { columns: [':visible'] } }, { extend: 'pdfHtml5', exportOptions: { columns: [':visible'] } }, [{ extend: 'colvis', postfixButtons: ['colvisRestore'] }]], "pageLength": -1, "lengthMenu": [[10, 50, 100, 500, 1000, -1], [10, 50, 100, 500, "1000", "All"]], "language": {
+                        "lengthMenu": "Montrer _MENU_ Afficher par page",
+                        "zeroRecords": "Rien trouvé - Désolé",
+                        "info": "Montrer page _PAGE_ de _PAGES_",
+                        "infoEmpty": "Pas d'enregistrement disponible",
+                        "infoFiltered": "(filtered from _MAX_ total records)"
+                    }
+                }
+
+                );
+            //$('label').contents()[0].html("Voir");
+        });
+</script>
