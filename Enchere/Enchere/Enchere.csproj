@@ -588,6 +588,10 @@
     <Compile Include="Migrations\201805231530392_testapres.Designer.cs">
       <DependentUpon>201805231530392_testapres.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805231830135_envoiRapport.cs" />
+    <Compile Include="Migrations\201805231830135_envoiRapport.Designer.cs">
+      <DependentUpon>201805231830135_envoiRapport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Controllers\EnchereesController.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -805,6 +809,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805231530392_testapres.resx">
       <DependentUpon>201805231530392_testapres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805231830135_envoiRapport.resx">
+      <DependentUpon>201805231830135_envoiRapport.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

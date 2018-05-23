@@ -19,6 +19,9 @@ namespace WebApplication1.Models
         public string Langue { get; set; }
         public string Tel { get; set; }
         public string Adresse { get; set; }
+
+        public DateTime dernierEnvoiRapport { get; set; }
+
         public virtual ICollection <Objet> objets { get; set; }
                                            // public DateTime DateIns { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
