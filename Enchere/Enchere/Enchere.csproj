@@ -584,6 +584,10 @@
     <Compile Include="Migrations\201805161731111_toto.Designer.cs">
       <DependentUpon>201805161731111_toto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805231530392_testapres.cs" />
+    <Compile Include="Migrations\201805231530392_testapres.Designer.cs">
+      <DependentUpon>201805231530392_testapres.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Controllers\EnchereesController.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -798,6 +802,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805161731111_toto.resx">
       <DependentUpon>201805161731111_toto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805231530392_testapres.resx">
+      <DependentUpon>201805231530392_testapres.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
