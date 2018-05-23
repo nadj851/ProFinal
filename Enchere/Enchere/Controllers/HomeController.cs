@@ -98,6 +98,8 @@ namespace WebApplication1.Controllers
             }
             return View(enchere);
         }
+
+        
         // GET: Roles/Edit/5
         public ActionResult Edit(int id)
         {
@@ -126,6 +128,8 @@ namespace WebApplication1.Controllers
 
             return View(enchere);
         }
+
+
         public ActionResult Delete(int id)
         {
             var enchere = db.Encherees.Find(id);
@@ -172,6 +176,8 @@ namespace WebApplication1.Controllers
 
             return View();
         }
+
+        [AllowAnonymous]
         [HttpGet]
         public ActionResult Contact()
         {
@@ -307,6 +313,7 @@ namespace WebApplication1.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult GetMail(mailSansAuth m)
         {
