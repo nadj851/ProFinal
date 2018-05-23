@@ -32,7 +32,7 @@ namespace WebApplication1
             aTimer.Enabled = true;
         }
 
-
+        static DateTime dateFixeEnvoiRapport = DateTime.Today;
 
         // Specify what you want to happen when the Elapsed event is raised.
         private static void OnTimedEvent(object source, ElapsedEventArgs e)
@@ -50,12 +50,29 @@ namespace WebApplication1
                         string body = "l'objet" + item.objetNom + " expirera bientot et il n'y a eu aucune enchère à date. Pensez à offrir un meilleur prix";
                         System.Diagnostics.Debug.WriteLine("Time: " + System.DateTime.Now.ToLongTimeString());
                         Controllers.AccountController.EnvoiMessage(item.User.Email, body, subject);
-                        break;
+                        return;
                     }
 
                 }
 
-            }            
+            }
+
+            var userList = db.Users.ToList();
+            foreach (var item in userList)
+            {
+                if (item.dernierEnvoiRapport < dateFixeEnvoiRapport) {
+
+                    System.Diagnostics.Debug.WriteLine("Sending email to user" + "Time: " + System.DateTime.Now.ToLongTimeString());
+                    //Envoyer le rapport
+                    string subject = "Rapport Mensuel pour l'utilisateur " + item.Prenom;
+                    string body = "";
+                    body += "Votre rapport";
+                    Controllers.AccountController.EnvoiMessage(item.Email, body, subject);
+                    item.dernierEnvoiRapport = dateFixeEnvoiRapport;
+                    return;
+                }
+                
+            }
         }
 
 
