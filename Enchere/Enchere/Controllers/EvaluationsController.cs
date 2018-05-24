@@ -137,17 +137,31 @@ namespace Enchere.Controllers
             var mail = new MailMessage();
             //recherche de la cote actuelle
             var coteUser =  db.Evaluations.OrderByDescending(p => p.Id).FirstOrDefault().TotalCote;
+            string body = "";
+            
+            //Condition pour envoie du courriel dans la langue du membre
+            if (user.Langue == "Anglais")
+            {
+                body = "Sender name: " + "admin" + "<br>" +
+                "Sender Email: " + "munarela2@hotmail.com" + "<br>" +
+                "Subject message: " + "critical rating " + "<br>" +
+                "Message for " + user.UserName + ": <b>We inform you that your rating has reached the critical threshold of " + coteUser;
 
+            }
+            else
+            {
+                body = "Nom expéditeur: " + "admin" + "<br>" +
+                "email expéditeur: " + "munarela2@hotmail.com" + "<br>" +
+                "objet de message: " + "Cote critique " + "<br>" +
+                "le message pour " + user.UserName + ": <b>Nous vous informons que votre cote à atteint le seuil critique de " + coteUser;
+
+            }
             mail.From = new MailAddress("munarela2@hotmail.com");
             mail.To.Add(user.Email);
             mail.Subject = "Urgent";
             mail.IsBodyHtml = true;
             //le message du body
-            string body = "Nom expéditeur: " + "admin" + "<br>" +
-                "email expéditeur: " + "munarela2@hotmail.com" + "<br>" +
-                "objet de message: " + "Cote critique "+ "<br>" +
-                "le message pour "+user.UserName +": <b>Nous vous informons que votre cote à atteint le seuil critique de "+coteUser ;
-
+            
             mail.Body = body;
 
             SmtpServer.Port = 587;
