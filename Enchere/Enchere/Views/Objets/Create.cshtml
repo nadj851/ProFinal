@@ -104,7 +104,8 @@
             **********************************************@
 
         <div class="form-group">
-            @Html.LabelFor(model => model.categoryId, "categoryId", htmlAttributes: new { @class = "control-label col-md-2" })
+           <label class="control-label col-md-2" > Nom de la catégorie</label>
+            @* @Html.LabelFor(model => model.categoryId, "categoryId", htmlAttributes: new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
                 @Html.DropDownList("categoryId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.categoryId, "", new { @class = "text-danger" })
@@ -129,7 +130,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Retour à la liste", "Index")
 </div>
 
 <style>

@@ -316,7 +316,7 @@ namespace WebApplication1.Controllers
                     var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     string bodyMessage = "Réinitialisez votre mot de passe en cliquant <a href=\"" + callbackUrl + "\">ici</a>";
                     string subjectMessage = "Réinitialiser le mot de passe";
-                    //comment faire pour envoyer un message à partir de la boite email de l'administrateur munarela2@hotmail.com
+                    //comment faire pour envoyer un message à partir de la boite email de l'administrateur munarela2@gmail.com
 
                     EnvoiMessage(model.Email, bodyMessage, subjectMessage);
 
