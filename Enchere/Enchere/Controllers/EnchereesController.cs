@@ -160,7 +160,13 @@ namespace Enchere.Migrations
 
                     //notifier User ici par email
                     var idUser = offreMax.UserId;
+                    
+                    /*string subject = " Enchère dépassée";
 
+                        string body = "votre enchère à été dépassée ";
+
+                        Controllers.AccountController.EnvoiMessage(item.User.Email, body, subject);
+                     */
                     return offreActuelle;
                 }
                 else
