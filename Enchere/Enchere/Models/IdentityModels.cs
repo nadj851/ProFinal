@@ -6,6 +6,8 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using Enchere.Models;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApplication1.Models
 {
@@ -20,6 +22,7 @@ namespace WebApplication1.Models
         public string Tel { get; set; }
         public string Adresse { get; set; }
 
+        [NotMapped]
         public DateTime dernierEnvoiRapport { get; set; }
 
         public virtual ICollection <Objet> objets { get; set; }
