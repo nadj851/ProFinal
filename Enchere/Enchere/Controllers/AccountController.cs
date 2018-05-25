@@ -347,9 +347,9 @@ namespace WebApplication1.Controllers
         {
             try
             {
-                SmtpClient SmtpServer = new SmtpClient("smtp.live.com");
+                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
                 var mail = new MailMessage();
-                mail.From = new MailAddress("munarela2@hotmail.com");
+                mail.From = new MailAddress("munarela2@gmail.com");
                 mail.To.Add(Email);
                 mail.Subject = subjectMessage;
                 mail.IsBodyHtml = true;
@@ -360,7 +360,7 @@ namespace WebApplication1.Controllers
 
                 SmtpServer.Port = 587;
                 SmtpServer.UseDefaultCredentials = false;
-                SmtpServer.Credentials = new System.Net.NetworkCredential("munarela2@hotmail.com", "Web123456");
+                SmtpServer.Credentials = new System.Net.NetworkCredential("munarela2@gmail.com", "Web123456");
                 SmtpServer.EnableSsl = true;
                 SmtpServer.Send(mail);
             }

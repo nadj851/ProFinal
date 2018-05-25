@@ -592,6 +592,10 @@
     <Compile Include="Migrations\201805231830135_envoiRapport.Designer.cs">
       <DependentUpon>201805231830135_envoiRapport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805251507448_champ_Maped_EnvoiDate_User.cs" />
+    <Compile Include="Migrations\201805251507448_champ_Maped_EnvoiDate_User.Designer.cs">
+      <DependentUpon>201805251507448_champ_Maped_EnvoiDate_User.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Controllers\EnchereesController.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -812,6 +816,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805231830135_envoiRapport.resx">
       <DependentUpon>201805231830135_envoiRapport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805251507448_champ_Maped_EnvoiDate_User.resx">
+      <DependentUpon>201805251507448_champ_Maped_EnvoiDate_User.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

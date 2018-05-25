@@ -60,7 +60,7 @@ namespace WebApplication1
             var userList = db.Users.ToList();
             foreach (var item in userList)
             {
-                if (item.dernierEnvoiRapport < dateFixeEnvoiRapport) {
+                if (item.dernierEnvoiRapport < dateFixeEnvoiRapport|| item.dernierEnvoiRapport==null) {
 
                     System.Diagnostics.Debug.WriteLine("Sending email to user" + "Time: " + System.DateTime.Now.ToLongTimeString());
                     //Envoyer le rapport
