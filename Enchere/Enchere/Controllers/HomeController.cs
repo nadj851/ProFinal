@@ -187,9 +187,13 @@ namespace WebApplication1.Controllers
         [ValidateInput(false)]
         public ActionResult Contact(ContactModel contact)
         {
-            if (!this.IsCaptchaValid("Validate your captcha") || !ModelState.IsValid)
+             try
+            {                          
+                   
+                if (!this.IsCaptchaValid("Validate your captcha") || !ModelState.IsValid)
             {
-                ViewBag.ErrMessage = "Entrez la bonne reponse";
+                    
+                    ViewBag.ErrMessage = "Entrez la bonne reponse";
                 return View();
             }
             else
@@ -198,7 +202,7 @@ namespace WebApplication1.Controllers
                 //comment faire pour envoyer un message à partir de la boite email de l'administrateur munarela2@hotmail.com
                 SmtpClient SmtpServer = new SmtpClient("smtp.live.com");
                 var mail = new MailMessage();
-                mail.From = new MailAddress("munarela2@hotmail.com");
+                mail.From = new MailAddress("munarela@hotmail.com");
                 mail.To.Add("munarela2@hotmail.com");
                 mail.Subject = contact.Subject;
                 mail.IsBodyHtml = true;
@@ -215,10 +219,22 @@ namespace WebApplication1.Controllers
                 SmtpServer.Credentials = new System.Net.NetworkCredential("munarela2@hotmail.com", "Web123456");
                 SmtpServer.EnableSsl = true;
                 SmtpServer.Send(mail);
-
-
                 return RedirectToAction("Index");
+
             }
+
+            }
+
+            catch
+            {
+              
+                ViewBag.ErrMessage = "Entrez la bonne reponse";
+                return View();
+
+            }
+
+
+
         }
         public ActionResult Recherche()
         {
