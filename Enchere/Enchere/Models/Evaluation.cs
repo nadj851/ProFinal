@@ -20,6 +20,7 @@ namespace Enchere.Models
         [AllowHtml]
         public string Commentaire { get; set; }
         public string Vendeur { get; set; }
+        [Display(Name = "Acheteur")]
         public string UserId { get; set; }
         public virtual ApplicationUser User { get; set; }
 

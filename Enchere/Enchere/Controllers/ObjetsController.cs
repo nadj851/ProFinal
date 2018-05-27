@@ -197,6 +197,17 @@ namespace Enchere.Controllers
         }
 
 
+
+        //objets vendu par chaque membre et vendu
+        [Authorize]
+        public ActionResult GetObjetmiseVendu()
+        {
+            var UserId = User.Identity.GetUserId();
+
+            var objets = db.Objets.Where(a => a.UserId == UserId);
+            return View(objets.ToList());
+        }
+
         //objets vendu par chaque membre
         [Authorize]
         public ActionResult GetObjetAchte()
@@ -359,6 +370,98 @@ namespace Enchere.Controllers
             return Json("file uploaded successfully");
         }
 
+
+
+        // GET: Evaluations/Create
+        public ActionResult CreateEvalAchteur(int objetId)
+        {
+            Session["ObjetId"] = objetId;
+            var ObjetId = (int)Session["ObjetId"];
+            var obj = db.Objets.Where(a => a.Id == objetId).Single();
+            ViewBag.Vendeur = obj.User.UserName;
+            var rept_max = (from c in db.Encherees
+                          where c.ObjetId == objetId
+                            select c).Max(c => c.niveauMax);
+
+            var enchi = db.Encherees.Where(a => a.niveauMax == rept_max && a.ObjetId == objetId).Single();
+
+            var user = db.Users.Where(u => u.Id == enchi.UserId).First();
+
+            ViewBag.Acheteur = user.UserName;
+
+               Session["usern"]= user.UserName;
+
+            ViewBag.Name = User.Identity.Name;
+            //ViewBag.UserId = new SelectList(db.Users, "Id", "Civilite");
+            return View();
+
+        }
+
+
+
+        // POST: Evaluations/Create
+        // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
+        // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateEvalAchteur([Bind(Include = "Id,DateEvaluation,Cote,Commentaire,Vendeur,UserId")] Evaluation evaluation)
+        {
+            if (ModelState.IsValid)
+            {
+                evaluation.UserId = User.Identity.GetUserId();
+                evaluation.DateEvaluation = DateTime.Now;
+
+                var ObjetId = (int)Session["ObjetId"];
+
+                var obj = db.Objets.Where(a => a.Id == ObjetId).Single();
+                evaluation.Vendeur = obj.User.UserName;
+
+                //check sum cote
+                double total = 0;
+
+                //On regarde si il y a une evaluation existante pour l'utilisateur donné
+                if (db.Evaluations.Where(a => a.Vendeur == obj.User.UserName).Any())
+                {
+                    total = (from eval in db.Evaluations
+
+                             where eval.Vendeur == obj.User.UserName
+                             select eval.Cote).Sum();
+
+                }
+
+                evaluation.TotalCote = total + evaluation.Cote;
+
+                //send notification
+
+
+                ViewBag.total = evaluation.TotalCote;
+                db.Evaluations.Add(evaluation);
+                db.SaveChanges();
+                if (evaluation.TotalCote <= -6)
+                {
+                    envoiMail(obj.User);
+                }
+                if (evaluation.TotalCote <= -9)
+                {
+                    var UserId = User.Identity.GetUserId();
+                    var u = db.Users.Where(a => a.Id == obj.User.Id).Single();
+
+                    //pour desactiver un compte
+                    //https://stackoverflow.com/questions/30452104/mvc-5-identity-2-0-lockout-doesnt-work
+                    //Il faut mettre a jour la colone lockout enable et donner une date jusqua quand ce sera bloquer sinon sa ne marchera pas
+                    u.LockoutEnabled = true;
+                    u.LockoutEndDateUtc = new DateTime(DateTime.Now.AddDays(7).Ticks);
+
+
+
+                }
+
+                return RedirectToAction("IndexAchteur", "Evaluations");
+            }
+
+            ViewBag.UserId = new SelectList(db.Users, "Id", "Civilite", evaluation.UserId);
+            return View(evaluation);
+        }
 
 
 

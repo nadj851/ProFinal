@@ -37,6 +37,19 @@ namespace Enchere.Controllers
             return View(evaluations.ToList());
         }
 
+        // GET: Evaluations
+        public ActionResult IndexAchteur()
+        {
+            var ObjetId = (int)Session["ObjetId"];
+            var obj = db.Objets.Where(a => a.Id == ObjetId).Single();
+            var evaluations = db.Evaluations.Where(a => a.UserId == obj.User.Id);
+            ViewBag.Achet = Session["usern"];   
+             return View(evaluations.ToList());
+        }
+     
+
+
+
         // GET: Evaluations/Details/5
         public ActionResult Details(int? id)
         {
