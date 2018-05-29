@@ -54,7 +54,7 @@
 
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.niveauMax) $
+                    @Html.DisplayFor(modelItem => item.enchereNiveau) $
                 </td>
                 <td>
                     @(item.objet.objetDateInsc.AddDays(item.objet.objetDureeVente).ToString("MM/dd/yyyy"))
@@ -68,7 +68,7 @@
                 </td>
                 <td style="text-align:right">
                     @{
-                        var prix = @item.niveauMax;
+                        var prix = @item.enchereNiveau;
                         prix *= 0.19; } @prix $
                     </td>
                 </tr>
@@ -106,7 +106,7 @@
         @foreach (var item in Model){
 
            
-                 @:comission.push("@item.niveauMax");
+                 @:comission.push("@item.enchereNiveau");
                      
                 }
 
@@ -116,5 +116,5 @@
         console.log(comission[i]);
         console.log("total = "+total);
     }
-    document.getElementById("totalCom").innerHTML = (total*0.19) + " $";
+    document.getElementById("totalCom").innerHTML = (total * 0.19).toFixed(2) + " $";
 </script>
