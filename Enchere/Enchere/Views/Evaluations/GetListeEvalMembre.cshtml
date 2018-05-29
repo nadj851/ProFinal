@@ -9,8 +9,8 @@
 <br />
 <br />
 @*<p>
-    @Html.ActionLink("Create New", "Create")
-</p>*@
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
 <table id="raptable" class="display" style="width:100%">
     <thead>
         <tr>
@@ -48,14 +48,22 @@
         }
     </tbody>
 </table>
-
+@*http://live.datatables.net/tohehohe/1/edit*@
 @section Scripts{
     <script>
         $(document).ready(function () {
             $('#raptable').DataTable(
-                { dom: 'Blfrtip', buttons: [{ extend: 'csv', exportOptions: { columns: [':visible'] } }, { extend: 'print', exportOptions: { columns: [':visible'] } }, { extend: 'copyHtml5', exportOptions: { columns: [':visible'] } }, { extend: 'excelHtml5', exportOptions: { columns: [':visible'] } }, { extend: 'pdfHtml5', exportOptions: { columns: [':visible'] } }, [{ extend: 'colvis', postfixButtons: ['colvisRestore'] }]], "pageLength": -1, "lengthMenu": [[10, 50, 100, 500, 1000, -1], [10, 50, 100, 500, "1000", "All"]] }
-
-                );
+                {
+                    dom: 'Blfrtip', buttons: [{ extend: 'csv', exportOptions: { columns: [':visible'] } }, { extend: 'print', exportOptions: { columns: [':visible'] } }, { extend: 'copyHtml5', exportOptions: { columns: [':visible'] } }, { extend: 'excelHtml5', exportOptions: { columns: [':visible'] } }, { extend: 'pdfHtml5', exportOptions: { columns: [':visible'] } }, [{ extend: 'colvis', postfixButtons: ['colvisRestore'] }]], "pageLength": -1, "lengthMenu": [[10, 50, 100, 500, 1000, -1], [10, 50, 100, 500, "1000", "All"]],
+                    "createdRow": function (row, data, dataIndex) {
+                        if (data[2] <= -9) {
+                            $(row).css('background-color', 'Red');
+                        } else if (data[2] <= -6) {
+                            $(row).css('background-color', 'Orange');
+                        }
+                    }
+                }
+            );
         });
     </script>
 }
