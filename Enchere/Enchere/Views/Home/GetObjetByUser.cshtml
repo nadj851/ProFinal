@@ -9,65 +9,66 @@
 <br />
 <br />
 
-
-<table id="objetuser" class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.objet.objetNom)
-            </th>
-
-            <th>
-                @Html.DisplayNameFor(model => model.enchereNiveau)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Message)
-            </th>
-            <th>
-                Date d'enchére
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+<div class="table-responsive">
+    <table id="objetuser" class="table">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.objet.objetNom)
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.objet.objetNom)
+                </th>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.enchereNiveau) $
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Message)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.enchereDate)
-                </td>
-
+                <th>
+                    @Html.DisplayNameFor(model => model.enchereNiveau)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Message)
+                </th>
+                <th>
+                    Date d'enchére
+                </th>
             </tr>
-        }
-    </tbody>
-</table>
-@section Scripts{
-    <script>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.objet.objetNom)
+                    </td>
 
-        $(document).ready(function () {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.enchereNiveau) $
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Message)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.enchereDate)
+                    </td>
 
-            $('#objetuser').DataTable(
-                {
-                    dom: 'Blfrtip', buttons: [{ extend: 'csv', exportOptions: { columns: [':visible'] } }, { extend: 'print', exportOptions: { columns: [':visible'] } }, { extend: 'copyHtml5', exportOptions: { columns: [':visible'] } }, { extend: 'excelHtml5', exportOptions: { columns: [':visible'] } }, { extend: 'pdfHtml5', exportOptions: { columns: [':visible'] } }, [{ extend: 'colvis', postfixButtons: ['colvisRestore'] }]], "pageLength": -1, "lengthMenu": [[10, 50, 100, 500, 1000, -1], [10, 50, 100, 500, "1000", "All"]], "language": {
-                        "lengthMenu": "Montrer _MENU_ Afficher par page",
-                        "zeroRecords": "Rien trouvé - Désolé",
-                        "info": "Montrer page _PAGE_ de _PAGES_",
-                        "infoEmpty": "Pas d'enregistrement disponible",
-                        "infoFiltered": "(filtered from _MAX_ total records)"
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>
+    @section Scripts{
+        <script>
+
+            $(document).ready(function () {
+
+                $('#objetuser').DataTable(
+                    {
+                        dom: 'Blfrtip', buttons: [{ extend: 'csv', exportOptions: { columns: [':visible'] } }, { extend: 'print', exportOptions: { columns: [':visible'] } }, { extend: 'copyHtml5', exportOptions: { columns: [':visible'] } }, { extend: 'excelHtml5', exportOptions: { columns: [':visible'] } }, { extend: 'pdfHtml5', exportOptions: { columns: [':visible'] } }, [{ extend: 'colvis', postfixButtons: ['colvisRestore'] }]], "pageLength": -1, "lengthMenu": [[10, 50, 100, 500, 1000, -1], [10, 50, 100, 500, "1000", "All"]], "language": {
+                            "lengthMenu": "Montrer _MENU_ Afficher par page",
+                            "zeroRecords": "Rien trouvé - Désolé",
+                            "info": "Montrer page _PAGE_ de _PAGES_",
+                            "infoEmpty": "Pas d'enregistrement disponible",
+                            "infoFiltered": "(filtered from _MAX_ total records)"
+                        }
                     }
-                }
 
                 );
-            //$('label').contents()[0].html("Voir");
-        });
-    </script>
-}
+                //$('label').contents()[0].html("Voir");
+            });
+        </script>
+    }
