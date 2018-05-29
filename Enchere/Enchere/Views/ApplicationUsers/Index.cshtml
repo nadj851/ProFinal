@@ -80,7 +80,12 @@
                     @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |*@
                     @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                     @Html.ActionLink("Vente", "listObjetVendu", new { id = item.Id }) |
-                    @Html.ActionLink("Courriel", "EnvoiCourriel", "Home", new { id = item.Id }, null) 
+                   @{ 
+                       Boolean active = item.LockoutEnabled;
+
+                   }
+                    @Html.ActionLink(" ", "desactiver", new { id = item.Id }, htmlAttributes: new { @class = (!@active) ? "glyphicon glyphicon-eye-open" : "glyphicon glyphicon-eye-close" }) |
+                    @Html.ActionLink("Courriel", "EnvoiCourriel", "Home", new { id = item.Id }, null)
                     @*@Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
                 </td>
             </tr>
