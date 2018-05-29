@@ -40,9 +40,7 @@
                 <th>
                     @Html.DisplayNameFor(model => model.objetImage)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Statut)
-                </th>
+               
                 <th>
 
                 </th>
@@ -82,7 +80,7 @@
                                  style="width:48px;height:48px;" />
                         </td>
                         <td>
-                            @Html.ActionLink("Evaluations Achteur ", "CreateEvalAchteur", new { objetId = item.Id }, new { @class = "badge" })
+                            @Html.ActionLink("Evaluation Acheteur ", "CreateEvalAchteur", new { objetId = item.Id }, new { @class = "badge" })
 
                         </td>
                         @*<td>
