@@ -435,6 +435,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\enchere.mdf" />
+    <Content Include="App_Data\enchere_log.ldf">
+      <DependentUpon>enchere.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
@@ -717,6 +721,7 @@
     <Content Include="Views\Objets\GetObjetmiseVendu.cshtml" />
     <Content Include="Views\Objets\CreateEvalAchteur.cshtml" />
     <Content Include="Views\Evaluations\IndexAchteur.cshtml" />
+    <Content Include="Views\Objets\SyntheseAnnuelleVente.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -725,7 +730,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Scripts\ckeditor\" />
     <Folder Include="Uploads\" />
   </ItemGroup>
