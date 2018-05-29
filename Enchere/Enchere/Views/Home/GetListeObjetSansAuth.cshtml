@@ -9,72 +9,75 @@
 @*<p>
     @Html.ActionLink("Create New", "Create")
 </p>*@
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Category.CategoryName)
-        </th>
-       
-        <th>
-            @Html.DisplayNameFor(model => model.objetNom)
-        </th>
-       
-        <th>
-            @Html.DisplayNameFor(model => model.objetPrixDepart)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.objetDateInsc)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.objetDureeVente)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.objetImage)
-        </th>
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Category.CategoryName)
+            </th>
 
-        <th>
-            @Html.DisplayNameFor(model => model.Statut)
-        </th>
-        <th></th>
-    </tr>
+            <th>
+                @Html.DisplayNameFor(model => model.objetNom)
+            </th>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Category.CategoryName)
-        </td>
-       
-        <td>
-            @Html.DisplayFor(modelItem => item.objetNom)
-        </td>
-        
-        <td>
-            @Html.DisplayFor(modelItem => item.objetPrixDepart)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.objetDateInsc)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.objetDureeVente)
-        </td>
-        
-        <td>
-            <img src="~/Uploads/@Html.DisplayFor(model => item.objetImage)" class="thumbnail"
-                 style="width:48px;height:48px;" />
-            @*@Html.DisplayFor(modelItem => item.objetImage)*@
-        </td>
+            <th>
+                @Html.DisplayNameFor(model => model.objetPrixDepart)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.objetDateInsc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.objetDureeVente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.objetImage)
+            </th>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.Statut)
-        </td>
-        <td>
-            @Html.ActionLink("Détail", "Details", new { objetId = item.Id }, new { @class = "badge" }) 
+            <th>
+                @Html.DisplayNameFor(model => model.Statut)
+            </th>
+            <th></th>
+        </tr>
 
-            @*@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
-        </td>
-    </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.CategoryName)
+                </td>
 
-</table>
+                <td>
+                    @Html.DisplayFor(modelItem => item.objetNom)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.objetPrixDepart)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.objetDateInsc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.objetDureeVente)
+                </td>
+
+                <td>
+                    <img src="~/Uploads/@Html.DisplayFor(model => item.objetImage)" class="thumbnail"
+                         style="width:48px;height:48px;" />
+                    @*@Html.DisplayFor(modelItem => item.objetImage)*@
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Statut)
+                </td>
+                <td>
+                    @Html.ActionLink("Détail", "Details", new { objetId = item.Id }, new { @class = "badge" })
+
+                    @*@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
+                </td>
+            </tr>
+        }
+
+    </table>
+    </div>

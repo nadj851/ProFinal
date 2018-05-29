@@ -92,36 +92,38 @@
     </div>
     <div class="container" style="width:50%; float:right">
         <h4>Historique Enchères</h4>
-        <table id="userstable" class="table" style="width:100%">
-            <thead>
-                <tr>
-                    <th>Montant</th>
-                    <th>Date</th>
-                    <th>Enchireur</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.Items)
-            {
+        <div class="table-responsive">
+            <table id="userstable" class="table" style="width:100%">
+                <thead>
                     <tr>
-                        <td>
-
-                            @Html.DisplayFor(modelItem => item.enchereNiveau) $
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.enchereDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.user.UserName)
-                        </td>
-                        @*@Html.DisplayFor(modelItem => item.user.UserName)
-                            <br />*@
+                        <th>Montant</th>
+                        <th>Date</th>
+                        <th>Enchireur</th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td>
+
+                                @Html.DisplayFor(modelItem => item.enchereNiveau) $
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.enchereDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.user.UserName)
+                            </td>
+                            @*@Html.DisplayFor(modelItem => item.user.UserName)
+                            <br />*@
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            </div>
+        </div>
     </div>
-</div>
 <script>
     // Update the count down every 1 second
     var x = setInterval(function () {

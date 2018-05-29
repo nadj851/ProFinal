@@ -7,80 +7,81 @@
 
 <h2>Synthese annuelle des ventes</h2>
 
-
-<table class="table" id="synthese">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.objet.objetNom)
-            </th>
-            <th>
-                Prix Départ
-            </th>
-            <th>
-                Date inscription
-            </th>
-            <th>
-                Prix vente
-            </th>
-            <th>
-                Date vente
-            </th>
-            <th>
-                Nom Vendeur
-            </th>
-            <th>
-                Nom Acheteur
-            </th>
-            <th>
-                Commission 19%
-            </th>
-
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+<div class="table-responsive">
+    <table class="table" id="synthese">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.objet.objetNom)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.objet.objetPrixDepart) $
-                </td>
-                <td>
-                    @(item.objet.objetDateInsc.ToString("MM/dd/yyyy"))
+                <th>
+                    @Html.DisplayNameFor(model => model.objet.objetNom)
+                </th>
+                <th>
+                    Prix Départ
+                </th>
+                <th>
+                    Date inscription
+                </th>
+                <th>
+                    Prix vente
+                </th>
+                <th>
+                    Date vente
+                </th>
+                <th>
+                    Nom Vendeur
+                </th>
+                <th>
+                    Nom Acheteur
+                </th>
+                <th>
+                    Commission 19%
+                </th>
 
-
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.enchereNiveau) $
-                </td>
-                <td>
-                    @(item.objet.objetDateInsc.AddDays(item.objet.objetDureeVente).ToString("MM/dd/yyyy"))
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.objet.User.UserName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.user.UserName)
-
-                </td>
-                <td style="text-align:right">
-                    @{
-                        var prix = @item.enchereNiveau;
-                        prix *= 0.19; } @prix $
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.objet.objetNom)
                     </td>
-                </tr>
-            }
-    </tbody>
-</table>
-<br />
-<h3> Total commission sur les ventes </h3><span id="totalCom" style="font-size:20px; border-style: outset;
+                    <td>
+                        @Html.DisplayFor(modelItem => item.objet.objetPrixDepart) $
+                    </td>
+                    <td>
+                        @(item.objet.objetDateInsc.ToString("MM/dd/yyyy"))
+
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.enchereNiveau) $
+                    </td>
+                    <td>
+                        @(item.objet.objetDateInsc.AddDays(item.objet.objetDureeVente).ToString("MM/dd/yyyy"))
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.objet.User.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.user.UserName)
+
+                    </td>
+                    <td style="text-align:right">
+                        @{
+                            var prix = @item.enchereNiveau;
+                            prix *= 0.19; } @prix $
+                        </td>
+                    </tr>
+                }
+        </tbody>
+    </table>
+    </div>
+    <br />
+    <h3> Total commission sur les ventes </h3><span id="totalCom" style="font-size:20px; border-style: outset;
     border-color: coral;
     border-width: 7px;"></span>
 
-<script>
+    <script>
 
     $(document).ready(function () {
 
@@ -101,13 +102,13 @@
 
     var comission = [];
 
-    
+
 
         @foreach (var item in Model){
 
-           
+
                  @:comission.push("@item.enchereNiveau");
-                     
+
                 }
 
     var total = 0;
@@ -117,4 +118,4 @@
         console.log("total = "+total);
     }
     document.getElementById("totalCom").innerHTML = (total * 0.19).toFixed(2) + " $";
-</script>
+    </script>
