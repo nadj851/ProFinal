@@ -722,6 +722,8 @@
     <Content Include="Views\Objets\CreateEvalAchteur.cshtml" />
     <Content Include="Views\Evaluations\IndexAchteur.cshtml" />
     <Content Include="Views\Objets\SyntheseAnnuelleVente.cshtml" />
+    <Content Include="Views\ApplicationUsers\desactiver.cshtml" />
+    <Content Include="Views\Account\Lockout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
