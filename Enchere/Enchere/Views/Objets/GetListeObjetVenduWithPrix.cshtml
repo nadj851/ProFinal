@@ -5,11 +5,13 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<h2>GetListeObjetVenduWithPrix</h2>
+<h2>Liste des objets vendus</h2>
+<br />
+<br />
 
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
+</p>*@
 <table id="rap2table" class="display" style="width:100%">
     <thead>
         <tr>
@@ -45,10 +47,10 @@
                     @Html.DisplayFor(modelItem => item.ObjetCategorie)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.PrixInitial)
+                    @Html.DisplayFor(modelItem => item.PrixInitial) $
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.PrixFinal)
+                    @Html.DisplayFor(modelItem => item.PrixFinal) $
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
