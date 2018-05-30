@@ -472,16 +472,13 @@ namespace Enchere.Controllers
         [Authorize]
         public ActionResult SyntheseAnnuelleVente()
         {
-           
 
+         
            
                 var objets = db.Encherees;
 
-                return View(objets.GroupBy(l => l.ObjetId).
-                    Select(g => g.OrderByDescending(c => c.ObjetId).FirstOrDefault()).ToList());
-                //var objets = db.Encherees.Where(a => a.UserId == UserId);
-                //return View(objets.DistinctBy(a => a.ObjetId).ToList());
-           
+            return View(objets.OrderByDescending(c => c.enchereNiveau).DistinctBy(a => a.ObjetId).ToList());
+            
 
 
 
