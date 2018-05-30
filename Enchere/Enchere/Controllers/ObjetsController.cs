@@ -227,8 +227,9 @@ namespace Enchere.Controllers
                     //return View(objets.DistinctBy(a => a.ObjetId).ToList());
                 }
                 else
-                {                    
-                    return View();
+                {
+                    List<Encheree> list = new List<Encheree>();                   
+                    return View(list);
 
                 }
             
