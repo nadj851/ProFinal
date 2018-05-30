@@ -10,61 +10,62 @@
 @*<p>
     @Html.ActionLink("Create New", "Create")
 </p>*@
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Vendeur)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateEvaluation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cote)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Commentaire)
+            </th>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Vendeur)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateEvaluation)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cote)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Commentaire)
-        </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalCote)
+            </th>
 
-        <th>
-            @Html.DisplayNameFor(model => model.TotalCote)
-        </th>
-        
-        <th></th>
-    </tr>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Vendeur)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateEvaluation)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cote)
-        </td>
-        <td>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vendeur)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateEvaluation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cote)
+                </td>
+                <td>
 
-            @Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(modelItem => item.Commentaire).ToString()))
-            
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalCote)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-   
-}
-        
-</table>
+                    @Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(modelItem => item.Commentaire).ToString()))
 
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalCote)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+
+        }
+
+    </table>
+</div>
 
     <div>
-    <h2>Total Cote : @ViewBag.total </h2>
+        <h2>Total Cote : @ViewBag.total </h2>
 
     </div>

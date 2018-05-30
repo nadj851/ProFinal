@@ -10,67 +10,68 @@
     <h3>
         @gr.ObjetNom
     </h3>
-            <table id="vendeurtable" class="table">
-                <thead>
+    <div class="table-responsive">
+        <table id="vendeurtable" class="table">
+            <thead>
 
+                <tr>
+                    <th>
+                        L'enchireur
+                    </th>
+                    <th>
+                        Message
+                    </th>
+                    <th>
+                        prix enchére
+                    </th>
+                    <th>
+                        date enchére
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in gr.Items)
+                {
                     <tr>
-                        <th>
-                            L'enchireur
-                        </th>
-                        <th>
-                            Message
-                        </th>
-                        <th>
-                            prix enchére
-                        </th>
-                        <th>
-                            date enchére
-                        </th>
+                        <td>
+                            @item.user.UserName
+                        </td>
+
+                        <td>
+                            @item.Message
+                        </td>
+                        <td>
+                            @item.enchereNiveau $
+                        </td>
+                        <td>
+                            @item.enchereDate
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in gr.Items)
-                {
-                        <tr>
-                            <td>
-                                @item.user.UserName
-                            </td>
 
-                            <td>
-                                @item.Message
-                            </td>
-                            <td>
-                                @item.enchereNiveau $
-                            </td>
-                            <td>
-                                @item.enchereDate
-                            </td>
-                        </tr>
-
-                    }
-                </tbody>
-            </table>
-
-}
-
-@section Scripts{
-    <script>
-
-        $(document).ready(function () {
-
-            $('#vendeurtable').DataTable(
-                {
-                    dom: 'Blfrtip', buttons: [{ extend: 'csv', exportOptions: { columns: [':visible'] } }, { extend: 'print', exportOptions: { columns: [':visible'] } }, { extend: 'copyHtml5', exportOptions: { columns: [':visible'] } }, { extend: 'excelHtml5', exportOptions: { columns: [':visible'] } }, { extend: 'pdfHtml5', exportOptions: { columns: [':visible'] } }, [{ extend: 'colvis', postfixButtons: ['colvisRestore'] }]], "pageLength": -1, "lengthMenu": [[10, 50, 100, 500, 1000, -1], [10, 50, 100, 500, "1000", "All"]], "language": {
-                        "lengthMenu": "Montrer _MENU_ Afficher par page",
-                        "zeroRecords": "Rien trouvé - Désolé",
-                        "info": "Montrer page _PAGE_ de _PAGES_",
-                        "infoEmpty": "Pas d'enregistrement disponible",
-                        "infoFiltered": "(filtered from _MAX_ total records)"
-                    }
                 }
+            </tbody>
+        </table>
+</div>
+        }
 
-                );
-            //$('label').contents()[0].html("Voir");
-        });
-    </script>
-}
+        @section Scripts{
+            <script>
+
+                $(document).ready(function () {
+
+                    $('#vendeurtable').DataTable(
+                        {
+                            dom: 'Blfrtip', buttons: [{ extend: 'csv', exportOptions: { columns: [':visible'] } }, { extend: 'print', exportOptions: { columns: [':visible'] } }, { extend: 'copyHtml5', exportOptions: { columns: [':visible'] } }, { extend: 'excelHtml5', exportOptions: { columns: [':visible'] } }, { extend: 'pdfHtml5', exportOptions: { columns: [':visible'] } }, [{ extend: 'colvis', postfixButtons: ['colvisRestore'] }]], "pageLength": -1, "lengthMenu": [[10, 50, 100, 500, 1000, -1], [10, 50, 100, 500, "1000", "All"]], "language": {
+                                "lengthMenu": "Montrer _MENU_ Afficher par page",
+                                "zeroRecords": "Rien trouvé - Désolé",
+                                "info": "Montrer page _PAGE_ de _PAGES_",
+                                "infoEmpty": "Pas d'enregistrement disponible",
+                                "infoFiltered": "(filtered from _MAX_ total records)"
+                            }
+                        }
+
+                    );
+                    //$('label').contents()[0].html("Voir");
+                });
+            </script>
+        }

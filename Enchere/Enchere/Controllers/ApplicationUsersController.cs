@@ -153,6 +153,32 @@ namespace Enchere.Controllers
             return View(groupe.ToList());
         }
 
+        [Authorize]
+        //[Authorize(Roles = "Vendeur,Admin")]
+        public ActionResult desactiver(string id)
+        {
+            var UserId = db.Users.Find(id).Id;
+            //var UserId = User.Identity.GetUserId();
+            var u = db.Users.Where(a => a.Id == UserId).Single();
+            Boolean etat = u.LockoutEnabled;
+            //pour desactiver un compte
+            //https://stackoverflow.com/questions/30452104/mvc-5-identity-2-0-lockout-doesnt-work
+            //Il faut mettre a jour la colone lockout enable et donner une date jusqua quand ce sera bloquer sinon sa ne marchera pas
+            if (etat)
+            {
+                u.LockoutEnabled = false;
+                u.LockoutEndDateUtc = null;
+            }
+            else
+            {
+                u.LockoutEnabled = true;
+                u.LockoutEndDateUtc = new DateTime(DateTime.Now.AddDays(7).Ticks);
+            }
+            db.SaveChanges();
+            return RedirectToAction("Index", "ApplicationUsers");
+           
+        }
+
 
     }
 }

@@ -8,66 +8,66 @@
 <h2>Liste des Objet(s) Acheté(s)</h2>
 <br />
 <br />
-
-<table id="objetachetes" class="table">
-    <thead>
-        <tr>
-            <th>
-                @*@Html.DisplayNameFor(model => model.objet.Category.CategoryName)*@
-                Vendeur
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.objet.objetNom)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.objet.objetPrixDepart)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.objet.objetDateInsc)
-            </th>
-            <th>
-                Date d'achat
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.objet.objetImage)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+<div class="table-responsive">
+    <table id="objetachetes" class="table">
+        <thead>
             <tr>
-                <td>
-                    @*@Html.DisplayFor(modelItem => item.objet.Category.CategoryName)*@
-                    @Html.DisplayFor(modelItem => item.objet.User.UserName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.objet.objetNom)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.enchereNiveau) $
-                </td>
-                <td>
-                    @(item.objet.objetDateInsc.ToString("MM/dd/yyyy"))
-                </td>
-                <td>
-                    @(item.objet.objetDateInsc.AddDays(item.objet.objetDureeVente).ToString("MM/dd/yyyy"))
-                </td>
-                <td>
-                    <img src="~/Uploads/@Html.DisplayFor(model => item.objet.objetImage)" class="thumbnail"
-                         style="width:48px;height:48px;" />
-                </td>
-                <td>
-                    @Html.ActionLink("Evaluations Vendeur ", "CreateEval", new { objetId = item.objet.Id }, new { @class = "badge" })
-                 
-                </td>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.objet.Category.CategoryName)*@
+                    Vendeur
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.objet.objetNom)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.objet.objetPrixDepart)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.objet.objetDateInsc)
+                </th>
+                <th>
+                    Date d'achat
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.objet.objetImage)
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.objet.Category.CategoryName)*@
+                        @Html.DisplayFor(modelItem => item.objet.User.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.objet.objetNom)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.enchereNiveau) $
+                    </td>
+                    <td>
+                        @(item.objet.objetDateInsc.ToString("MM/dd/yyyy"))
+                    </td>
+                    <td>
+                        @(item.objet.objetDateInsc.AddDays(item.objet.objetDureeVente).ToString("MM/dd/yyyy"))
+                    </td>
+                    <td>
+                        <img src="~/Uploads/@Html.DisplayFor(model => item.objet.objetImage)" class="thumbnail"
+                             style="width:48px;height:48px;" />
+                    </td>
+                    <td>
+                        @Html.ActionLink("Evaluations Vendeur ", "CreateEval", new { objetId = item.objet.Id }, new { @class = "badge" })
 
-<script>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>
+    <script>
 
         $(document).ready(function () {
 
@@ -82,7 +82,7 @@
                     }
                 }
 
-                );
+            );
             //$('label').contents()[0].html("Voir");
         });
-</script>
+    </script>
