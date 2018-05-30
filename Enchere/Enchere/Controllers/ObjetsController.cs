@@ -211,26 +211,29 @@ namespace Enchere.Controllers
         //objets vendu par chaque membre
         [Authorize]
         public ActionResult GetObjetAchte()
-        {
-            var UserId = User.Identity.GetUserId();           
+        {                    
+                      
+                var UserId = User.Identity.GetUserId();
+             
 
-            if (db.Encherees.Where(a => a.UserId == UserId).Any())
-            {
-                var objets = db.Encherees.GroupBy(l => l.ObjetId).
-                    Select(g => g.OrderByDescending(c => c.UserId).FirstOrDefault()).
-                    Where(u => u.UserId == UserId);
+                if (db.Encherees.Where(a => a.UserId == UserId).Any())
+                {
+                    var objets = db.Encherees.GroupBy(l => l.ObjetId).
+                        Select(g => g.OrderByDescending(c => c.UserId).FirstOrDefault()).
+                        Where(u => u.UserId == UserId);
                 
-                return View(objets.ToList());
-                //var objets = db.Encherees.Where(a => a.UserId == UserId);
-                //return View(objets.DistinctBy(a => a.ObjetId).ToList());
-            }
-            else{
-                return View();
+                    return View(objets.ToList());
+                    //var objets = db.Encherees.Where(a => a.UserId == UserId);
+                    //return View(objets.DistinctBy(a => a.ObjetId).ToList());
+                }
+                else
+                {                    
+                    return View();
 
-            }
-
-
-           
+                }
+            
+                       
+                       
         }
 
   // GET: Evaluations/Create
